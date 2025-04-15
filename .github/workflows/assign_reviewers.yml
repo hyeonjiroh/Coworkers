@@ -10,5 +10,6 @@ jobs:
     steps:
       - uses: hkusu/review-assign-action@v1
         with:
+          github-token: ${{ secrets.AUTO_ACTIONS }}
           assignees: ${{ github.actor }}
           reviewers: ARON-Y, hyeonjiroh, jjaneyxx, MySoupRice

@@ -2,7 +2,7 @@
 name: issue-template
 about: 이슈 생성
 title: "[feat] "
-labels: ''
+labels: "\U0001F4ABfeat"
 assignees: ''
 
 ---

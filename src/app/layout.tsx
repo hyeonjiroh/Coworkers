@@ -1,7 +1,7 @@
-import './globals.css';
-
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import './globals.css';
+import CustomToastContainer from '@/components/common/CustomToastContainer';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -14,11 +14,10 @@ const geistMono = localFont({
   weight: '100 900',
 });
 
-//임시 주석 처리
-// export const metadata: Metadata = {
-//   title: 'Coworkers',
-//   description: '업무 배정 및 현황 공유 서비스',
-// };
+export const metadata: Metadata = {
+  title: 'Coworkers',
+  description: '업무 배정 및 현황 공유 서비스',
+};
 
 export default function RootLayout({
   children,
@@ -26,10 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CustomToastContainer />
         {children}
       </body>
     </html>

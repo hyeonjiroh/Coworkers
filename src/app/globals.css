@@ -1,1 +1,55 @@
 @import 'tailwindcss';
+
+.Toastify__toast {
+  width: fit-content !important;
+  max-width: 380px !important;
+  white-space: normal !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+  word-break: keep-all; /* 단어 단위로 줄바꿈 */
+  border-radius: 16px;
+  background-color: white !important;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Toastify__toast--success {
+  border-radius: 16px;
+  padding: 14px 18px;
+  background-color: white !important;
+  color: #10b981 !important;
+  font-size: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.Toastify__toast--error {
+  border-radius: 16px;
+  padding: 14px 18px;
+  background-color: white !important;
+  color: #f43f5e !important;
+  font-size: 14px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.Toastify__close-button {
+  display: none !important;
+}
+
+/* default icon */
+.Toastify__toast-icon svg {
+  fill: #10b981 !important;
+}
+
+/* type icon */
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: #f43f5e !important;
+}
+
+.Toastify__progress-bar--success {
+  background: #10b981 !important;
+}
+
+.Toastify__progress-bar--error {
+  background: #f43f5e !important;
+}

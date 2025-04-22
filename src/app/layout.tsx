@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Montserrat } from 'next/font/google';
 // import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
@@ -15,6 +16,18 @@ const geistMono = localFont({
   variable: '--font-geist-mono',
   weight: '100 900',
 });
+const pretendard = localFont({
+  src: './fonts/PretendardVariable.woff2',
+  display: 'swap',
+  variable: '--font-pretendard',
+  weight: '300 400 500 600 700',
+});
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-montserrat',
+});
 
 // export const metadata: Metadata = {
 //   title: 'Coworkers',
@@ -27,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${pretendard.variable} ${montserrat.variable}`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

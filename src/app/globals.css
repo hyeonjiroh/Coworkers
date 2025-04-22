@@ -1,5 +1,198 @@
 @import 'tailwindcss';
 
+@theme {
+  /* ========== 컬러가이드 ========== */
+  --color-*: initial;
+  --color-green-900: #047857;
+  --color-green-800: #059669;
+  --color-green-700: #10b981; /*brand-primary*/
+  --color-green-600: #34d399; /*brand-secondary*/
+  --color-green-500: #a3e635; /*brand-teriary*/
+  --green-gradient: linear-gradient(90deg, #10b981 0%, #a3e635 100%);
+
+  --color-point-purple: #a855f7;
+  --color-point-blue: #3b82f6;
+  --color-point-cyan: #06b6d4;
+  --color-point-pink: #ec4899;
+  --color-point-rose: #f43f5e;
+  --color-point-orange: #f97316;
+  --color-point-yellow: #eab308;
+
+  --color-black: #000000;
+  --color-gray-900: #111111;
+  --color-gray-800: #71717a;
+  --color-gray-750: #9e9fa0; /*border-primary*/
+  --color-gray-700: #a1a1aa;
+  --color-gray-600: #d4d4d8;
+  --color-gray-500: #e4e4e7;
+  --color-gray-400: #f1f1f3;
+  --color-gray-300: #f5f5f7;
+  --color-white: #ffffff;
+
+  --color-slate-50: #f8fafc; /*text-primary*/
+  --color-slate-100: #f1f5f9; /*text-secondary*/
+  --color-slate-200: #e2e8f0; /*text-teriary*/
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8; /*text-disabled*/
+  --color-slate-500: #64748b; /*text-dafault*/
+  --color-slate-600: #475569;
+  --color-slate-700: #334155; /*bg-teriary*/
+  --color-slate-800: #1e293b; /*bg-secondary*/
+  --color-slate-900: #0f172a; /*bg-primary*/
+  --color-slate-950: #020617;
+
+  --color-success: #3b82f6; /* 파랑 */
+  --color-danger: #dc2626; /* 빨강 */
+  --color-warning: #eab308; /* 노랑 */
+
+  /* ========== 폰트가이드 ========== */
+  /* Text-4xl */
+  --text-4xl-medium: 40px;
+  --text-4xl-medium--line-height: 48px;
+  --text-4xl-medium--font-weight: 500;
+
+  /* Text-3xl */
+  --text-3xl-bold: 32px;
+  --text-3xl-bold--line-height: 38px;
+  --text-3xl-bold--font-weight: 700;
+
+  --text-3xl-semibold: 32px;
+  --text-3xl-semibold--line-height: 38px;
+  --text-3xl-semibold--font-weight: 600;
+
+  /* Text-2xl */
+  --text-2xl-bold: 24px;
+  --text-2xl-bold--line-height: 28px;
+  --text-2xl-bold--font-weight: 700;
+
+  --text-2xl-semibold: 24px;
+  --text-2xl-semibold--line-height: 28px;
+  --text-2xl-semibold--font-weight: 600;
+
+  --text-2xl-medium: 24px;
+  --text-2xl-medium--line-height: 28px;
+  --text-2xl-medium--font-weight: 500;
+
+  --text-2xl-regular: 24px;
+  --text-2xl-regular--line-height: 28px;
+  --text-2xl-regular--font-weight: 400;
+
+  /* Text-xl */
+  --text-xl-bold: 20px;
+  --text-xl-bold--line-height: 24px;
+  --text-xl-bold--font-weight: 700;
+
+  --text-xl-semibold: 20px;
+  --text-xl-semibold--line-height: 24px;
+  --text-xl-semibold--font-weight: 600;
+
+  --text-xl-medium: 20px;
+  --text-xl-medium--line-height: 24px;
+  --text-xl-medium--font-weight: 500;
+
+  --text-xl-regular: 20px;
+  --text-xl-regular--line-height: 24px;
+  --text-xl-regular--font-weight: 400;
+
+  /* Text-2lg */
+  --text-2lg-bold: 18px;
+  --text-2lg-bold--line-height: 21px;
+  --text-2lg-bold--font-weight: 700;
+
+  --text-2lg-semibold: 18px;
+  --text-2lg-semibold--line-height: 21px;
+  --text-2lg-semibold--font-weight: 600;
+
+  --text-2lg-medium: 18px;
+  --text-2lg-medium--line-height: 21px;
+  --text-2lg-medium--font-weight: 500;
+
+  --text-2lg-regular: 18px;
+  --text-2lg-regular--line-height: 21px;
+  --text-2lg-regular--font-weight: 400;
+
+  /* Text-lg */
+  --text-lg-bold: 16px;
+  --text-lg-bold--line-height: 19px;
+  --text-lg-bold--font-weight: 700;
+
+  --text-lg-semibold: 16px;
+  --text-lg-semibold--line-height: 19px;
+  --text-lg-semibold--font-weight: 600;
+
+  --text-lg-medium: 16px;
+  --text-lg-medium--line-height: 19px;
+  --text-lg-medium--font-weight: 500;
+
+  --text-lg-regular: 16px;
+  --text-lg-regular--line-height: 19px;
+  --text-lg-regular--font-weight: 400;
+
+  /* Text-md */
+  --text-md-bold: 14px;
+  --text-md-bold--line-height: 17px;
+  --text-md-bold--font-weight: 700;
+
+  --text-md-semibold: 14px;
+  --text-md-semibold--line-height: 17px;
+  --text-md-semibold--font-weight: 600;
+
+  --text-md-medium: 14px;
+  --text-md-medium--line-height: 17px;
+  --text-md-medium--font-weight: 500;
+
+  --text-md-regular: 14px;
+  --text-md-regular--line-height: 17px;
+  --text-md-regular--font-weight: 400;
+
+  /* Text-sm */
+  --text-sm-semibold: 13px;
+  --text-sm-semibold--line-height: 16px;
+  --text-sm-semibold--font-weight: 600;
+
+  --text-sm-medium: 13px;
+  --text-sm-medium--line-height: 16px;
+  --text-sm-medium--font-weight: 500;
+
+  /* Text-xs */
+  --text-xs-semibold: 12px;
+  --text-xs-semibold--line-height: 14px;
+  --text-xs-semibold--font-weight: 600;
+
+  --text-xs-medium: 12px;
+  --text-xs-medium--line-height: 14px;
+  --text-xs-medium--font-weight: 500;
+
+  --text-xs-regular: 12px;
+  --text-xs-regular--line-height: 14px;
+  --text-xs-regular--font-weight: 400;
+
+  /* 반응형 브레이크포인트 설정 */
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 744px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1920px;
+}
+
+html,
+body {
+  font-family:
+    var(--font-pretendard),
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
+}
+
 .Toastify__toast {
   width: fit-content !important;
   max-width: 380px !important;

@@ -1,0 +1,9 @@
+/* 반응형 브레이크포인트 설정 */
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-tablet: 744px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1920px;
+}

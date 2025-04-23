@@ -1,0 +1,47 @@
+/* ========== 컬러 가이드 ========== */
+@import 'tailwindcss';
+
+@theme {
+  --color-*: initial;
+  --color-green-900: #047857;
+  --color-green-800: #059669;
+  --color-green-700: #10b981; /*brand-primary*/
+  --color-green-600: #34d399; /*brand-secondary*/
+  --color-green-500: #a3e635; /*brand-teriary*/
+  --green-gradient: linear-gradient(90deg, #10b981 0%, #a3e635 100%);
+
+  --color-point-purple: #a855f7;
+  --color-point-blue: #3b82f6;
+  --color-point-cyan: #06b6d4;
+  --color-point-pink: #ec4899;
+  --color-point-rose: #f43f5e;
+  --color-point-orange: #f97316;
+  --color-point-yellow: #eab308;
+
+  --color-black: #000000;
+  --color-gray-900: #111111;
+  --color-gray-800: #71717a;
+  --color-gray-750: #9e9fa0; /*border-primary*/
+  --color-gray-700: #a1a1aa;
+  --color-gray-600: #d4d4d8;
+  --color-gray-500: #e4e4e7;
+  --color-gray-400: #f1f1f3;
+  --color-gray-300: #f5f5f7;
+  --color-white: #ffffff;
+
+  --color-slate-50: #f8fafc; /*text-primary*/
+  --color-slate-100: #f1f5f9; /*text-secondary*/
+  --color-slate-200: #e2e8f0; /*text-teriary*/
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8; /*text-disabled*/
+  --color-slate-500: #64748b; /*text-dafault*/
+  --color-slate-600: #475569;
+  --color-slate-700: #334155; /*bg-teriary*/
+  --color-slate-800: #1e293b; /*bg-secondary*/
+  --color-slate-900: #0f172a; /*bg-primary*/
+  --color-slate-950: #020617;
+
+  --color-success: #3b82f6; /* 파랑 */
+  --color-danger: #dc2626; /* 빨강 */
+  --color-warning: #eab308; /* 노랑 */
+}

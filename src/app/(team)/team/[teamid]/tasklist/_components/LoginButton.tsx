@@ -1,9 +1,8 @@
 'use client';
 
 import Cookies from 'js-cookie';
+import { postLogin } from '@/lib/apis/auth';
 import { toast } from 'react-toastify';
-
-import { postLogin } from '@/lib/api/auth';
 
 export default function LoginButton() {
   const handleLogin = async () => {

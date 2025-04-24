@@ -4,9 +4,9 @@ import {
   GetGroupResponse,
   PostGroupBody,
   PostGroupResponse,
-} from '@/lib/apis/types/group';
+} from '@/lib/api/group/type';
 
-import fetcher from '../fetcher';
+import fetcher from '@/lib/fetcher';
 
 export async function getGroupsById({
   groupId,

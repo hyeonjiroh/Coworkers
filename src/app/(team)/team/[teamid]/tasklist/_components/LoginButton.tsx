@@ -3,7 +3,7 @@
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
 
-import { postLogin } from '@/lib/apis/auth';
+import { postLogin } from '@/lib/api/auth';
 
 export default function LoginButton() {
   const handleLogin = async () => {

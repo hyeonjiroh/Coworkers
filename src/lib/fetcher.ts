@@ -1,4 +1,4 @@
-import getNewAccessToken from './getNewAccessToken';
+import getNewAccessToken from './token';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 

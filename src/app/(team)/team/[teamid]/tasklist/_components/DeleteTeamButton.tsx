@@ -2,7 +2,7 @@
 
 import { toast } from 'react-toastify';
 
-import { deleteGroupsById } from '@/lib/apis/group';
+import { deleteGroupsById } from '@/lib/api/group';
 
 export default function DeleteTeamButton() {
   const groupId = 2202;

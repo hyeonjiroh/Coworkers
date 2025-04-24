@@ -1,5 +1,5 @@
-import fetcher from '../fetcher';
-import { LoginBody, LoginResponse } from './types/auth';
+import fetcher from '@/lib/fetcher';
+import { LoginBody, LoginResponse } from '@/lib/api/auth/type';
 
 export async function postLogin(
   body: LoginBody

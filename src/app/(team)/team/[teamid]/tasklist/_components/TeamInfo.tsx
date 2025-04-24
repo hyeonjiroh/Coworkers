@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-import { getGroupsById } from '@/lib/apis/group';
+import { getGroupsById } from '@/lib/api/group';
 
 export default async function TeamInfo() {
   const token = cookies().get('accessToken')?.value ?? '';

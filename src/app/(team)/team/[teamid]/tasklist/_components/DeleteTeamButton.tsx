@@ -1,6 +1,6 @@
 'use client';
 
-import { deleteGroup } from '@/lib/apis/group';
+import { deleteGroupById } from '@/lib/apis/group';
 import { toast } from 'react-toastify';
 
 export default function DeleteTeamButton() {
@@ -8,7 +8,7 @@ export default function DeleteTeamButton() {
 
   const handleDeleteTeam = async () => {
     try {
-      await deleteGroup(groupId);
+      await deleteGroupById(groupId);
 
       toast.success('팀 삭제 성공');
     } catch (error) {

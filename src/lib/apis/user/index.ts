@@ -11,6 +11,7 @@ import {
   MessageResponse,
 } from '@/lib/apis/user/type';
 
+// 회원 정보 조회 (GET /user)
 export async function getUser(token: string): Promise<UserResponse | null> {
   return fetcher<undefined, UserResponse>({
     url: `/user`,
@@ -19,6 +20,7 @@ export async function getUser(token: string): Promise<UserResponse | null> {
   });
 }
 
+// 회원 정보 수정 (PATCH /user)
 export async function patchUser(
   body: UserBody
 ): Promise<MessageResponse | null> {
@@ -37,6 +39,7 @@ export async function patchUser(
   });
 }
 
+// 회원 탈퇴 (DELETE /user)
 export async function deleteUser(): Promise<null> {
   const token = Cookies.get('accessToken');
   return fetcher<undefined, null>({
@@ -46,6 +49,7 @@ export async function deleteUser(): Promise<null> {
   });
 }
 
+// 사용자 소속 그룹 조회 (GET /user/groups)
 export async function getUserGroups(
   token: string
 ): Promise<UserGroupResponse[] | null> {
@@ -56,6 +60,7 @@ export async function getUserGroups(
   });
 }
 
+// 사용자 멤버십 정보 조회 (GET /user/memberships)
 export async function getUserMemberships(
   token: string
 ): Promise<UserMembershipResponse[] | null> {
@@ -66,6 +71,7 @@ export async function getUserMemberships(
   });
 }
 
+// 사용자 완료한 작업 조회 (GET /user/history)
 export async function getUserHistory(
   token: string
 ): Promise<UserHistoryResponse | null> {
@@ -76,7 +82,7 @@ export async function getUserHistory(
   });
 }
 
-// 비밀번호 재설정 이메일 전송
+// 비밀번호 재설정 이메일 전송 (POST /user/send-reset-password-email)
 export async function postResetPasswordToEmail(
   body: ResetPasswordToEmailBody
 ): Promise<MessageResponse | null> {
@@ -89,7 +95,7 @@ export async function postResetPasswordToEmail(
   });
 }
 
-// 이메일로 전달받은 링크에서 비밀번호 초기화
+// 이메일로 전달받은 링크에서 비밀번호 초기화 (PATCH /user/reset-password)
 export async function patchResetPassword(
   body: ResetPasswordBody
 ): Promise<MessageResponse | null> {
@@ -102,6 +108,7 @@ export async function patchResetPassword(
   });
 }
 
+// 비밀번호 변경 (PATCH /user/password)
 export async function patchPassword(
   body: ResetPasswordBody
 ): Promise<MessageResponse | null> {

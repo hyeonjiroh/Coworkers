@@ -2,7 +2,8 @@ import Cookies from 'js-cookie';
 import fetcher from '@/lib/fetcher';
 import { CommentBody, CommentResponse } from '@/lib/apis/comment/type';
 
-export async function getComment({
+// 특정 할 일의 댓글 목록 조회 (GET /tasks/:taskId/comments)
+export async function getCommentsByTaskId({
   taskId,
   token,
 }: {
@@ -16,7 +17,8 @@ export async function getComment({
   });
 }
 
-export async function postComment({
+// 특정 할 일에 댓글 작성 (POST /tasks/:taskId/comments)
+export async function postTaskComment({
   taskId,
   body,
 }: {
@@ -32,7 +34,8 @@ export async function postComment({
   });
 }
 
-export async function patchComment({
+// 특정 댓글 수정 (PATCH /tasks/:taskId/comments/:commentId)
+export async function patchTaskComment({
   taskId,
   commentId,
   body,
@@ -50,7 +53,8 @@ export async function patchComment({
   });
 }
 
-export async function deleteComment({
+// 특정 댓글 삭제 (DELETE /tasks/:taskId/comments/:commentId)
+export async function deleteTaskComment({
   taskId,
   commentId,
 }: {

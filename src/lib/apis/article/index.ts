@@ -7,6 +7,7 @@ import {
   MessageResponse,
 } from '@/lib/apis/article/type';
 
+// 게시글 생성 (POST /articles)
 export async function postArticle(
   body: ArticleBody
 ): Promise<ArticleResponse | null> {
@@ -26,7 +27,8 @@ export async function postArticle(
   });
 }
 
-export async function getArticleList({
+// 게시글 목록 조회 (GET /articles)
+export async function getArticles({
   page,
   pageSize,
   order,
@@ -51,7 +53,8 @@ export async function getArticleList({
   });
 }
 
-export async function getArticle({
+// 게시글 상세 조회 (GET /articles/:articleId)
+export async function getArticleById({
   articleId,
   token,
 }: {
@@ -65,6 +68,7 @@ export async function getArticle({
   });
 }
 
+// 게시글 수정 (PATCH /articles/:articleId)
 export async function patchArticle({
   articleId,
   body,
@@ -88,6 +92,7 @@ export async function patchArticle({
   });
 }
 
+// 게시글 삭제 (DELETE /articles/:articleId)
 export async function deleteArticle(
   articleId: number
 ): Promise<MessageResponse | null> {
@@ -99,6 +104,7 @@ export async function deleteArticle(
   });
 }
 
+// 게시글 좋아요 등록 (POST /articles/:articleId/like)
 export async function postArticleLike(
   articleId: number
 ): Promise<ArticleResponse | null> {
@@ -110,6 +116,7 @@ export async function postArticleLike(
   });
 }
 
+// 게시글 좋아요 취소 (DELETE /articles/:articleId/like)
 export async function deleteArticleLike(
   articleId: number
 ): Promise<ArticleResponse | null> {

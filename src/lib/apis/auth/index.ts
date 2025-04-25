@@ -7,12 +7,19 @@ import {
   AuthResponse,
 } from '@/lib/apis/auth/type';
 
-// 간편 로그인 App 등록/수정
-export async function postOAuthApp(
-  body: OAuthAppBody
-): Promise<OAuthAppResponse | null> {
-  return fetcher<OAuthAppBody, OAuthAppResponse>({
-    url: '/oauthApps',
+// 회원가입
+export async function signUp(body: AuthBody): Promise<AuthResponse | null> {
+  return fetcher<AuthBody, AuthResponse>({
+    url: '/auth/signUp',
+    method: 'POST',
+    body,
+  });
+}
+
+// 로그인
+export async function signIn(body: AuthBody): Promise<AuthResponse | null> {
+  return fetcher<AuthBody, AuthResponse>({
+    url: '/auth/signIn',
     method: 'POST',
     body,
   });
@@ -27,17 +34,12 @@ export async function postOAuth(body: OAuthBody): Promise<AuthResponse | null> {
   });
 }
 
-export async function postSignUp(body: AuthBody): Promise<AuthResponse | null> {
-  return fetcher<AuthBody, AuthResponse>({
-    url: '/auth/signUp',
-    method: 'POST',
-    body,
-  });
-}
-
-export async function postSignIn(body: AuthBody): Promise<AuthResponse | null> {
-  return fetcher<AuthBody, AuthResponse>({
-    url: '/auth/signIn',
+// 간편 로그인 App 등록/수정
+export async function postOAuthApp(
+  body: OAuthAppBody
+): Promise<OAuthAppResponse | null> {
+  return fetcher<OAuthAppBody, OAuthAppResponse>({
+    url: '/oauthApps',
     method: 'POST',
     body,
   });

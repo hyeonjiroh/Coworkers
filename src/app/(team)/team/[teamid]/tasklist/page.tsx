@@ -1,3 +1,4 @@
+import ModalButton from '@/app/(team)/team/[teamid]/tasklist/_components/ModalButton';
 import CreateTeamButton from './_components/CreateTeamButton';
 import DeleteTeamButton from './_components/DeleteTeamButton';
 import LoginButton from './_components/LoginButton';
@@ -16,6 +17,8 @@ export default function TaskListPage() {
       <br />
       <DeleteTeamButton />
       {/* <TeamInfo /> */}
+      <br />
+      <ModalButton />
     </div>
   );
 }

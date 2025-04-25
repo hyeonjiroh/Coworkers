@@ -1,16 +1,19 @@
+import { TaskListResponse } from '@/lib/apis/taskList/type';
+
 export interface GroupBody {
   image?: string | null;
   name: string;
 }
+
 export interface GroupResponse {
   id: number;
   name: string;
   image: string | null;
   createdAt: string;
   updatedAt: string;
-  teamId: string;
-  members: GroupMemberResponse[];
-  taskLists: string[]; // 수정 필요
+  teamId?: string;
+  members?: GroupMemberResponse[];
+  taskLists?: TaskListResponse[];
 }
 
 export interface GroupInvitationBody {
@@ -19,7 +22,8 @@ export interface GroupInvitationBody {
 }
 
 export interface GroupInvitationResponse {
-  groupId: number;
+  groupId?: number;
+  message?: string;
 }
 
 export interface GroupMemberBody {
@@ -27,15 +31,6 @@ export interface GroupMemberBody {
 }
 
 export interface GroupMemberResponse {
-  userId: number;
-  groupId: number;
-  userName: string;
-  userEmail: string;
-  userImage: string | null;
-  role: 'ADMIN' | 'MEMBER';
-}
-
-export interface GroupTasksResponse {
   userId: number;
   groupId: number;
   userName: string;

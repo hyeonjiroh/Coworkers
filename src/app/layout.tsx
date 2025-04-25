@@ -1,33 +1,13 @@
 import '@/app/styles/globals.css';
-
-import { Montserrat } from 'next/font/google';
-
 import localFont from 'next/font/local';
-
 import ToastStyle from '@/components/common/ToastStyle';
 import { Metadata } from 'next';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
   display: 'swap',
   variable: '--font-pretendard',
   weight: '300 400 500 600 700',
-});
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
 });
 
 export const metadata: Metadata = {
@@ -41,10 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable} ${montserrat.variable}`}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="ko" className={`${pretendard.variable}`}>
+      <body className={`antialiased`}>
         <ToastStyle />
         {children}
       </body>

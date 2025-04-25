@@ -10,7 +10,7 @@ export interface TaskListResponse {
   updatedAt: string;
   groupId: number;
   displayIndex: number;
-  tasks: TaskResponse[];
+  tasks?: TaskResponse[];
 }
 
 export interface TaskListOrderBody {

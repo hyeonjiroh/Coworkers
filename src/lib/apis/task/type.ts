@@ -1,16 +1,12 @@
-interface User {
-  id: number;
-  nickname: string;
-  image: string | null;
-}
+import { UserResponse } from '@/lib/apis/user/type';
 
 export interface RecurringTaskBody {
   name: string;
   description: string;
   startDate: string;
   frequencyType: 'ONCE' | 'DAILY' | 'WEEKLY' | 'MONTHLY';
-  weekDays: number[];
-  monthDay: number | null;
+  weekDays?: number[];
+  monthDay?: number | null;
 }
 
 export interface RecurringTaskResponse {
@@ -44,14 +40,16 @@ export interface TaskResponse {
   description: string;
   frequency: 'ONCE' | 'DAILY' | 'WEEKLY' | 'MONTHLY';
   deletedAt: string | null;
-  user: User | null;
+  userId?: number;
+  user?: UserResponse | null;
   displayIndex: number;
-  recurring: RecurringTaskResponse;
-  writer: User;
-  doneBy: {
-    user: User | null;
+  recurring?: RecurringTaskResponse;
+  writerId?: number;
+  writer?: UserResponse;
+  doneBy?: {
+    user: UserResponse | null;
   };
-  commentCount: number;
+  commentCount?: number;
 }
 
 export interface TaskOrderBody {

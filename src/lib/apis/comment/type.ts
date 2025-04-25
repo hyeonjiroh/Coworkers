@@ -1,8 +1,4 @@
-interface User {
-  id: number;
-  nickname: string;
-  image: string | null;
-}
+import { UserResponse } from '@/lib/apis/user/type';
 
 export interface CommentBody {
   content: string;
@@ -13,5 +9,7 @@ export interface CommentResponse {
   content: string;
   createdAt: string;
   updatedAt: string;
-  user: User;
+  taskId?: number;
+  userId?: number;
+  user: UserResponse;
 }

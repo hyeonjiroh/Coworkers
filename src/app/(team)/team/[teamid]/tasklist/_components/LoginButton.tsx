@@ -1,13 +1,13 @@
 'use client';
 
 import Cookies from 'js-cookie';
-import { postLogin } from '@/lib/apis/auth';
+import { postSignIn } from '@/lib/apis/auth';
 import { toast } from 'react-toastify';
 
 export default function LoginButton() {
   const handleLogin = async () => {
     try {
-      const data = await postLogin({
+      const data = await postSignIn({
         email: 'test1111@email.com',
         password: 'test1111*',
       });

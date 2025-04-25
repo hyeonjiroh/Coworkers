@@ -114,11 +114,9 @@ export async function getGroupInvitation({
 }
 
 // 초대 수락
-export async function postGroupInvitation({
-  body,
-}: {
-  body: GroupInvitationBody;
-}): Promise<GroupInvitationResponse | null> {
+export async function postGroupInvitation(
+  body: GroupInvitationBody
+): Promise<GroupInvitationResponse | null> {
   const token = Cookies.get('accessToken');
   return fetcher<GroupInvitationBody, GroupInvitationResponse>({
     url: `/groups/accept-invitation`,

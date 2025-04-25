@@ -34,7 +34,7 @@
   --color-slate-200: #e2e8f0; /*text-teriary*/
   --color-slate-300: #cbd5e1;
   --color-slate-400: #94a3b8; /*text-disabled*/
-  --color-slate-500: #64748b; /*text-dafault*/
+  --color-slate-500: #64748b; /*text-default*/
   --color-slate-600: #475569;
   --color-slate-700: #334155; /*bg-teriary*/
   --color-slate-800: #1e293b; /*bg-secondary*/
@@ -42,6 +42,6 @@
   --color-slate-950: #020617;
 
   --color-success: #3b82f6; /* 파랑 */
-  --color-danger: #dc2626; /* 빨강 */
+  --color-danger: #ef4444; /* 빨강 */
   --color-warning: #eab308; /* 노랑 */
 }

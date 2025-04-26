@@ -2,7 +2,7 @@
 // 자유게시판(정렬 선택) 사용 인풋
 'use client';
 import React from 'react';
-import BaseInput from '@/components/common/Input/InputBase';
+import InputBase from '@/components/common/Input/InputBase';
 import IconRenderer from '@/components/common/Icons/IconRenderer';
 
 interface InputToggleProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,7 +13,7 @@ interface InputToggleProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const InputToggle = ({ variant, onClick, ...props }: InputToggleProps) => {
   return (
     <div className="relative">
-      <BaseInput
+      <InputBase
         {...props}
         readOnly
         onClick={onClick}

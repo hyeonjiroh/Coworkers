@@ -4,4 +4,4 @@ export { default as InputBase } from './InputBase';
 export { default as InputSignup } from './InputSignup';
 export { default as InputToggle } from './InputToggle';
 export { default as InputChangeInfo } from './InputChangeInfo';
-export { default as InputBox } from './InputBox';
+export { default as InputTextarea } from './InputTextarea';

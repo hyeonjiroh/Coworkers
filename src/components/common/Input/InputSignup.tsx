@@ -1,7 +1,7 @@
 // 회원가입 페이지 사용 인풋
 'use client';
 import React, { useState } from 'react';
-import BaseInput from '@/components/common/Input/InputBase';
+import InputBase from '@/components/common/Input/InputBase';
 import {
   validateName,
   validateEmail,
@@ -54,7 +54,7 @@ const InputSignup = ({
 
   return (
     <div>
-      <BaseInput
+      <InputBase
         {...props}
         label={label}
         value={value}

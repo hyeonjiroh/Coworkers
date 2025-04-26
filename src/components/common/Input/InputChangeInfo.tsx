@@ -1,7 +1,7 @@
 // 계정 설정 페이지 사용 인풋
 'use client';
 import React from 'react';
-import BaseInput from '@/components/common/Input/InputBase';
+import InputBase from '@/components/common/Input/InputBase';
 
 interface InputChangeInfoProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -15,7 +15,7 @@ const InputChangeInfo = ({
   ...props
 }: InputChangeInfoProps) => {
   return (
-    <BaseInput
+    <InputBase
       {...props}
       label={label}
       containerClassName={`h-[48px] ${variant === 'pale' ? 'bg-slate-700' : 'bg-slate-800'} `}

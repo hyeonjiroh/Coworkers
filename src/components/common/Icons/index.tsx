@@ -3,35 +3,37 @@
 import React from 'react';
 
 import Alert from '@/assets/icons/alert.svg';
+import Arrow from '@/assets/icons/arrow.svg';
+import ArrowTop from '@/assets/icons/arrow_top.svg';
 import Calendar from '@/assets/icons/calendar.svg';
-import Check from '@/assets/icons/check.svg';
 import CheckGreen from '@/assets/icons/check_green.svg';
 import CheckWhite from '@/assets/icons/check_white.svg';
+import Check from '@/assets/icons/check.svg';
 import CheckboxDefault from '@/assets/icons/checkbox_default.svg';
-import CheckboxActive from '@/assets/icons/chekcbox_active.svg';
+import CheckboxActive from '@/assets/icons/checkbox_active.svg';
 import Comment from '@/assets/icons/comment.svg';
-import Cowrkers from '@/assets/icons/coworkers.svg';
+import Coworkers from '@/assets/icons/coworkers.svg';
 import Done from '@/assets/icons/done.svg';
+import Edit from '@/assets/icons/edit.svg';
 import Gear from '@/assets/icons/gear.svg';
 import GnbMenu from '@/assets/icons/gnb_menu.svg';
 import Img from '@/assets/icons/img.svg';
-import Left from '@/assets/icons/left.svg';
 import List from '@/assets/icons/list.svg';
 import Logo from '@/assets/icons/logo.svg';
+import Member from '@/assets/icons/member.svg';
 import Plus from '@/assets/icons/plus.svg';
 import ProfileImage from '@/assets/icons/profile_image.svg';
-import PrograssDone from '@/assets/icons/progress_done.svg';
-import PrograssOngoing from '@/assets/icons/progress_ongoing.svg';
+import ProgressDone from '@/assets/icons/progress_done.svg';
+import ProgressOngoing from '@/assets/icons/progress_ongoing.svg';
 import Repair from '@/assets/icons/repair.svg';
 import Repeat from '@/assets/icons/repeat.svg';
-import Right from '@/assets/icons/right.svg';
 import Search from '@/assets/icons/search.svg';
 import ThreeDots from '@/assets/icons/three_dots.svg';
 import Time from '@/assets/icons/time.svg';
 import Toggle from '@/assets/icons/toggle.svg';
 import User from '@/assets/icons/user.svg';
-import VisbilityOff from '@/assets/icons/visibility_off.svg';
-import VisbilityOn from '@/assets/icons/visibility_on.svg';
+import VisibilityOff from '@/assets/icons/visibility_off.svg';
+import VisibilityOn from '@/assets/icons/visibility_on.svg';
 import X from '@/assets/icons/x.svg';
 
 interface IconProps {
@@ -40,9 +42,34 @@ interface IconProps {
   onClick?: React.MouseEventHandler<SVGElement>;
 }
 
+interface FlipIconProps extends IconProps {
+  flip?: boolean;
+}
+
 const Icons = {
   AlertIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Alert width={size} height={size} className={className} onClick={onClick} />
+  ),
+  ArrowIcon: ({
+    size = 24,
+    className,
+    onClick,
+    flip = false,
+  }: FlipIconProps) => (
+    <Arrow
+      width={size}
+      height={size}
+      className={` ${className ?? ''} ${flip ? '-scale-x-100 transform' : ''} `}
+      onClick={onClick}
+    />
+  ),
+  ArrowTopIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <ArrowTop
+      width={size}
+      height={size}
+      className={className}
+      onClick={onClick}
+    />
   ),
   CalendarIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Calendar
@@ -52,20 +79,33 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  CheckIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Check width={size} height={size} className={className} onClick={onClick} />
-  ),
 
   CheckGreenIcon: ({ size = 24, className, onClick }: IconProps) => (
     <CheckGreen
+      width={size}
+      height={size}
+      className={`text-[#10B981] ${className}`}
+      onClick={onClick}
+    />
+  ),
+  CheckWhiteIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <CheckWhite
       width={size}
       height={size}
       className={className}
       onClick={onClick}
     />
   ),
-  CheckWhiteIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <CheckWhite
+  CheckIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <Check
+      width={size}
+      height={size}
+      className={`text-[#F8FAFC] ${className}`}
+      onClick={onClick}
+    />
+  ),
+  CheckboxActiveIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <CheckboxActive
       width={size}
       height={size}
       className={className}
@@ -80,14 +120,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  CheckboxActiveIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <CheckboxActive
-      width={size}
-      height={size}
-      className={className}
-      onClick={onClick}
-    />
-  ),
+
   CommentIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Comment
       width={size}
@@ -96,8 +129,8 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  CowrkersIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Cowrkers
+  CoworkersIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <Coworkers
       width={size}
       height={size}
       className={className}
@@ -106,6 +139,9 @@ const Icons = {
   ),
   DoneIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Done width={size} height={size} className={className} onClick={onClick} />
+  ),
+  EditIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <Edit width={size} height={size} className={className} onClick={onClick} />
   ),
   GearIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Gear width={size} height={size} className={className} onClick={onClick} />
@@ -120,15 +156,7 @@ const Icons = {
   ),
 
   ImgIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Img
-      width={size}
-      height={size}
-      className={`text-[#64748B] ${className}`}
-      onClick={onClick}
-    />
-  ),
-  LeftIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Left width={size} height={size} className={className} onClick={onClick} />
+    <Img width={size} height={size} className={className} onClick={onClick} />
   ),
   ListIcon: ({ size = 24, className, onClick }: IconProps) => (
     <List width={size} height={size} className={className} onClick={onClick} />
@@ -136,10 +164,18 @@ const Icons = {
   LogoIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Logo width={size} height={size} className={className} onClick={onClick} />
   ),
+  MemberIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <Member
+      width={size}
+      height={size}
+      className={className}
+      onClick={onClick}
+    />
+  ),
   PlusIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Plus width={size} height={size} className={className} onClick={onClick} />
   ),
-  ProgileImageIcon: ({ size = 24, className, onClick }: IconProps) => (
+  ProfileImageIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ProfileImage
       width={size}
       height={size}
@@ -147,16 +183,16 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  PrograssDoneIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <PrograssDone
+  ProgressDoneIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <ProgressDone
       width={size}
       height={size}
       className={className}
       onClick={onClick}
     />
   ),
-  PrograssOngoingIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <PrograssOngoing
+  ProgressOngoingIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <ProgressOngoing
       width={size}
       height={size}
       className={className}
@@ -179,9 +215,6 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  RightIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Right width={size} height={size} className={className} onClick={onClick} />
-  ),
   SearchIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Search
       width={size}
@@ -194,7 +227,7 @@ const Icons = {
     <ThreeDots
       width={size}
       height={size}
-      className={className}
+      className={`text-[#64748B] ${className}`}
       onClick={onClick}
     />
   ),
@@ -217,16 +250,16 @@ const Icons = {
       onClick={onClick}
     />
   ),
-  VisbilityOffIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <VisbilityOff
+  VisibilityOffIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <VisibilityOff
       width={size}
       height={size}
       className={className}
       onClick={onClick}
     />
   ),
-  VisbilityOnIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <VisbilityOn
+  VisibilityOnIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <VisibilityOn
       width={size}
       height={size}
       className={className}
@@ -234,7 +267,12 @@ const Icons = {
     />
   ),
   XIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <X width={size} height={size} className={className} onClick={onClick} />
+    <X
+      width={size}
+      height={size}
+      className={`text-[#64748B] ${className}`}
+      onClick={onClick}
+    />
   ),
 };
 

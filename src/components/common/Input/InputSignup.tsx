@@ -78,9 +78,9 @@ const InputSignup = ({
               className="absolute top-1/2 right-3 -translate-y-1/2 outline-none"
             >
               {showPassword ? (
-                <IconRenderer name="VisbilityOnIcon" />
+                <IconRenderer name="VisibilityOnIcon" />
               ) : (
-                <IconRenderer name="VisbilityOffIcon" />
+                <IconRenderer name="VisibilityOffIcon" />
               )}
             </button>
           ) : undefined

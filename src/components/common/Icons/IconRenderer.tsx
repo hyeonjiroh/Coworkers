@@ -7,6 +7,7 @@ interface Props {
   size?: number;
   className?: string;
   onClick?: () => void;
+  flip?: boolean;
 }
 
 export default function IconRenderer({ name, ...props }: Props) {

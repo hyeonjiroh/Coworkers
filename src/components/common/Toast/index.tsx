@@ -3,7 +3,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { Flip, ToastContainer } from 'react-toastify';
 
-const ToastStyle = () => {
+const Toast = () => {
   return (
     <ToastContainer
       limit={2}
@@ -19,4 +19,4 @@ const ToastStyle = () => {
   );
 };
 
-export default ToastStyle;
+export default Toast;

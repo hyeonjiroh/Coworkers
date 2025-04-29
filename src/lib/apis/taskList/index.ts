@@ -6,7 +6,8 @@ import {
   TaskListResponse,
 } from '@/lib/apis/taskList/type';
 
-export async function getTaskList({
+// 할 일 목록 단일 조회 (GET /groups/:groupId/task-lists/:id)
+export async function getTaskListById({
   groupId,
   taskListId,
   date,
@@ -24,7 +25,8 @@ export async function getTaskList({
   });
 }
 
-export async function patchTaskList({
+// 할 일 목록 수정 (PATCH /groups/:groupId/task-lists/:id)
+export async function patchTaskListById({
   groupId,
   taskListId,
   body,
@@ -42,7 +44,8 @@ export async function patchTaskList({
   });
 }
 
-export async function deleteTaskList({
+// 할 일 목록 삭제 (DELETE /groups/:groupId/task-lists/:id)
+export async function deleteTaskListById({
   groupId,
   taskListId,
 }: {
@@ -57,6 +60,7 @@ export async function deleteTaskList({
   });
 }
 
+// 할 일 목록 생성 (POST /groups/:groupId/task-lists)
 export async function postTaskList({
   groupId,
   body,
@@ -73,6 +77,7 @@ export async function postTaskList({
   });
 }
 
+// 할 일 목록 정렬 수정 (PATCH /groups/:groupId/task-lists/:id/order)
 export async function patchTaskListOrder({
   groupId,
   taskListId,

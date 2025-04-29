@@ -35,7 +35,9 @@ export default function Modal() {
         ref={modalRef}
         className={clsx(
           'tablet:w-[384px] tablet:rounded-b-xl tablet:max-h-[80vh] relative flex max-h-[90vh] w-full flex-col rounded-t-3xl border-none bg-slate-800 pb-8',
-          variant == 'taskForm' ? 'gap-8 px-6 pt-8' : 'gap-6 px-[52px] pt-12'
+          variant == 'default' && 'gap-6 px-[52px] pt-12',
+          variant == 'danger' && 'gap-6 px-[52px] pt-8',
+          variant == 'taskForm' && 'gap-8 px-6 pt-8'
         )}
       >
         {button?.number == 1 && (
@@ -47,33 +49,36 @@ export default function Modal() {
             <IconRenderer name="XIcon" />
           </button>
         )}
-        <div
-          className={clsx(
-            'flex flex-col overflow-hidden',
-            variant == 'taskForm' ? 'gap-6' : 'gap-4'
-          )}
-        >
-          {(title || description) && (
-            <div
-              className={clsx(
-                'flex flex-col items-center',
-                variant == 'taskForm' ? 'gap-4' : 'gap-2'
-              )}
-            >
-              {title && <div className="text-lg-medium">{title}</div>}
-              {description && (
-                <div
-                  className={clsx(
-                    'text-md-medium',
-                    variant == 'danger' ? '' : 'text-slate-500'
-                  )}
-                >
-                  {description}
-                </div>
-              )}
-            </div>
-          )}
-          {content && <div className="overflow-y-auto">{content}</div>}
+        <div className="flex flex-col items-center gap-4">
+          {variant == 'danger' && <IconRenderer name="AlertIcon" />}
+          <div
+            className={clsx(
+              'flex flex-col overflow-hidden',
+              variant == 'taskForm' ? 'gap-6' : 'gap-4'
+            )}
+          >
+            {(title || description) && (
+              <div
+                className={clsx(
+                  'flex flex-col items-center',
+                  variant == 'taskForm' ? 'gap-4' : 'gap-2'
+                )}
+              >
+                {title && <div className="text-lg-medium">{title}</div>}
+                {description && (
+                  <div
+                    className={clsx(
+                      'text-md-medium',
+                      variant == 'danger' ? '' : 'text-slate-500'
+                    )}
+                  >
+                    {description}
+                  </div>
+                )}
+              </div>
+            )}
+            {content && <div className="overflow-y-auto">{content}</div>}
+          </div>
         </div>
         <div className="flex gap-2">
           {button?.number == 2 && (

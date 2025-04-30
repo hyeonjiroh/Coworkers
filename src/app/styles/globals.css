@@ -4,14 +4,6 @@
 @import './breakpoint.css';
 @import './toast.css';
 
-@media (hover: hover) {
-  .hover:underline:hover {
-    text-decoration: underline;
-  }
-}
-
-@custom-variant hover (&:hover);
-
 @layer base {
   html,
   body {

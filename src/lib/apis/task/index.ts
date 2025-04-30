@@ -8,8 +8,7 @@ import {
   TaskOrderBody,
 } from '@/lib/apis/task/type';
 
-// 반복 할 일 생성 (POST /groups/:groupId/task-lists/:taskListId/recurring)
-export async function postRecurringTask({
+export async function postTask({
   groupId,
   taskListId,
   body,
@@ -27,8 +26,7 @@ export async function postRecurringTask({
   });
 }
 
-// 할 일 단일 조회 (GET /groups/:groupId/task-lists/:taskListId/tasks/:taskId)
-export async function getTaskById({
+export async function getTask({
   groupId,
   taskListId,
   taskId,
@@ -46,8 +44,7 @@ export async function getTaskById({
   });
 }
 
-// 할 일 수정 (PATCH /groups/:groupId/task-lists/:taskListId/tasks/:taskId)
-export async function patchTaskById({
+export async function patchTask({
   groupId,
   taskListId,
   taskId,
@@ -67,8 +64,7 @@ export async function patchTaskById({
   });
 }
 
-// 할 일 삭제 (DELETE /groups/:groupId/task-lists/:taskListId/tasks/:taskId)
-export async function deleteTaskById({
+export async function deleteTask({
   groupId,
   taskListId,
   taskId,
@@ -85,7 +81,6 @@ export async function deleteTaskById({
   });
 }
 
-// 할 일 정렬 수정 (PATCH /groups/:groupId/task-lists/:taskListId/tasks/:taskId/order)
 export async function patchTaskOrder({
   groupId,
   taskListId,
@@ -106,8 +101,8 @@ export async function patchTaskOrder({
   });
 }
 
-// 할 일 반복 설정 삭제 (DELETE /groups/:groupId/task-lists/:taskListId/tasks/:taskId/recurring/:recurringId)
-export async function deleteTaskRecurringById({
+// 할 일 반복 설정 삭제
+export async function deleteTaskRecurring({
   groupId,
   taskListId,
   taskId,

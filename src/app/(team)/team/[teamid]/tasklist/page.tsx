@@ -1,12 +1,23 @@
+import ModalButton from '@/app/(team)/team/[teamid]/tasklist/_components/ModalButton';
+import CreateTeamButton from './_components/CreateTeamButton';
+import DeleteTeamButton from './_components/DeleteTeamButton';
 import LoginButton from './_components/LoginButton';
 import LogoutButton from './_components/LogoutButton';
-import ModalButton from '@/app/(team)/team/[teamid]/tasklist/_components/ModalButton';
+// import TeamInfo from './_components/TeamInfo';
 
 export default function TaskListPage() {
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-2">
+    <div>
+      <h1>Task List Page</h1>
       <LoginButton />
+      <br />
       <LogoutButton />
+      <br />
+      <CreateTeamButton />
+      <br />
+      <DeleteTeamButton />
+      {/* <TeamInfo /> */}
+      <br />
       <ModalButton />
     </div>
   );

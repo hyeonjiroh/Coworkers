@@ -1,8 +1,7 @@
 import '@/app/styles/globals.css';
 import localFont from 'next/font/local';
+import ToastStyle from '@/components/common/ToastStyle';
 import { Metadata } from 'next';
-import Toast from '@/components/common/Toast';
-import Modal from '@/components/common/Modal';
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -23,10 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${pretendard.variable}`}>
-      <body className="antialiased">
-        <Toast />
-        <Modal />
-        <main>{children}</main>
+      <body className={`antialiased`}>
+        <ToastStyle />
+        {children}
       </body>
     </html>
   );

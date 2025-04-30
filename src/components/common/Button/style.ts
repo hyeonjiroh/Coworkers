@@ -3,7 +3,7 @@ export const baseStyles =
 
 export type ButtonVariant = 'primary' | 'secondary' | 'floating';
 export type ButtonStyleType = {
-  primary: 'filled' | 'outlined' | 'danger' | 'neutral';
+  primary: 'filled' | 'outlined' | 'danger';
   secondary: 'filled' | 'outlined';
   floating: 'default' | 'outlined' | 'transparent';
 }[ButtonVariant];
@@ -19,8 +19,6 @@ const primaryStyles: ButtonStyles = {
     'border text-lg-semibold bg-white border-green-700 text-green-700 hover:border-green-800 hover:text-green-800 focus:border-green-900 focus:text-green-900 active:border-green-900 active:text-green-900',
   danger:
     'bg-danger text-lg-semibold text-white hover:bg-red-700 focus:bg-red-800 active:bg-red-800',
-  neutral:
-    'border text-lg-semibold bg-white border-slate-300 text-slate-500 hover:border-slate-700 hover:text-slate-700 focus:border-slate-900 focus:text-slate-900 active:border-slate-900 active:text-slate-900',
 };
 
 const secondaryStyles: ButtonStyles = {

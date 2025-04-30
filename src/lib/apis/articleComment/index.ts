@@ -1,5 +1,4 @@
-import Cookies from 'js-cookie';
-import fetcher from '@/lib/fetcher';
+import clientFetcher from '@/lib/client/fetcher.client';
 import {
   ArticleCommentBody,
   ArticleCommentListResponse,
@@ -15,11 +14,9 @@ export async function postCommentByArticleId({
   articleId: number;
   body: ArticleCommentBody;
 }): Promise<ArticleCommentResponse | null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<ArticleCommentBody, ArticleCommentResponse>({
+  return clientFetcher<ArticleCommentBody, ArticleCommentResponse>({
     url: `articles/${articleId}/comments`,
     method: 'POST',
-    token,
     body,
   });
 }
@@ -29,22 +26,19 @@ export async function getCommentsByArticleId({
   articleId,
   limit,
   cursor,
-  token,
 }: {
   articleId: number;
   limit: number;
   cursor?: number;
-  token: string;
 }): Promise<ArticleCommentListResponse | null> {
   let query = `limit=${limit}`;
   if (cursor) {
     query += `&cursor=${cursor}`;
   }
 
-  return fetcher<undefined, ArticleCommentListResponse>({
+  return clientFetcher<undefined, ArticleCommentListResponse>({
     url: `/articles/${articleId}/comments?${query}`,
     method: 'GET',
-    token,
   });
 }
 
@@ -56,11 +50,9 @@ export async function patchCommentByArticleId({
   commentId: number;
   body: ArticleCommentBody;
 }): Promise<ArticleCommentResponse | null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<ArticleCommentBody, ArticleCommentResponse>({
+  return clientFetcher<ArticleCommentBody, ArticleCommentResponse>({
     url: `/comments/${commentId}`,
     method: 'PATCH',
-    token,
     body,
   });
 }
@@ -69,10 +61,8 @@ export async function patchCommentByArticleId({
 export async function deleteCommentByArticleId(
   commentId: number
 ): Promise<MessageResponse | null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<undefined, MessageResponse>({
+  return clientFetcher<undefined, MessageResponse>({
     url: `/comments/${commentId}`,
     method: 'DELETE',
-    token,
   });
 }

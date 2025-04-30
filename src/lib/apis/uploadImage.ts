@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import getNewAccessToken from '@/lib/apis/token';
+import getNewAccessTokenInClient from '@/lib/client/token.client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -26,7 +26,7 @@ export default async function postImage(file: File): Promise<string> {
 
   // 액세스 토큰 만료 시 재발급 후 재요청
   if (res.status === 401) {
-    const newToken = await getNewAccessToken();
+    const newToken = await getNewAccessTokenInClient();
     res = await request(newToken);
   }
 

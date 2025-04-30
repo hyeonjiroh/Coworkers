@@ -1,4 +1,4 @@
-import fetcher from '@/lib/fetcher';
+import clientFetcher from '@/lib/client/fetcher.client';
 import {
   OAuthAppBody,
   OAuthAppResponse,
@@ -9,7 +9,7 @@ import {
 
 // 회원가입
 export async function signUp(body: AuthBody): Promise<AuthResponse | null> {
-  return fetcher<AuthBody, AuthResponse>({
+  return clientFetcher<AuthBody, AuthResponse>({
     url: '/auth/signUp',
     method: 'POST',
     body,
@@ -18,7 +18,7 @@ export async function signUp(body: AuthBody): Promise<AuthResponse | null> {
 
 // 로그인
 export async function signIn(body: AuthBody): Promise<AuthResponse | null> {
-  return fetcher<AuthBody, AuthResponse>({
+  return clientFetcher<AuthBody, AuthResponse>({
     url: '/auth/signIn',
     method: 'POST',
     body,
@@ -27,7 +27,7 @@ export async function signIn(body: AuthBody): Promise<AuthResponse | null> {
 
 // 간편 로그인
 export async function postOAuth(body: OAuthBody): Promise<AuthResponse | null> {
-  return fetcher<OAuthBody, AuthResponse>({
+  return clientFetcher<OAuthBody, AuthResponse>({
     url: '/auth/signIn/KAKAO',
     method: 'POST',
     body,
@@ -38,7 +38,7 @@ export async function postOAuth(body: OAuthBody): Promise<AuthResponse | null> {
 export async function postOAuthApp(
   body: OAuthAppBody
 ): Promise<OAuthAppResponse | null> {
-  return fetcher<OAuthAppBody, OAuthAppResponse>({
+  return clientFetcher<OAuthAppBody, OAuthAppResponse>({
     url: '/oauthApps',
     method: 'POST',
     body,

@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie';
-import fetcher from '@/lib/fetcher';
+import serverFetcher from '@/lib/server/fetcher.server';
+import clientFetcher from '@/lib/client/fetcher.client';
 import {
   GroupBody,
   GroupInvitationBody,
@@ -13,15 +13,12 @@ import { TaskResponse } from '@/lib/apis/task/type';
 // 그룹 단일 조회 (GET /groups/:id)
 export async function getGroupById({
   groupId,
-  token,
 }: {
   groupId: number;
-  token: string;
 }): Promise<GroupResponse | null> {
-  return fetcher<undefined, GroupResponse>({
+  return serverFetcher<undefined, GroupResponse>({
     url: `/groups/${groupId}`,
     method: 'GET',
-    token,
   });
 }
 
@@ -33,22 +30,18 @@ export async function patchGroupById({
   groupId: number;
   body: GroupBody;
 }): Promise<GroupResponse | null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<GroupBody, GroupResponse>({
+  return clientFetcher<GroupBody, GroupResponse>({
     url: `/groups/${groupId}`,
     method: 'PATCH',
-    token,
     body,
   });
 }
 
 // 그룹 삭제 (DELETE /groups/:id)
 export async function deleteGroupById(groupId: number): Promise<null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<undefined, null>({
+  return clientFetcher<undefined, null>({
     url: `/groups/${groupId}`,
     method: 'DELETE',
-    token,
   });
 }
 
@@ -56,17 +49,14 @@ export async function deleteGroupById(groupId: number): Promise<null> {
 export async function postGroup(
   body: GroupBody
 ): Promise<GroupResponse | null> {
-  const token = Cookies.get('accessToken');
-
   const payload = {
     name: body.name,
     ...(body.image ? { image: body.image } : {}),
   };
 
-  return fetcher<typeof payload, GroupResponse>({
+  return clientFetcher<typeof payload, GroupResponse>({
     url: `/groups`,
     method: 'POST',
-    token,
     body: payload,
   });
 }
@@ -75,16 +65,13 @@ export async function postGroup(
 export async function getGroupMemberById({
   groupId,
   memberId,
-  token,
 }: {
   groupId: number;
   memberId: number;
-  token: string;
 }): Promise<GroupMemberResponse | null> {
-  return fetcher<undefined, GroupMemberResponse>({
+  return serverFetcher<undefined, GroupMemberResponse>({
     url: `/groups/${groupId}/member/${memberId}`,
     method: 'GET',
-    token,
   });
 }
 
@@ -96,26 +83,21 @@ export async function deleteGroupMemberById({
   groupId: number;
   memberId: number;
 }): Promise<null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<undefined, null>({
+  return clientFetcher<undefined, null>({
     url: `/groups/${groupId}/member/${memberId}`,
     method: 'DELETE',
-    token,
   });
 }
 
 // 초대 링크용 토큰 생성 (GET /groups/:id/invitation)
 export async function getGroupInvitation({
   groupId,
-  token,
 }: {
   groupId: number;
-  token: string;
 }): Promise<string | null> {
-  return fetcher<undefined, string>({
+  return serverFetcher<undefined, string>({
     url: `/groups/${groupId}/invitation`,
     method: 'GET',
-    token,
   });
 }
 
@@ -123,11 +105,9 @@ export async function getGroupInvitation({
 export async function postGroupInvitation(
   body: GroupInvitationBody
 ): Promise<GroupInvitationResponse | null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<GroupInvitationBody, GroupInvitationResponse>({
+  return clientFetcher<GroupInvitationBody, GroupInvitationResponse>({
     url: `/groups/accept-invitation`,
     method: 'POST',
-    token,
     body,
   });
 }
@@ -140,11 +120,9 @@ export async function postGroupMember({
   groupId: number;
   body: GroupMemberBody;
 }): Promise<null> {
-  const token = Cookies.get('accessToken');
-  return fetcher<GroupMemberBody, null>({
+  return clientFetcher<GroupMemberBody, null>({
     url: `/groups/${groupId}/member`,
     method: 'POST',
-    token,
     body,
   });
 }
@@ -153,15 +131,12 @@ export async function postGroupMember({
 export async function getGroupTasks({
   groupId,
   date,
-  token,
 }: {
   groupId: number;
   date: string;
-  token: string;
 }): Promise<TaskResponse[] | null> {
-  return fetcher<undefined, TaskResponse[]>({
+  return serverFetcher<undefined, TaskResponse[]>({
     url: `/groups/${groupId}/tasks?date=${date}`,
     method: 'GET',
-    token,
   });
 }

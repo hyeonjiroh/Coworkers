@@ -16,12 +16,12 @@ export default function LoginButton() {
 
       const { accessToken, refreshToken } = data;
 
-      localStorage.setItem('accessToken', accessToken);
       Cookies.set('accessToken', accessToken, {
         path: '/',
         secure: true,
         sameSite: 'Strict',
       });
+
       Cookies.set('refreshToken', refreshToken, {
         path: '/',
         secure: true,

@@ -1,4 +1,4 @@
-// Input component style
+// InputBase component style
 
 export const inputBaseStyle = (isInvalid?: boolean) =>
   `flex items-center px-4 py-2 rounded-[12px] border

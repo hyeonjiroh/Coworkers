@@ -1,4 +1,4 @@
-// 회원가입 페이지 사용 인풋
+// 회원가입, 로그인 사용 인풋
 'use client';
 import React, { useState } from 'react';
 import InputBase from '@/components/common/Input/InputBase';
@@ -10,8 +10,9 @@ import {
 } from '@/utils/inputValidation';
 import IconRenderer from '@/components/common/Icons/IconRenderer';
 
-interface InputSignupProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
+interface InputAuthProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
+  title?: string;
   value: string;
   invalidMessage?: string;
   pattern?: 'name' | 'email' | 'password' | 'passwordMatch';
@@ -19,15 +20,16 @@ interface InputSignupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   originalPassword?: string;
 }
 
-const InputSignup = ({
-  label,
+const InputAuth = ({
+  id,
+  title,
   value,
   pattern,
-  invalidMessage = '올바른 값을 입력해 주세요',
+  invalidMessage,
   onValueChange,
   originalPassword,
   ...props
-}: InputSignupProps) => {
+}: InputAuthProps) => {
   const [isInvalid, setIsInvalid] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -56,10 +58,12 @@ const InputSignup = ({
     <div>
       <InputBase
         {...props}
-        label={label}
+        id={id}
+        title={title}
         value={value}
         onChange={handleChange}
         isInvalid={isInvalid}
+        titleClassName="mb-[8px]"
         containerClassName="relative h-[48px] bg-slate-800"
         inputClassName="placeholder:text-slate-500"
         // 비밀번호만 암호화
@@ -93,4 +97,4 @@ const InputSignup = ({
   );
 };
 
-export default InputSignup;
+export default InputAuth;

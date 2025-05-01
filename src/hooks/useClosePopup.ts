@@ -31,5 +31,5 @@ export const useClosePopup = (
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, ref]);
 };

@@ -35,6 +35,7 @@ import User from '@/assets/icons/user.svg';
 import VisibilityOff from '@/assets/icons/visibility_off.svg';
 import VisibilityOn from '@/assets/icons/visibility_on.svg';
 import X from '@/assets/icons/x.svg';
+import Expansion from '@/assets/icons/expansion.svg';
 import KakaoLogin from '@/assets/icons/kakao_login.svg';
 
 interface IconProps {
@@ -51,6 +52,7 @@ const Icons = {
   AlertIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Alert width={size} height={size} className={className} onClick={onClick} />
   ),
+
   ArrowIcon: ({
     size = 24,
     className,
@@ -64,6 +66,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   ArrowTopIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ArrowTop
       width={size}
@@ -72,6 +75,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   CalendarIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Calendar
       width={size}
@@ -85,10 +89,11 @@ const Icons = {
     <CheckGreen
       width={size}
       height={size}
-      className={`text-[#10B981] ${className}`}
+      className={`text-green-700 ${className}`}
       onClick={onClick}
     />
   ),
+
   CheckWhiteIcon: ({ size = 24, className, onClick }: IconProps) => (
     <CheckWhite
       width={size}
@@ -97,14 +102,16 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   CheckIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Check
       width={size}
       height={size}
-      className={`text-[#F8FAFC] ${className}`}
+      className={`text-slate-50 ${className}`}
       onClick={onClick}
     />
   ),
+
   CheckboxActiveIcon: ({ size = 24, className, onClick }: IconProps) => (
     <CheckboxActive
       width={size}
@@ -113,6 +120,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   CheckboxDefaultIcon: ({ size = 24, className, onClick }: IconProps) => (
     <CheckboxDefault
       width={size}
@@ -130,6 +138,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   CoworkersIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Coworkers
       width={size}
@@ -138,20 +147,24 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   DoneIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Done width={size} height={size} className={className} onClick={onClick} />
   ),
+
   EditIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Edit width={size} height={size} className={className} onClick={onClick} />
   ),
+
   GearIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Gear width={size} height={size} className={className} onClick={onClick} />
   ),
+
   GnbMenuIcon: ({ size = 24, className, onClick }: IconProps) => (
     <GnbMenu
       width={size}
       height={size}
-      className={`text-[#64748B] ${className}`}
+      className={`text-slate-500 ${className}`}
       onClick={onClick}
     />
   ),
@@ -159,12 +172,15 @@ const Icons = {
   ImgIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Img width={size} height={size} className={className} onClick={onClick} />
   ),
+
   ListIcon: ({ size = 24, className, onClick }: IconProps) => (
     <List width={size} height={size} className={className} onClick={onClick} />
   ),
+
   LogoIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Logo width={size} height={size} className={className} onClick={onClick} />
   ),
+
   MemberIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Member
       width={size}
@@ -173,9 +189,11 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   PlusIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Plus width={size} height={size} className={className} onClick={onClick} />
   ),
+
   ProfileImageIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ProfileImage
       width={size}
@@ -184,6 +202,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   ProgressDoneIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ProgressDone
       width={size}
@@ -192,6 +211,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   ProgressOngoingIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ProgressOngoing
       width={size}
@@ -200,6 +220,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   RepairIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Repair
       width={size}
@@ -208,6 +229,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   RepeatIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Repeat
       width={size}
@@ -216,6 +238,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   SearchIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Search
       width={size}
@@ -224,17 +247,20 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   ThreeDotsIcon: ({ size = 24, className, onClick }: IconProps) => (
     <ThreeDots
       width={size}
       height={size}
-      className={`text-[#64748B] ${className}`}
+      className={`text-slate-500 ${className}`}
       onClick={onClick}
     />
   ),
+
   TimeIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Time width={size} height={size} className={className} onClick={onClick} />
   ),
+
   ToggleIcon: ({ size = 24, className, onClick }: IconProps) => (
     <Toggle
       width={size}
@@ -243,14 +269,16 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   UserIcon: ({ size = 24, className, onClick }: IconProps) => (
     <User
       width={size}
       height={size}
-      className={`text-[#F8FAFC] ${className}`}
+      className={`text-slate-50 ${className}`}
       onClick={onClick}
     />
   ),
+
   VisibilityOffIcon: ({ size = 24, className, onClick }: IconProps) => (
     <VisibilityOff
       width={size}
@@ -259,6 +287,7 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   VisibilityOnIcon: ({ size = 24, className, onClick }: IconProps) => (
     <VisibilityOn
       width={size}
@@ -267,14 +296,25 @@ const Icons = {
       onClick={onClick}
     />
   ),
+
   XIcon: ({ size = 24, className, onClick }: IconProps) => (
     <X
       width={size}
       height={size}
-      className={`text-[#64748B] ${className}`}
+      className={`text-slate-500 ${className}`}
       onClick={onClick}
     />
   ),
+
+  ExpansionIcon: ({ size = 24, className, onClick }: IconProps) => (
+    <Expansion
+      width={size}
+      height={size}
+      className={`text-slate-500 ${className}`}
+      onClick={onClick}
+    />
+  ),
+
   KakaoLoginIcon: ({ size = 42, onClick }: IconProps) => (
     <KakaoLogin width={size} height={size} onClick={onClick} />
   ),

@@ -6,10 +6,9 @@ export default function PrevDayButton() {
   const searchParams = useSearchParams();
 
   const id = searchParams.get('id');
-  const currentDate =
-    searchParams.get('date') || new Date().toISOString().slice(0, 10);
+  const currentDate = searchParams.get('date');
 
-  const prevDate = new Date(currentDate);
+  const prevDate = new Date(currentDate!);
   prevDate.setDate(prevDate.getDate() - 1);
   const newDateString = prevDate.toISOString().slice(0, 10);
 

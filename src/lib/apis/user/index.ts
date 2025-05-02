@@ -20,9 +20,11 @@ export async function getUser(): Promise<UserResponse | null> {
 }
 
 // 회원 정보 수정 (PATCH /user)
-export async function patchUser(
-  body: UserBody
-): Promise<MessageResponse | null> {
+export async function patchUser({
+  body,
+}: {
+  body: UserBody;
+}): Promise<MessageResponse | null> {
   const payload = {
     nickname: body.nickname,
     ...(body.image ? { image: body.image } : {}),
@@ -70,9 +72,11 @@ export async function getUserHistory(): Promise<UserHistoryResponse | null> {
 }
 
 // 비밀번호 재설정 이메일 전송 (POST /user/send-reset-password-email)
-export async function postResetPasswordToEmail(
-  body: ResetPasswordToEmailBody
-): Promise<MessageResponse | null> {
+export async function postResetPasswordToEmail({
+  body,
+}: {
+  body: ResetPasswordToEmailBody;
+}): Promise<MessageResponse | null> {
   return clientFetcher<ResetPasswordToEmailBody, MessageResponse>({
     url: `/user/send-reset-password-email`,
     method: 'POST',
@@ -81,9 +85,11 @@ export async function postResetPasswordToEmail(
 }
 
 // 이메일로 전달받은 링크에서 비밀번호 초기화 (PATCH /user/reset-password)
-export async function patchResetPassword(
-  body: ResetPasswordBody
-): Promise<MessageResponse | null> {
+export async function patchResetPassword({
+  body,
+}: {
+  body: ResetPasswordBody;
+}): Promise<MessageResponse | null> {
   return clientFetcher<ResetPasswordBody, MessageResponse>({
     url: `/user/reset-password`,
     method: 'PATCH',
@@ -92,9 +98,11 @@ export async function patchResetPassword(
 }
 
 // 비밀번호 변경 (PATCH /user/password)
-export async function patchPassword(
-  body: ResetPasswordBody
-): Promise<MessageResponse | null> {
+export async function patchPassword({
+  body,
+}: {
+  body: ResetPasswordBody;
+}): Promise<MessageResponse | null> {
   return clientFetcher<ResetPasswordBody, MessageResponse>({
     url: `/user/password`,
     method: 'PATCH',

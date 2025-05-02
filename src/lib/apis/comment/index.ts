@@ -31,16 +31,14 @@ export async function postTaskComment({
 
 // 특정 댓글 수정 (PATCH /tasks/:taskId/comments/:commentId)
 export async function patchTaskComment({
-  taskId,
   commentId,
   body,
 }: {
-  taskId: number;
   commentId: number;
   body: CommentBody;
 }): Promise<CommentResponse | null> {
   return clientFetcher<CommentBody, CommentResponse>({
-    url: `/tasks/${taskId}/comments/${commentId}`,
+    url: `/tasks/{taskId}/comments/${commentId}`,
     method: 'PATCH',
     body,
   });
@@ -48,14 +46,12 @@ export async function patchTaskComment({
 
 // 특정 댓글 삭제 (DELETE /tasks/:taskId/comments/:commentId)
 export async function deleteTaskComment({
-  taskId,
   commentId,
 }: {
-  taskId: number;
   commentId: number;
 }): Promise<null> {
   return clientFetcher<undefined, null>({
-    url: `/tasks/${taskId}/comments/${commentId}`,
+    url: `/tasks/{taskId}/comments/${commentId}`,
     method: 'DELETE',
   });
 }

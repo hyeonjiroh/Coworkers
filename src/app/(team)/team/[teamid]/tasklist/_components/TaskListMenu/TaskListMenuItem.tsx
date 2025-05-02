@@ -15,13 +15,12 @@ export default function TaskListMenuItem({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const date =
-    searchParams.get('date') || new Date().toISOString().slice(0, 10);
+  const date = searchParams.get('date');
 
   const handleClick = () => {
     const params = new URLSearchParams(searchParams);
     params.set('id', id.toString());
-    params.set('date', date);
+    params.set('date', date!);
     router.push(`?${params.toString()}`);
   };
 

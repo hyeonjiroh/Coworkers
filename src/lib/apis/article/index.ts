@@ -8,9 +8,11 @@ import {
 } from '@/lib/apis/article/type';
 
 // 게시글 생성 (POST /articles)
-export async function postArticle(
-  body: ArticleBody
-): Promise<ArticleResponse | null> {
+export async function postArticle({
+  body,
+}: {
+  body: ArticleBody;
+}): Promise<ArticleResponse | null> {
   const payload = {
     content: body.content,
     title: body.title,
@@ -81,9 +83,11 @@ export async function patchArticle({
 }
 
 // 게시글 삭제 (DELETE /articles/:articleId)
-export async function deleteArticle(
-  articleId: number
-): Promise<MessageResponse | null> {
+export async function deleteArticle({
+  articleId,
+}: {
+  articleId: number;
+}): Promise<MessageResponse | null> {
   return clientFetcher<undefined, MessageResponse>({
     url: `/articles/${articleId}`,
     method: 'DELETE',
@@ -91,9 +95,11 @@ export async function deleteArticle(
 }
 
 // 게시글 좋아요 등록 (POST /articles/:articleId/like)
-export async function postArticleLike(
-  articleId: number
-): Promise<ArticleResponse | null> {
+export async function postArticleLike({
+  articleId,
+}: {
+  articleId: number;
+}): Promise<ArticleResponse | null> {
   return clientFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}/like`,
     method: 'POST',
@@ -101,9 +107,11 @@ export async function postArticleLike(
 }
 
 // 게시글 좋아요 취소 (DELETE /articles/:articleId/like)
-export async function deleteArticleLike(
-  articleId: number
-): Promise<ArticleResponse | null> {
+export async function deleteArticleLike({
+  articleId,
+}: {
+  articleId: number;
+}): Promise<ArticleResponse | null> {
   return clientFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}/like`,
     method: 'DELETE',

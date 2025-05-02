@@ -58,9 +58,11 @@ export async function patchCommentByArticleId({
 }
 
 // 게시글 댓글 삭제 (DELETE /comments/:commentId)
-export async function deleteCommentByArticleId(
-  commentId: number
-): Promise<MessageResponse | null> {
+export async function deleteCommentByArticleId({
+  commentId,
+}: {
+  commentId: number;
+}): Promise<MessageResponse | null> {
   return clientFetcher<undefined, MessageResponse>({
     url: `/comments/${commentId}`,
     method: 'DELETE',

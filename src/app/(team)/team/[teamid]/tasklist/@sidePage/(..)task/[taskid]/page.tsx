@@ -1,3 +1,9 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useRef } from 'react';
+import { useClosePopup } from '@/hooks/useClosePopup';
+import { useLockBackgroundScroll } from '@/hooks/useLockBackgroundScroll';
 import TaskDetailPage from '@/app/(team)/team/[teamid]/task/[taskid]/page';
 import CloseButton from '@/app/(team)/team/[teamid]/tasklist/@sidePage/(..)task/[taskid]/_components/CloseButton';
 import ExpansionButton from '@/app/(team)/team/[teamid]/tasklist/@sidePage/(..)task/[taskid]/_components/ExpansionButton';
@@ -7,9 +13,20 @@ interface PageProps {
 }
 
 export default function Page(props: PageProps) {
+  const router = useRouter();
+
+  const sidePageRef = useRef<HTMLDivElement>(null);
+  const isSidePageOpen = Boolean(props.params.taskid);
+
+  useClosePopup(sidePageRef, () => router.back());
+  useLockBackgroundScroll(isSidePageOpen);
+
   return (
     <div className="fixed inset-0 flex h-full w-full bg-black/50">
-      <div className="tablet:px-10 tablet:w-3/5 tablet:min-w-[435px] absolute top-0 right-0 z-10 flex max-h-screen min-h-screen min-w-screen flex-col gap-3 border-l border-slate-50/10 bg-slate-800 px-6">
+      <div
+        ref={sidePageRef}
+        className="tablet:px-10 tablet:w-3/5 tablet:min-w-[435px] absolute top-0 right-0 z-10 flex max-h-screen min-h-screen min-w-screen flex-col gap-3 border-l border-slate-50/10 bg-slate-800 px-6"
+      >
         <div className="tablet:pt-10 flex gap-4 pt-6">
           <CloseButton />
           <ExpansionButton />

@@ -8,16 +8,14 @@ import {
 
 // 할 일 목록 단일 조회 (GET /groups/:groupId/task-lists/:id)
 export async function getTaskListById({
-  groupId,
   taskListId,
   date,
 }: {
-  groupId: number;
   taskListId: number;
   date: string;
 }): Promise<TaskListResponse | null> {
   return serverFetcher<undefined, TaskListResponse>({
-    url: `/groups/${groupId}/task-lists/${taskListId}?date=${date}`,
+    url: `/groups/{groupId}/task-lists/${taskListId}?date=${date}`,
     method: 'GET',
   });
 }
@@ -41,14 +39,12 @@ export async function patchTaskListById({
 
 // 할 일 목록 삭제 (DELETE /groups/:groupId/task-lists/:id)
 export async function deleteTaskListById({
-  groupId,
   taskListId,
 }: {
-  groupId: number;
   taskListId: number;
 }): Promise<null> {
   return clientFetcher<undefined, null>({
-    url: `/groups/${groupId}/task-lists/${taskListId}`,
+    url: `/groups/{groupId}/task-lists/${taskListId}`,
     method: 'DELETE',
   });
 }

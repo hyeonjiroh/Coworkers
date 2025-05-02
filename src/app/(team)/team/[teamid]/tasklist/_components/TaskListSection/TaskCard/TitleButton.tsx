@@ -23,6 +23,7 @@ export default function TitleButton({
         'text-md-regular tablet:max-w-[320px] max-w-[180px] truncate',
         doneAt && 'line-through'
       )}
+      scroll={false}
     >
       {name}
     </Link>

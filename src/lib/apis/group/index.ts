@@ -38,7 +38,11 @@ export async function patchGroupById({
 }
 
 // 그룹 삭제 (DELETE /groups/:id)
-export async function deleteGroupById(groupId: number): Promise<null> {
+export async function deleteGroupById({
+  groupId,
+}: {
+  groupId: number;
+}): Promise<null> {
   return clientFetcher<undefined, null>({
     url: `/groups/${groupId}`,
     method: 'DELETE',
@@ -46,9 +50,11 @@ export async function deleteGroupById(groupId: number): Promise<null> {
 }
 
 // 그룹 생성 (POST /groups)
-export async function postGroup(
-  body: GroupBody
-): Promise<GroupResponse | null> {
+export async function postGroup({
+  body,
+}: {
+  body: GroupBody;
+}): Promise<GroupResponse | null> {
   const payload = {
     name: body.name,
     ...(body.image ? { image: body.image } : {}),
@@ -102,9 +108,11 @@ export async function getGroupInvitation({
 }
 
 // 초대 수락 (POST /groups/accept-invitation)
-export async function postGroupInvitation(
-  body: GroupInvitationBody
-): Promise<GroupInvitationResponse | null> {
+export async function postGroupInvitation({
+  body,
+}: {
+  body: GroupInvitationBody;
+}): Promise<GroupInvitationResponse | null> {
   return clientFetcher<GroupInvitationBody, GroupInvitationResponse>({
     url: `/groups/accept-invitation`,
     method: 'POST',

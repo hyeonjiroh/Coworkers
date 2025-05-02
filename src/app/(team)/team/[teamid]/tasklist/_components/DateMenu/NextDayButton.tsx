@@ -6,10 +6,9 @@ export default function NextDayButton() {
   const searchParams = useSearchParams();
 
   const id = searchParams.get('id');
-  const currentDate =
-    searchParams.get('date') || new Date().toISOString().slice(0, 10);
+  const currentDate = searchParams.get('date');
 
-  const nextDate = new Date(currentDate);
+  const nextDate = new Date(currentDate!);
   nextDate.setDate(nextDate.getDate() + 1);
   const newDateString = nextDate.toISOString().slice(0, 10);
 

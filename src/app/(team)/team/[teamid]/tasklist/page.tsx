@@ -35,7 +35,7 @@ export default async function TaskListPage({
   const isTaskEmpty = Boolean(tasksData.length === 0);
 
   return (
-    <div className="laptop:py-10 tablet:p-6 relative m-auto flex min-h-screen max-w-[1200px] flex-col gap-6 px-4 py-6">
+    <div className="m-auto flex max-w-[1200px] flex-col gap-6">
       <h1 className="text-2lg-bold tablet:text-xl-bold">할 일</h1>
       <div className="tablet:gap-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">

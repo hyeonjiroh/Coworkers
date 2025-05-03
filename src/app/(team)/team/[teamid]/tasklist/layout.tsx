@@ -9,7 +9,9 @@ export default function Layout({
 }) {
   return (
     <div>
-      {children}
+      <main className="laptop:py-10 tablet:p-6 relative min-h-screen px-4 py-6">
+        {children}
+      </main>
       {sidePage}
     </div>
   );

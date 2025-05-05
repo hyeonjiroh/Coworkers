@@ -3,6 +3,10 @@ import getNewAccessTokenInClient from '@/lib/client/token.client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
+interface ErrorResponse {
+  message: string;
+}
+
 export default async function clientFetcher<B, R>({
   url,
   method,
@@ -33,6 +37,11 @@ export default async function clientFetcher<B, R>({
   if (res.status === 401) {
     const newToken = await getNewAccessTokenInClient();
     res = await request(newToken);
+  }
+
+  if (res.status === 400) {
+    const errorBody: ErrorResponse = await res.json();
+    throw new Error(errorBody.message);
   }
 
   if (!res.ok) {

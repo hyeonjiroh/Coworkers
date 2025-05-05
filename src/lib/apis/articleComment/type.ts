@@ -6,17 +6,13 @@ export interface ArticleCommentBody {
 
 export interface ArticleCommentResponse {
   id: number;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-  writer: UserResponse;
+  content?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  writer?: UserResponse;
 }
 
 export interface ArticleCommentListResponse {
   list: ArticleCommentResponse[];
   nextCursor: number | null;
-}
-
-export interface MessageResponse {
-  message: string;
 }

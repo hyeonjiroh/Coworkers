@@ -4,7 +4,6 @@ import {
   ArticleBody,
   ArticleListResponse,
   ArticleResponse,
-  MessageResponse,
 } from '@/lib/apis/article/type';
 
 // 게시글 생성 (POST /articles)
@@ -87,8 +86,8 @@ export async function deleteArticle({
   articleId,
 }: {
   articleId: number;
-}): Promise<MessageResponse | null> {
-  return clientFetcher<undefined, MessageResponse>({
+}): Promise<ArticleResponse | null> {
+  return clientFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}`,
     method: 'DELETE',
   });

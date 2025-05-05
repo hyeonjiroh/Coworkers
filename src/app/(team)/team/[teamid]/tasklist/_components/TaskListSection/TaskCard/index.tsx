@@ -4,6 +4,7 @@ import IconRenderer from '@/components/common/Icons/IconRenderer';
 import TaskMenu from '@/components/task/TaskMenu';
 import DateInfo from '@/components/task/DateInfo';
 import FrequencyInfo from '@/components/task/FrequencyInfo';
+import ToggleTaskDoneButton from '@/components/task/ToggleTaskDoneButton';
 
 export default function TaskCard({
   id,
@@ -18,11 +19,7 @@ export default function TaskCard({
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            {doneAt ? (
-              <IconRenderer name="CheckboxActiveIcon" />
-            ) : (
-              <IconRenderer name="CheckboxDefaultIcon" />
-            )}
+            <ToggleTaskDoneButton taskId={id} doneAt={doneAt} />
             <TitleButton name={name} id={id} doneAt={doneAt} />
           </div>
           <div className="flex items-center gap-0.5">

@@ -25,9 +25,9 @@ export interface RecurringTaskResponse {
 }
 
 export interface TaskBody {
-  name: string;
-  description: string;
-  done: boolean;
+  name?: string;
+  description?: string;
+  done?: boolean;
 }
 
 export interface TaskResponse {

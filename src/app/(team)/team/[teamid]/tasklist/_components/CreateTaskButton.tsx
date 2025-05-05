@@ -30,7 +30,7 @@ export default function CreateTaskButton() {
       styleType="default"
       radius="lg"
       size="lg"
-      className="fixed right-6 bottom-6 min-w-[125px] xl:right-auto xl:left-1/2 xl:translate-x-[475px]"
+      className="fixed right-6 bottom-6 min-w-[125px]"
       startIcon="plus"
       onClick={openCreateTaskModal}
     >

@@ -1,7 +1,13 @@
+'use server';
+
 import { cookies } from 'next/headers';
 import getNewAccessTokenInServer from '@/lib/server/token.server';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+
+interface ErrorResponse {
+  message: string;
+}
 
 export default async function serverFetcher<B, R>({
   url,
@@ -33,6 +39,11 @@ export default async function serverFetcher<B, R>({
   if (res.status === 401) {
     const newToken = await getNewAccessTokenInServer();
     res = await request(newToken);
+  }
+
+  if (res.status === 400) {
+    const errorBody: ErrorResponse = await res.json();
+    throw new Error(errorBody.message);
   }
 
   if (!res.ok) {

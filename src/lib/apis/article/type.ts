@@ -8,22 +8,18 @@ export interface ArticleBody {
 
 export interface ArticleResponse {
   id: number;
-  title: string;
-  image: string | null;
-  createdAt: string;
-  updatedAt: string;
-  writer: UserResponse;
+  title?: string;
+  image?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+  writer?: UserResponse;
   content?: string;
-  likeCount: number;
+  likeCount?: number;
   isLiked?: boolean;
-  commentCount: number;
+  commentCount?: number;
 }
 
 export interface ArticleListResponse {
   list: ArticleResponse[];
   totalCount: number;
-}
-
-export interface MessageResponse {
-  message: string;
 }

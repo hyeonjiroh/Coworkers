@@ -26,7 +26,7 @@ const DropDownMenu = ({
       position,
       {
         'left-1/2 -translate-x-1/2': align === 'center',
-        '-left-20': align === 'right',
+        'right-0': align === 'right',
       },
       'absolute z-10 box-border w-34 rounded-xl border border-slate-50/10 bg-slate-800 text-slate-50 inline-block',
       className

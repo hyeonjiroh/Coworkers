@@ -2,8 +2,8 @@ import { cookies } from 'next/headers';
 import { getGroupById } from '@/lib/apis/group';
 import { getTaskListById } from '@/lib/apis/taskList';
 import DateMenu from '@/app/(team)/team/[teamid]/tasklist/_components/DateMenu';
-import ManageButton from '@/app/(team)/team/[teamid]/tasklist/_components/ManageButton';
-import TaskListMenu from '@/app/(team)/team/[teamid]/tasklist/_components/TaskListMenu';
+import TaskListMenu from '@/components/tasklist/TaskListMenu';
+import TaskListTabs from '@/app/(team)/team/[teamid]/tasklist/_components/TaskListTabs';
 import TaskListSection from '@/app/(team)/team/[teamid]/tasklist/_components/TaskListSection';
 import CreateTaskButton from '@/app/(team)/team/[teamid]/tasklist/_components/CreateTaskButton';
 
@@ -40,7 +40,11 @@ export default async function TaskListPage({
       <div className="tablet:gap-6 flex flex-col gap-4">
         <div className="flex items-center justify-between">
           <DateMenu date={selectedDate} />
-          <ManageButton membersData={membersData} userId={Number(userId)} />
+          <TaskListMenu
+            membersData={membersData}
+            userId={Number(userId)}
+            size="md"
+          />
         </div>
         {isTaskListEmpty && (
           <div className="text-md-medium absolute top-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-center text-slate-500">
@@ -49,7 +53,7 @@ export default async function TaskListPage({
           </div>
         )}
         <div className="flex flex-col gap-4">
-          <TaskListMenu items={taskListsData} selectedId={selectedId} />
+          <TaskListTabs items={taskListsData} selectedId={selectedId} />
           {!isTaskListEmpty && isTaskEmpty && (
             <div className="text-md-medium absolute top-1/2 right-1/2 translate-x-1/2 translate-y-1/2 text-center text-slate-500">
               <p>아직 할 일이 없습니다.</p>

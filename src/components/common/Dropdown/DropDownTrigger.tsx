@@ -26,9 +26,8 @@ const DropDownTrigger = ({
     clsx(
       'flex items-center justify-between rounded-xl text-slate-50 whitespace-nowrap mb-1.5',
       {
-        'text-xs-regular px-4 py-2 tablet:text-md-regular tablet:px-5 tablet:py-3':
-          showIcon,
-        'text-md-regular px-6 py-3': !showIcon,
+        'text-xs-regular tablet:text-md-regular ': showIcon,
+        'text-md-regular ': !showIcon,
       },
       className
     )

@@ -1,7 +1,7 @@
 import { TaskResponse } from '@/lib/apis/task/type';
 import TitleButton from '@/app/(team)/team/[teamid]/tasklist/_components/TaskListSection/TaskCard/TitleButton';
 import IconRenderer from '@/components/common/Icons/IconRenderer';
-import TaskMenuButton from '@/components/task/TaskMenuButton';
+import TaskMenu from '@/components/task/TaskMenu';
 import DateInfo from '@/components/task/DateInfo';
 import FrequencyInfo from '@/components/task/FrequencyInfo';
 
@@ -30,7 +30,7 @@ export default function TaskCard({
             <div className="text-xs-regular text-slate-500">{commentCount}</div>
           </div>
         </div>
-        <TaskMenuButton size="sm" />
+        <TaskMenu size="sm" />
       </div>
       <div className="flex items-center gap-2.5">
         <DateInfo date={date} />

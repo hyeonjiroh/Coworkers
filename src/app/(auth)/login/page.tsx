@@ -13,5 +13,3 @@ export default function LoginPage() {
     </div>
   );
 }
-// 브라우저, 서버 쿠키 모두에 저장한다 (accessToken)
-// 브라우저, 서버 쿠키 모두 (accessToken, refreshToken)

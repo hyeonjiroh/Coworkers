@@ -51,12 +51,15 @@ export async function getArticles({
 // 게시글 상세 조회 (GET /articles/:articleId)
 export async function getArticleById({
   articleId,
+  tag,
 }: {
   articleId: number;
+  tag?: string[];
 }): Promise<ArticleResponse | null> {
   return serverFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}`,
     method: 'GET',
+    tag,
   });
 }
 

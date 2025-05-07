@@ -28,12 +28,15 @@ export async function postRecurringTask({
 // 할 일 단일 조회 (GET /groups/:groupId/task-lists/:taskListId/tasks/:taskId)
 export async function getTaskById({
   taskId,
+  tag,
 }: {
   taskId: number;
+  tag?: string[];
 }): Promise<TaskResponse | null> {
   return serverFetcher<undefined, TaskResponse>({
     url: `/groups/{groupId}/task-lists/{taskListId}/tasks/${taskId}`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -41,14 +44,17 @@ export async function getTaskById({
 export async function patchTaskById({
   taskId,
   body,
+  tag,
 }: {
   taskId: number;
   body: TaskBody;
+  tag?: string[];
 }): Promise<TaskResponse | null> {
-  return clientFetcher<TaskBody, TaskResponse>({
+  return serverFetcher<TaskBody, TaskResponse>({
     url: `/groups/{groupId}/task-lists/{taskListId}/tasks/${taskId}`,
     method: 'PATCH',
     body,
+    tag,
   });
 }
 

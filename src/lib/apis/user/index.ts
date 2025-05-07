@@ -12,10 +12,15 @@ import {
 } from '@/lib/apis/user/type';
 
 // 회원 정보 조회 (GET /user)
-export async function getUser(): Promise<UserResponse | null> {
+export async function getUser({
+  tag,
+}: {
+  tag?: string[];
+}): Promise<UserResponse | null> {
   return serverFetcher<undefined, UserResponse>({
     url: `/user`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -46,28 +51,41 @@ export async function deleteUser(): Promise<null> {
 }
 
 // 사용자 소속 그룹 조회 (GET /user/groups)
-export async function getUserGroups(): Promise<UserGroupResponse[] | null> {
+export async function getUserGroups({
+  tag,
+}: {
+  tag?: string[];
+}): Promise<UserGroupResponse[] | null> {
   return serverFetcher<undefined, UserGroupResponse[]>({
     url: `/user/groups`,
     method: 'GET',
+    tag,
   });
 }
 
 // 사용자 멤버십 정보 조회 (GET /user/memberships)
-export async function getUserMemberships(): Promise<
-  UserMembershipResponse[] | null
-> {
+export async function getUserMemberships({
+  tag,
+}: {
+  tag?: string[];
+}): Promise<UserMembershipResponse[] | null> {
   return serverFetcher<undefined, UserMembershipResponse[]>({
     url: `/user/memberships`,
     method: 'GET',
+    tag,
   });
 }
 
 // 사용자 완료한 작업 조회 (GET /user/history)
-export async function getUserHistory(): Promise<UserHistoryResponse | null> {
+export async function getUserHistory({
+  tag,
+}: {
+  tag?: string[];
+}): Promise<UserHistoryResponse | null> {
   return serverFetcher<undefined, UserHistoryResponse>({
     url: `user/history`,
     method: 'GET',
+    tag,
   });
 }
 

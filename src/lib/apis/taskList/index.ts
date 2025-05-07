@@ -10,13 +10,16 @@ import {
 export async function getTaskListById({
   taskListId,
   date,
+  tag,
 }: {
   taskListId: number;
   date: string;
+  tag?: string[];
 }): Promise<TaskListResponse | null> {
   return serverFetcher<undefined, TaskListResponse>({
     url: `/groups/{groupId}/task-lists/${taskListId}?date=${date}`,
     method: 'GET',
+    tag,
   });
 }
 

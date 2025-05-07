@@ -13,12 +13,15 @@ import { TaskResponse } from '@/lib/apis/task/type';
 // 그룹 단일 조회 (GET /groups/:id)
 export async function getGroupById({
   groupId,
+  tag,
 }: {
   groupId: number;
+  tag?: string[];
 }): Promise<GroupResponse | null> {
   return serverFetcher<undefined, GroupResponse>({
     url: `/groups/${groupId}`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -71,13 +74,16 @@ export async function postGroup({
 export async function getGroupMemberById({
   groupId,
   memberId,
+  tag,
 }: {
   groupId: number;
   memberId: number;
+  tag?: string[];
 }): Promise<GroupMemberResponse | null> {
   return serverFetcher<undefined, GroupMemberResponse>({
     url: `/groups/${groupId}/member/${memberId}`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -98,12 +104,15 @@ export async function deleteGroupMemberById({
 // 초대 링크용 토큰 생성 (GET /groups/:id/invitation)
 export async function getGroupInvitation({
   groupId,
+  tag,
 }: {
   groupId: number;
+  tag?: string[];
 }): Promise<string | null> {
   return serverFetcher<undefined, string>({
     url: `/groups/${groupId}/invitation`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -139,12 +148,15 @@ export async function postGroupMember({
 export async function getGroupTasks({
   groupId,
   date,
+  tag,
 }: {
   groupId: number;
   date: string;
+  tag?: string[];
 }): Promise<TaskResponse[] | null> {
   return serverFetcher<undefined, TaskResponse[]>({
     url: `/groups/${groupId}/tasks?date=${date}`,
     method: 'GET',
+    tag,
   });
 }

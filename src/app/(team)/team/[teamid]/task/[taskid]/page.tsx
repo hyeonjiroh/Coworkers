@@ -10,7 +10,7 @@ interface PageProps {
 export default async function TaskDetailPage({ params }: PageProps) {
   const taskId = Number(params.taskid);
 
-  const taskData = await getTaskById({ taskId });
+  const taskData = await getTaskById({ taskId, tag: ['task'] });
 
   return (
     <div className="m-auto flex max-w-[1000px] flex-col gap-4">

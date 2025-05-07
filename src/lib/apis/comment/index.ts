@@ -5,12 +5,15 @@ import { CommentBody, CommentResponse } from '@/lib/apis/comment/type';
 // 특정 할 일의 댓글 목록 조회 (GET /tasks/:taskId/comments)
 export async function getCommentsByTaskId({
   taskId,
+  tag,
 }: {
   taskId: number;
+  tag?: string[];
 }): Promise<CommentResponse[] | null> {
   return serverFetcher<undefined, CommentResponse[]>({
     url: `/tasks/${taskId}/comments`,
     method: 'GET',
+    tag,
   });
 }
 

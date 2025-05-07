@@ -28,6 +28,7 @@ export default async function TaskListPage({
   const selectedTaskListData = await getTaskListById({
     taskListId: selectedId,
     date: selectedDate,
+    tag: ['task'],
   });
   const tasksData = selectedTaskListData?.tasks ?? [];
 

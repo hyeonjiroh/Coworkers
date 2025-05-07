@@ -3,7 +3,7 @@
 import IconRenderer from '@/components/common/Icons/IconRenderer';
 import Button from '@/components/common/Button';
 import clsx from 'clsx';
-import { useToggleTaskDone } from '@/components/task/ToggleTaskDoneButton/hooks/useToggleTaskDone';
+import { patchTaskById } from '@/lib/apis/task';
 
 export default function ToggleTaskDoneButton({
   variant = 'checkbox',
@@ -14,34 +14,45 @@ export default function ToggleTaskDoneButton({
   taskId: number;
   doneAt: string | null;
 }) {
-  const { isDone, updateTaskToDone, updateTaskToUndone } = useToggleTaskDone(
-    taskId,
-    Boolean(doneAt)
-  );
+  const updateTaskToDone = async () => {
+    try {
+      await patchTaskById({ taskId, body: { done: true }, tag: ['task'] });
+    } catch (error) {
+      console.error('Failed to update the task status :', error);
+    }
+  };
+
+  const updateTaskToUndone = async () => {
+    try {
+      await patchTaskById({ taskId, body: { done: false }, tag: ['task'] });
+    } catch (error) {
+      console.error('Failed to update the task status :', error);
+    }
+  };
 
   return (
     <>
       {variant === 'checkbox' && (
         <IconRenderer
-          name={isDone ? 'CheckboxActiveIcon' : 'CheckboxDefaultIcon'}
-          onClick={isDone ? updateTaskToUndone : updateTaskToDone}
+          name={doneAt ? 'CheckboxActiveIcon' : 'CheckboxDefaultIcon'}
+          onClick={doneAt ? updateTaskToUndone : updateTaskToDone}
           className="cursor-pointer"
         />
       )}
       {variant === 'button' && (
         <Button
           variant="floating"
-          styleType={isDone ? 'outlined' : 'default'}
+          styleType={doneAt ? 'outlined' : 'default'}
           radius="lg"
           size="lg"
           className={clsx(
             'fixed right-6 bottom-6',
-            isDone ? 'min-w-[138px]' : 'min-w-[111px]'
+            doneAt ? 'min-w-[138px]' : 'min-w-[111px]'
           )}
-          startIcon={isDone ? 'check_green' : 'check'}
-          onClick={isDone ? updateTaskToUndone : updateTaskToDone}
+          startIcon={doneAt ? 'check_green' : 'check'}
+          onClick={doneAt ? updateTaskToUndone : updateTaskToDone}
         >
-          {isDone ? '완료 취소하기' : '완료하기'}
+          {doneAt ? '완료 취소하기' : '완료하기'}
         </Button>
       )}
     </>

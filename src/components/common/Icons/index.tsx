@@ -153,7 +153,12 @@ const Icons = {
   ),
 
   EditIcon: ({ size = 24, className, onClick }: IconProps) => (
-    <Edit width={size} height={size} className={className} onClick={onClick} />
+    <Edit
+      width={size}
+      height={size}
+      className={`text-slate-500 ${className}`}
+      onClick={onClick}
+    />
   ),
 
   GearIcon: ({ size = 24, className, onClick }: IconProps) => (

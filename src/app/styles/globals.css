@@ -49,3 +49,19 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* 헤더에서 사용하는 스크롤바 */
+.header-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+.header-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.header-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.header-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}

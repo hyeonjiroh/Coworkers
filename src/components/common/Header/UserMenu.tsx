@@ -12,18 +12,18 @@ export default function UserMenu({
   nickname?: string;
   onLogout: () => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const menuItemClass =
     'flex items-center justify-center h-[47px] w-full px-4 py-2 hover:bg-slate-700';
 
-  const close = () => setOpen(false);
+  const close = () => setIsOpen(false);
 
   return (
     <div className="relative">
       <button
         type="button"
         className="group relative z-50 flex cursor-pointer items-center gap-3 hover:cursor-pointer hover:text-gray-700"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         <IconRenderer
           name="UserIcon"
@@ -33,7 +33,7 @@ export default function UserMenu({
         {nickname ?? '사용자'}
       </button>
 
-      {open && (
+      {isOpen && (
         <>
           <button
             type="button"

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { UserMembershipResponse } from '@/lib/apis/user/type';
@@ -20,22 +20,25 @@ export default function TeamMenu({
   selectedGroup,
   onSelect,
 }: TeamMenuProps) {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const params = useParams();
+  const teamIdParam = params.teamid;
+  const teamId = teamIdParam ? Number(teamIdParam) : undefined;
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const m = pathname.match(/^\/team\/(\d+)/);
-    if (!m) return;
-    const teamId = Number(m[1]);
+    if (teamId == null || isNaN(teamId)) return;
     if (selectedGroup?.id === teamId) return;
-    const found = memberships.find((x) => x.group.id === teamId);
+    const found = memberships.find(
+      (membership) => membership.group.id === teamId
+    );
     if (found) {
       onSelect(found.group);
     }
-  }, [pathname, memberships, selectedGroup, onSelect]);
+  }, [teamId, memberships, selectedGroup, onSelect]);
 
-  const label = pathname.startsWith('/team/') ? selectedGroup?.name : '팀 목록';
-  const close = () => setOpen(false);
+  const label = teamId != null ? selectedGroup?.name : '팀 목록';
+  const close = () => setIsOpen(false);
 
   const baseLink = selectedGroup
     ? ROUTES.TEAM(selectedGroup.id)
@@ -50,14 +53,14 @@ export default function TeamMenu({
       <button
         type="button"
         className={`z-50 cursor-pointer hover:text-gray-700 ${
-          open ? 'rotate-180' : ''
+          isOpen ? 'rotate-180' : ''
         } transition-transform`}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setIsOpen((o) => !o)}
       >
         <IconRenderer name="CheckIcon" className="hover:text-gray-700" />
       </button>
 
-      {open && (
+      {isOpen && (
         <>
           <button
             type="button"
@@ -77,7 +80,7 @@ export default function TeamMenu({
                     className="py flex flex-1 items-center gap-x-3 rounded-md p-1 transition-colors hover:bg-slate-700"
                     onClick={() => {
                       onSelect(group);
-                      setOpen(false);
+                      setIsOpen(false);
                     }}
                   >
                     <div className="relative h-8 w-8">
@@ -98,7 +101,7 @@ export default function TeamMenu({
                   {role === 'ADMIN' && (
                     <Link
                       href={ROUTES.TEAM_EDIT(group.id)}
-                      onClick={() => setOpen(false)}
+                      onClick={() => setIsOpen(false)}
                     >
                       <IconRenderer
                         name="EditIcon"

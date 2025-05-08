@@ -25,7 +25,7 @@ export default function SideMenu({
           />
 
           <div
-            className={`fixed top-0 left-0 z-50 h-[812px] w-[250px] border border-slate-50/10 bg-slate-800 p-6 transition-transform duration-300 ${isSideMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            className={`fixed top-0 left-0 z-50 h-[812px] w-[250px] border-r border-b border-slate-50/10 bg-slate-800 p-6 transition-transform duration-300 ${isSideMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <div className="mb-8 flex shrink-0 justify-end">
               <button

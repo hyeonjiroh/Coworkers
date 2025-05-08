@@ -14,7 +14,7 @@ const titleStyle =
 const motionContainer = {
   ani: {
     transition: {
-      staggerChildren: 0.05, // 1행 텍스트 모션 전체 실행 시간
+      staggerChildren: 0.07, // 1행 텍스트 모션 전체 실행 시간
     },
   },
 };
@@ -23,7 +23,7 @@ const motionChild = {
   ani: {
     y: [0, -20, 0],
     transition: {
-      duration: 0.3, // 1행 텍스트 모션 글자별 실행 시간
+      duration: 0.4, // 1행 텍스트 모션 글자별 실행 시간
       ease: 'easeOut',
     },
   },
@@ -72,25 +72,24 @@ export default function LandingTopText({ className }: { className?: string }) {
           {title}
         </h1>
         {/* 빛 효과 레이어 */}
-        <motion.div
+        <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: [0, 1, 0] }}
           transition={{
-            duration: 1.2,
-            delay: description.length * 0.02,
+            duration: 1,
+            delay: description.length * 0.05,
             ease: 'easeInOut',
           }}
           className={clsx(
             titleStyle,
             'absolute inset-0',
-            'bg-gradient-to-r from-transparent via-white/90 to-transparent',
+            'bg-gradient-to-r from-transparent via-white to-transparent',
             'bg-clip-text text-transparent',
-            'blur-sm',
-            'bg-[length:100%_100%]'
+            'blur-sm'
           )}
         >
           {title}
-        </motion.div>
+        </motion.h1>
       </div>
     </div>
   );

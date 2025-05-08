@@ -34,7 +34,7 @@ const LandingTopSection = ({ className }: { className?: string }) => {
           <Train
             className={clsx(
               'absolute',
-              'laptop:bottom-[22%] tablet:bottom-[16%] bottom-[19.5%]',
+              'laptop:bottom-[21%] tablet:bottom-[16%] bottom-[18%]',
               'tablet:pl-0 pl-22'
             )}
           />
@@ -42,9 +42,9 @@ const LandingTopSection = ({ className }: { className?: string }) => {
           <Runner
             className={clsx(
               'z-5',
-              'laptop:bottom-[18%] laptop:left-[35%]',
+              'laptop:bottom-[16.3%] laptop:left-[35%]',
               'tablet:bottom-[11.5%] tablet:left-[40%]',
-              'bottom-[14.5%] left-[43%]'
+              'bottom-[13%] left-[43%]'
             )}
           />
           {/* 흙먼지 모션 */}
@@ -52,8 +52,8 @@ const LandingTopSection = ({ className }: { className?: string }) => {
             className={clsx(
               'z-5',
               'tablet:block hidden',
-              'laptop:bottom-[20%] laptop:left-[19%]',
-              'tablet:left-[30%] tablet:bottom-[12%]'
+              'laptop:bottom-[20.5%] laptop:left-[19%]',
+              'tablet:left-[30%] tablet:bottom-[14.5%]'
             )}
           />
         </div>

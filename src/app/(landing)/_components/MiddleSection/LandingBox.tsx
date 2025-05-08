@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import clsx from 'clsx';
 import {
-  boxGradientStyle,
+  defaultBoxSize,
   boxStyle,
+  borderGradientStyle,
   textStyle,
   imageSize,
   getFlexDirection,
@@ -22,12 +23,13 @@ const LandingBox = ({
   gradient = false,
   className,
 }: LandingBoxProps) => {
-  const wrapperClass = gradient ? boxGradientStyle : ''; // 그라데이션 외곽선용
+  const wrapperClass = gradient ? borderGradientStyle : ''; // border 그라데이션 용도
+  const boxSize = gradient ? 'w-full h-full' : defaultBoxSize;
   const direction = getFlexDirection(tabletReverse, mobileReverse); // 아이템 정렬 순서 지정
 
   return (
     <div className={wrapperClass}>
-      <div className={`${boxStyle} ${className}`}>
+      <div className={`${boxStyle} ${boxSize} ${className}`}>
         {/* 아이템 컨테이너 */}
         <div
           className={clsx(

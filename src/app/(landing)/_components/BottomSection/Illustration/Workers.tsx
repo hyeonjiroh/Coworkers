@@ -11,7 +11,7 @@ const Workers = ({ className }: { className?: string }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIsFirstFrame((prev) => !prev);
-    }, 350); // 프레임 변경 간격
+    }, 500); // 이미지 변경 간격(프레임 단위)
 
     return () => clearInterval(interval);
   }, []);
@@ -21,11 +21,14 @@ const Workers = ({ className }: { className?: string }) => {
       {/* 인부1 */}
       <motion.div {...workersMotion}>
         <img
-          src={
-            isFirstFrame
-              ? `${LANDING_IMAGE_URL}workers1.svg`
-              : `${LANDING_IMAGE_URL}workers2_01.svg`
-          }
+          src={`${LANDING_IMAGE_URL}workers1.svg`}
+          style={{ display: isFirstFrame ? 'block' : 'none' }}
+          alt="걷는 인부1"
+          className={workersStyle}
+        />
+        <img
+          src={`${LANDING_IMAGE_URL}workers3_01.svg`}
+          style={{ display: isFirstFrame ? 'none' : 'block' }}
           alt="걷는 인부1"
           className={workersStyle}
         />
@@ -34,11 +37,14 @@ const Workers = ({ className }: { className?: string }) => {
       {/* 인부2 */}
       <motion.div {...workersMotion}>
         <img
-          src={
-            isFirstFrame
-              ? `${LANDING_IMAGE_URL}workers2.svg`
-              : `${LANDING_IMAGE_URL}workers3_01.svg`
-          }
+          src={`${LANDING_IMAGE_URL}workers2.svg`}
+          style={{ display: isFirstFrame ? 'block' : 'none' }}
+          alt="걷는 인부2"
+          className={workersStyle}
+        />
+        <img
+          src={`${LANDING_IMAGE_URL}workers1_01.svg`}
+          style={{ display: isFirstFrame ? 'none' : 'block' }}
           alt="걷는 인부2"
           className={workersStyle}
         />
@@ -47,11 +53,14 @@ const Workers = ({ className }: { className?: string }) => {
       {/* 인부3 */}
       <motion.div {...workersMotion}>
         <img
-          src={
-            isFirstFrame
-              ? `${LANDING_IMAGE_URL}workers3.svg`
-              : `${LANDING_IMAGE_URL}workers1_01.svg`
-          }
+          src={`${LANDING_IMAGE_URL}workers3.svg`}
+          style={{ display: isFirstFrame ? 'block' : 'none' }}
+          alt="걷는 인부3"
+          className={workersStyle}
+        />
+        <img
+          src={`${LANDING_IMAGE_URL}workers2_01.svg`}
+          style={{ display: isFirstFrame ? 'none' : 'block' }}
           alt="걷는 인부3"
           className={workersStyle}
         />

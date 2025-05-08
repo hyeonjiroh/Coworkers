@@ -75,12 +75,11 @@ export const runnerMotion: Pick<
 // Workers.tsx 인부들 걷기
 export const workersMotion = {
   initial: { left: 0 },
-  animate: { x: 150, y: [0, 5, 0] },
+  whileInView: { x: 150, y: [0, 5, 0] },
   transition: {
     x: {
-      duration: 1.5,
+      duration: 2,
       ease: 'easeOut',
-      repeat: Infinity,
     },
     y: {
       duration: 0.7,

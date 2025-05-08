@@ -8,5 +8,7 @@ export default function Background({
   isSidePageOpen: boolean;
 }) {
   useLockBackgroundScroll(isSidePageOpen);
-  return <div className="fixed inset-0 flex h-full w-full bg-black/50"></div>;
+  return (
+    <div className="fixed inset-0 z-60 flex h-full w-full bg-black/50"></div>
+  );
 }

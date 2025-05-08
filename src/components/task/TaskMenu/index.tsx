@@ -29,7 +29,7 @@ export default function TaskMenu({ size }: { size: 'sm' | 'md' }) {
 
   return (
     <DropDown>
-      <DropDown.Trigger className="p-0">
+      <DropDown.Trigger>
         <TaskMenuButton size={size} />
       </DropDown.Trigger>
       <DropDown.Menu align="right">

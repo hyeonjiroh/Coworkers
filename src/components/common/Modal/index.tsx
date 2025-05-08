@@ -30,7 +30,7 @@ export default function Modal() {
   };
 
   return (
-    <div className="tablet:items-center fixed inset-0 z-50 flex h-full w-full items-end justify-center bg-black/50">
+    <div className="tablet:items-center fixed inset-0 z-80 flex h-full w-full items-end justify-center bg-black/50">
       <div
         ref={modalRef}
         className={clsx(

@@ -30,7 +30,7 @@ export default function RootLayout({
           <Toast />
           <Modal />
           <Header />
-          <main>{children}</main>
+          <main className="min-h-[calc(100vh-60px)]">{children}</main>
         </Providers>
       </body>
     </html>

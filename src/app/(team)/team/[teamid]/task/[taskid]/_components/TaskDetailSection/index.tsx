@@ -7,6 +7,7 @@ import FrequencyInfo from '@/components/task/FrequencyInfo';
 import clsx from 'clsx';
 
 export default function TaskDetailSection({
+  id,
   recurring,
   doneAt,
   name,
@@ -29,7 +30,7 @@ export default function TaskDetailSection({
           >
             {name}
           </h1>
-          <TaskMenu size="md" />
+          <TaskMenu taskId={id} taskName={name} size="md" />
         </div>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">

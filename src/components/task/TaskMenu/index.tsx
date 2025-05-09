@@ -1,11 +1,24 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/store/useModalStore';
-import EditTaskModal from '@/components/common/Modal/content/EditTaskModal';
+import { TaskBody } from '@/lib/apis/task/type';
 import DropDown from '@/components/common/Dropdown';
 import TaskMenuButton from '@/components/task/TaskMenu/TaskMenuButton';
+import EditTaskModal from '@/components/common/Modal/content/EditTaskModal';
+import {
+  handleEditTask,
+  handleDeleteTask,
+} from '@/components/task/TaskMenu/actions/taskActions';
 
-export default function TaskMenu({ size }: { size: 'sm' | 'md' }) {
+interface TaskMenuProps {
+  taskId: number;
+  taskName: string;
+  size: 'sm' | 'md';
+}
+
+export default function TaskMenu({ taskId, taskName, size }: TaskMenuProps) {
+  const router = useRouter();
   const { openModal } = useModalStore();
 
   const openEditTaskModal = () => {
@@ -18,14 +31,34 @@ export default function TaskMenu({ size }: { size: 'sm' | 'md' }) {
         button: {
           number: 1,
           text: '수정하기',
-          onRequest: () => {},
+          onRequest: (body) => handleEditTask(taskId, body as TaskBody),
         },
       },
       <EditTaskModal />
     );
   };
-  // 추후에 할 일 삭제 API 연결 예정
-  const handleDeleteTask = () => console.log('삭제하기');
+
+  const openDeleteTaskModal = () => {
+    openModal({
+      variant: 'danger',
+      title: `'${taskName}'\n할 일을 정말 삭제하시겠어요?`,
+      description: '삭제 후에는 되돌릴 수 없습니다.',
+      button: {
+        number: 2,
+        text: '삭제하기',
+        onRequest: () => {
+          if (size === 'md') {
+            router.back();
+            setTimeout(() => {
+              handleDeleteTask(taskId);
+            }, 0);
+          } else {
+            handleDeleteTask(taskId);
+          }
+        },
+      },
+    });
+  };
 
   return (
     <DropDown>
@@ -34,7 +67,7 @@ export default function TaskMenu({ size }: { size: 'sm' | 'md' }) {
       </DropDown.Trigger>
       <DropDown.Menu align="right">
         <DropDown.Item onClick={openEditTaskModal}>수정하기</DropDown.Item>
-        <DropDown.Item onClick={handleDeleteTask}>삭제하기</DropDown.Item>
+        <DropDown.Item onClick={openDeleteTaskModal}>삭제하기</DropDown.Item>
       </DropDown.Menu>
     </DropDown>
   );

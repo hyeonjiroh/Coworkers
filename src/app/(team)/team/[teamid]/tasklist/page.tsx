@@ -22,9 +22,10 @@ export default async function TaskListPage({
   const selectedId = Number(searchParams.id);
   const selectedDate = searchParams.date;
 
-  const groupData = await getGroupById({ groupId });
+  const groupData = await getGroupById({ groupId, tag: ['tasklist'] });
   const taskListsData = groupData?.taskLists ?? [];
   const membersData = groupData?.members ?? [];
+
   const selectedTaskListData = await getTaskListById({
     taskListId: selectedId,
     date: selectedDate,
@@ -44,6 +45,9 @@ export default async function TaskListPage({
           <TaskListMenu
             membersData={membersData}
             userId={Number(userId)}
+            groupId={groupId}
+            taskListId={selectedId}
+            taskListName={selectedTaskListData?.name ?? ''}
             size="md"
           />
         </div>

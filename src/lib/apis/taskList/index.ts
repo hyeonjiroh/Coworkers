@@ -28,27 +28,33 @@ export async function patchTaskListById({
   groupId,
   taskListId,
   body,
+  tag,
 }: {
   groupId: number;
   taskListId: number;
   body: TaskListBody;
+  tag?: string[];
 }): Promise<TaskListResponse | null> {
-  return clientFetcher<TaskListBody, TaskListResponse>({
+  return serverFetcher<TaskListBody, TaskListResponse>({
     url: `/groups/${groupId}/task-lists/${taskListId}`,
     method: 'PATCH',
     body,
+    tag,
   });
 }
 
 // 할 일 목록 삭제 (DELETE /groups/:groupId/task-lists/:id)
 export async function deleteTaskListById({
   taskListId,
+  tag,
 }: {
   taskListId: number;
+  tag?: string[];
 }): Promise<null> {
-  return clientFetcher<undefined, null>({
+  return serverFetcher<undefined, null>({
     url: `/groups/{groupId}/task-lists/${taskListId}`,
     method: 'DELETE',
+    tag,
   });
 }
 
@@ -56,14 +62,17 @@ export async function deleteTaskListById({
 export async function postTaskList({
   groupId,
   body,
+  tag,
 }: {
   groupId: number;
   body: TaskListBody;
+  tag?: string[];
 }): Promise<TaskListResponse | null> {
-  return clientFetcher<TaskListBody, TaskListResponse>({
+  return serverFetcher<TaskListBody, TaskListResponse>({
     url: `/groups/${groupId}/task-lists`,
     method: 'POST',
     body,
+    tag,
   });
 }
 

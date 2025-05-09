@@ -20,7 +20,7 @@ export default function TaskCommentInput() {
       });
       setComment('');
     } catch (error) {
-      console.log('Failed to update the comment on the task :', error);
+      console.error('Failed to update the comment on the task :', error);
     }
   };
 

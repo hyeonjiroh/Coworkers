@@ -26,7 +26,7 @@ export default function CommentMenu({
     try {
       await deleteTaskComment({ commentId, tag: ['task-comment'] });
     } catch (error) {
-      console.log('Failed to delete the comment on the task :', error);
+      console.error('Failed to delete the comment on the task :', error);
     }
   };
 

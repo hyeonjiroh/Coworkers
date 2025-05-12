@@ -45,7 +45,7 @@ export default function EditableTaskCommentCard({
             setEditedComment(e.target.value);
           }}
           placeholder="댓글을 입력해 주세요"
-          className="text-md-regular placeholder-slate-500"
+          inputClassName="text-md-regular placeholder-slate-500"
           rows={1}
         />
       </div>

@@ -41,7 +41,7 @@ export default function TaskCommentInput() {
       onClick={handleSubmitComment}
       isSubmitDisabled={!isSubmitValid}
       placeholder="댓글을 입력해 주세요"
-      className="text-md-regular pr-8 placeholder-slate-500"
+      inputClassName="text-md-regular pr-8 placeholder-slate-500"
       rows={1}
     />
   );

@@ -51,7 +51,7 @@ const InputTextarea = ({
           'w-full resize-none overflow-hidden focus:outline-none', // base style
 
           variant === 'box' &&
-            'scrollbar-hide overflow-y-auto rounded-[12px] border border-slate-50/10 bg-slate-800',
+            'scrollbar-hide overflow-y-auto rounded-xl border border-slate-50/10 bg-slate-800',
 
           variant === 'reply' && 'border-t border-b border-slate-50/10 py-3.5',
           inputClassName

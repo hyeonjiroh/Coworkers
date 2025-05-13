@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useModalStore } from '@/store/useModalStore';
+import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { GroupMemberResponse } from '@/lib/apis/group/type';
 import { TaskListBody } from '@/lib/apis/taskList/type';
 import DropDown from '@/components/common/Dropdown';
@@ -33,11 +34,7 @@ export default function TaskListMenu({
 }: TaskListMenuProps) {
   const router = useRouter();
   const { openModal } = useModalStore();
-
-  const userData = membersData.find((member) => {
-    return member.userId === userId;
-  });
-  const isAdmin = Boolean(userData?.role === 'ADMIN');
+  const isAdmin = useIsAdmin({ membersData, userId });
 
   const openCreateTaskListModal = () => {
     openModal(

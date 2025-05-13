@@ -6,6 +6,7 @@ import Alert from '@/assets/icons/alert.svg';
 import Arrow from '@/assets/icons/arrow.svg';
 import ArrowTop from '@/assets/icons/arrow_top.svg';
 import Calendar from '@/assets/icons/calendar.svg';
+import CalendarArrow from '@/assets/icons/calendar_arrow.svg';
 import CheckGreen from '@/assets/icons/check_green.svg';
 import CheckWhite from '@/assets/icons/check_white.svg';
 import Check from '@/assets/icons/check.svg';
@@ -81,6 +82,20 @@ const Icons = {
       width={size}
       height={size}
       className={className}
+      onClick={onClick}
+    />
+  ),
+
+  CalendarArrowIcon: ({
+    size = 24,
+    className,
+    onClick,
+    flip = false,
+  }: FlipIconProps) => (
+    <CalendarArrow
+      width={size}
+      height={size}
+      className={` ${className ?? ''} ${flip ? '-scale-x-100 transform' : ''} `}
       onClick={onClick}
     />
   ),

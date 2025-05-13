@@ -1,6 +1,6 @@
 'use client';
 
-import { InputWithLabelProps } from '@/app/(auth)/login/type';
+import { InputWithLabelProps } from '@/components/auth/type';
 import Icons from '@/components/common/Icons';
 import clsx from 'clsx';
 import { useState } from 'react';
@@ -17,6 +17,8 @@ export default function InputWithLabel({
   const inputTypeMap: Record<InputWithLabelProps['inputType'], string> = {
     email: '이메일',
     password: '비밀번호',
+    userName: '이름',
+    passwordConfirm: '비밀번호 확인',
   };
 
   const togglePasswordVisibility = () => {
@@ -31,7 +33,7 @@ export default function InputWithLabel({
       <div className="relative">
         <input
           type={
-            inputType === 'password'
+            inputType === 'password' || inputType === 'passwordConfirm'
               ? isPasswordVisible
                 ? 'text'
                 : 'password'
@@ -53,7 +55,7 @@ export default function InputWithLabel({
           {...props}
         />
 
-        {inputType === 'password' && (
+        {(inputType === 'password' || inputType === 'passwordConfirm') && (
           <div className="absolute top-1/2 right-4 -translate-y-1/2">
             {isPasswordVisible ? (
               <Icons.VisibilityOnIcon

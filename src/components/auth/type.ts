@@ -10,4 +10,4 @@ export interface InputWithLabelProps
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export type InputType = 'email' | 'password';
+export type InputType = 'email' | 'password' | 'userName' | 'passwordConfirm';

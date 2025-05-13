@@ -6,7 +6,7 @@ import {
   validateName,
   validateEmail,
   validatePassword,
-  validatePasswordMatch,
+  validatePasswordConfirm,
 } from '@/utils/inputValidation';
 import IconRenderer from '@/components/common/Icons/IconRenderer';
 
@@ -50,7 +50,12 @@ const InputAuth = ({
     }
 
     if (pattern === 'passwordMatch') {
-      setIsInvalid(!validatePasswordMatch(originalPassword ?? '', val));
+      setIsInvalid(
+        !validatePasswordConfirm({
+          password: originalPassword ?? '',
+          passwordConfirm: val,
+        })
+      );
     }
   };
 

@@ -93,9 +93,11 @@ export default function TaskListMenu({
           <TaskListMenuButton size={size} />
         </DropDown.Trigger>
         <DropDown.Menu align="right">
-          <DropDown.Item onClick={openCreateTaskListModal}>
-            생성하기
-          </DropDown.Item>
+          {size === 'md' && (
+            <DropDown.Item onClick={openCreateTaskListModal}>
+              생성하기
+            </DropDown.Item>
+          )}
           <DropDown.Item onClick={openEditTaskListModal}>
             수정하기
           </DropDown.Item>

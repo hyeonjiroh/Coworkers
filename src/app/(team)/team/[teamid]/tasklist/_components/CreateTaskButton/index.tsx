@@ -1,10 +1,20 @@
 'use client';
 
 import { useModalStore } from '@/store/useModalStore';
+import { RecurringTaskBody } from '@/lib/apis/task/type';
 import CreateTaskModal from '@/components/common/Modal/content/CreateTaskModal';
+import { handleCreateTask } from '@/app/(team)/team/[teamid]/tasklist/_components/CreateTaskButton/actions/createTaskAction';
 import Button from '@/components/common/Button';
 
-export default function CreateTaskButton() {
+interface CreateTaskButtonProps {
+  groupId: number;
+  taskListId: number;
+}
+
+export default function CreateTaskButton({
+  groupId,
+  taskListId,
+}: CreateTaskButtonProps) {
   const { openModal } = useModalStore();
 
   const openCreateTaskModal = () => {
@@ -17,7 +27,8 @@ export default function CreateTaskButton() {
         button: {
           number: 1,
           text: '만들기',
-          onRequest: () => {},
+          onRequest: (body) =>
+            handleCreateTask(groupId, taskListId, body as RecurringTaskBody),
         },
       },
       <CreateTaskModal />

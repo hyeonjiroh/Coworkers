@@ -13,15 +13,18 @@ export async function postRecurringTask({
   groupId,
   taskListId,
   body,
+  tag,
 }: {
   groupId: number;
   taskListId: number;
   body: RecurringTaskBody;
+  tag?: string[];
 }): Promise<RecurringTaskResponse | null> {
-  return clientFetcher<RecurringTaskBody, RecurringTaskResponse>({
+  return serverFetcher<RecurringTaskBody, RecurringTaskResponse>({
     url: `/groups/${groupId}/task-lists/${taskListId}/recurring`,
     method: 'POST',
     body,
+    tag,
   });
 }
 

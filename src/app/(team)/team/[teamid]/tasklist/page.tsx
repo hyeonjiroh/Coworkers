@@ -68,7 +68,7 @@ export default async function TaskListPage({
           <TaskListSection items={tasksData} />
         </div>
       </div>
-      <CreateTaskButton />
+      <CreateTaskButton groupId={groupId} taskListId={selectedId} />
     </div>
   );
 }

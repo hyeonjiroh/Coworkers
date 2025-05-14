@@ -28,4 +28,5 @@ export const ROUTES = {
   BOARDS: '/boards',
   ARTICLE: (articleId: articleId) => `/article/${articleId}`,
   ARTICLE_ADD: '/article/add-article',
+  ARTICLE_EDIT: (articleId: articleId) => `/article/${articleId}/edit-article`,
 };

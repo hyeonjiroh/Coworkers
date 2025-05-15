@@ -3,7 +3,7 @@ import InputBase from '@/components/common/Input/InputBase';
 import InputTextarea from '@/components/common/Input/InputTextarea';
 import StartDateTimeSection from '@/components/task-modal/StartDateTimeSection';
 import RecurringSection from '@/components/task-modal/RecurringSection';
-import { useTaskFormValidation } from '@/components/common/Modal/content/CreateTaskModal/hooks/useTaskFormValidation';
+import { useCreateTaskFormValidation } from '@/components/common/Modal/content/CreateTaskModal/hooks/useCreateTaskFormValidation';
 
 export interface RecurringTaskFormState {
   name: string;
@@ -24,7 +24,7 @@ export default function CreateTaskModal() {
     monthDay: null,
   });
 
-  useTaskFormValidation(formData);
+  useCreateTaskFormValidation(formData);
 
   return (
     <div className="flex flex-col gap-6">

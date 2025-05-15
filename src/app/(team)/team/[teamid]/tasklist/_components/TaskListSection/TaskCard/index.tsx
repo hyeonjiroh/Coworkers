@@ -11,6 +11,7 @@ export default function TaskCard({
   date,
   doneAt,
   name,
+  description,
   frequency,
   commentCount,
 }: TaskResponse) {
@@ -27,7 +28,12 @@ export default function TaskCard({
             <div className="text-xs-regular text-slate-500">{commentCount}</div>
           </div>
         </div>
-        <TaskMenu taskId={id} taskName={name} size="sm" />
+        <TaskMenu
+          taskId={id}
+          taskName={name}
+          taskDescription={description}
+          size="sm"
+        />
       </div>
       <div className="flex items-center gap-2.5">
         <DateInfo date={date} />

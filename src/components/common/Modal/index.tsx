@@ -82,9 +82,7 @@ export default function Modal() {
                 )}
               </div>
             )}
-            {content && (
-              <div className="scrollbar-hide overflow-y-auto">{content}</div>
-            )}
+            {content && <div className="overflow-y-auto">{content}</div>}
           </div>
         </div>
         <div className="flex gap-2">

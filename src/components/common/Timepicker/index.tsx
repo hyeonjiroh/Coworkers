@@ -64,7 +64,7 @@ export default function TimePicker({
         </div>
 
         {/* hour */}
-        <div className="scrollbar-hide flex h-36 flex-1 flex-col overflow-y-auto rounded-xl bg-[#18212F] p-2 transition-colors duration-100">
+        <div className="flex h-36 flex-1 flex-col overflow-y-auto rounded-xl bg-[#18212F] p-2 transition-colors duration-100">
           {[...Array(12)].map((_, i) => {
             const hour = i + 1;
             return (
@@ -86,7 +86,7 @@ export default function TimePicker({
         </div>
 
         {/* minute */}
-        <div className="scrollbar-hide flex h-36 flex-1 flex-col overflow-y-auto rounded-xl bg-[#18212F] p-2 transition-colors duration-100">
+        <div className="flex h-36 flex-1 flex-col overflow-y-auto rounded-xl bg-[#18212F] p-2 transition-colors duration-100">
           {[...Array(60)].map((_, minute) => (
             <button
               key={minute}

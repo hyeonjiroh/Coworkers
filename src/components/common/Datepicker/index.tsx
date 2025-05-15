@@ -6,11 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 interface CustomDatePickerProps {
   selectedDate: Date;
   setSelectedDate: (date: Date) => void;
+  disablePastDate?: boolean;
 }
 
 export default function CustomDatePicker({
   selectedDate,
   setSelectedDate,
+  disablePastDate = false,
 }: CustomDatePickerProps) {
   return (
     <DatePicker
@@ -18,6 +20,7 @@ export default function CustomDatePicker({
       onChange={(date) => date && setSelectedDate(date)}
       locale={ko}
       inline
+      {...(disablePastDate ? { minDate: new Date() } : {})}
       dayClassName={(date) =>
         date.toDateString() === selectedDate.toDateString()
           ? 'text-md-semibold! bg-green-700! text-slate-800! hover:text-slate-50! focus:bg-green-700!'

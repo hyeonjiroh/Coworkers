@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useModalStore } from '@/store/useModalStore';
 import { RecurringTaskFormState } from '@/components/common/Modal/content/CreateTaskModal';
 
-export function useTaskFormValidation(formData: RecurringTaskFormState) {
+export function useCreateTaskFormValidation(formData: RecurringTaskFormState) {
   const { name, description, startDate, frequencyType, weekDays, monthDay } =
     formData;
   const [isSubmitValid, setIsSubmitValid] = useState(false);
@@ -20,11 +20,9 @@ export function useTaskFormValidation(formData: RecurringTaskFormState) {
       (frequencyType === 'WEEKLY' && weekDays.length > 0) ||
       (frequencyType === 'MONTHLY' && monthDay !== null);
 
-    if (isNameValid && isDescriptionValid && isFrequencyValid) {
-      setIsSubmitValid(true);
-    } else {
-      setIsSubmitValid(false);
-    }
+    const isValid = isNameValid && isDescriptionValid && isFrequencyValid;
+
+    setIsSubmitValid(isValid);
 
     setRequestBody({
       name: trimmedName,

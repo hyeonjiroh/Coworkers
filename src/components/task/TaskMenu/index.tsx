@@ -14,10 +14,16 @@ import {
 interface TaskMenuProps {
   taskId: number;
   taskName: string;
+  taskDescription: string;
   size: 'sm' | 'md';
 }
 
-export default function TaskMenu({ taskId, taskName, size }: TaskMenuProps) {
+export default function TaskMenu({
+  taskId,
+  taskName,
+  taskDescription,
+  size,
+}: TaskMenuProps) {
   const router = useRouter();
   const { openModal } = useModalStore();
 
@@ -34,7 +40,7 @@ export default function TaskMenu({ taskId, taskName, size }: TaskMenuProps) {
           onRequest: (body) => handleEditTask(taskId, body as TaskBody),
         },
       },
-      <EditTaskModal />
+      <EditTaskModal name={taskName} description={taskDescription} />
     );
   };
 

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { formatDate, formatTime } from '@/utils/formatDate';
+import { useClosePopup } from '@/hooks/useClosePopup';
 import CustomDatePicker from '@/components/common/Datepicker';
 import TimePicker from '@/components/common/Timepicker';
 import clsx from 'clsx';
@@ -16,13 +17,19 @@ export default function StartDateTimeSection({
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [isTimePickerOpen, setIsTimePickerOpen] = useState(false);
 
+  const selectorRef = useRef<HTMLDivElement>(null);
+  useClosePopup(selectorRef, () => {
+    setIsDatePickerOpen(false);
+    setIsTimePickerOpen(false);
+  });
+
   const formattedDate = formatDate(date.toISOString());
   const formattedTime = formatTime(date.toISOString());
 
   return (
     <div className="flex flex-col gap-4">
       <div className="text-lg-medium">시작 날짜 및 시간</div>
-      <div className="flex flex-col gap-2">
+      <div ref={selectorRef} className="flex flex-col gap-2">
         <div className="flex gap-2">
           <button
             type="button"
@@ -56,7 +63,11 @@ export default function StartDateTimeSection({
           </button>
         </div>
         {isDatePickerOpen && (
-          <CustomDatePicker selectedDate={date} setSelectedDate={setDate} />
+          <CustomDatePicker
+            selectedDate={date}
+            setSelectedDate={setDate}
+            disablePastDate={true}
+          />
         )}
         {isTimePickerOpen && (
           <TimePicker selectedDate={date} setSelectedDate={setDate} />

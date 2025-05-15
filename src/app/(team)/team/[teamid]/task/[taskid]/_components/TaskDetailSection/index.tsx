@@ -28,7 +28,12 @@ export default function TaskDetailSection({
           >
             {name}
           </h1>
-          <TaskMenu taskId={id} taskName={name} size="md" />
+          <TaskMenu
+            taskId={id}
+            taskName={name}
+            taskDescription={description}
+            size="md"
+          />
         </div>
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">

@@ -10,6 +10,7 @@ export default function InputWithLabel({
   errorMessage = [],
   onInputBlur,
   onInputChange,
+  mode,
   ...props
 }: InputWithLabelProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -20,6 +21,8 @@ export default function InputWithLabel({
     userName: '이름',
     passwordConfirm: '비밀번호 확인',
   };
+
+  const isPasswordResetPage = mode === 'resetPasswordPage';
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible((prev) => !prev);
@@ -42,7 +45,13 @@ export default function InputWithLabel({
           id={inputType}
           name={inputType}
           required
-          placeholder={`${inputTypeMap[inputType]}을 입력해주세요.`}
+          placeholder={
+            isPasswordResetPage && inputType === 'password'
+              ? '영문과 숫자를 포함한 8자 이상의 비밀번호를 입력해주세요.'
+              : isPasswordResetPage && inputType === 'passwordConfirm'
+                ? '새 비밀번호를 다시 한번 입력해주세요.'
+                : `${inputTypeMap[inputType]}을 입력해주세요.`
+          }
           autoComplete="true"
           className={clsx(
             'w-full rounded-xl border bg-slate-800 p-4 outline-hidden',

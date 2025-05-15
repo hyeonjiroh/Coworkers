@@ -83,7 +83,7 @@ export async function getUserHistory({
   tag?: string[];
 }): Promise<UserHistoryResponse | null> {
   return serverFetcher<undefined, UserHistoryResponse>({
-    url: `user/history`,
+    url: `/user/history`,
     method: 'GET',
     tag,
   });

@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import WriterInfo from '@/components/user/WriterInfo';
+import IconRenderer from '@/components/common/Icons/IconRenderer';
 import Link from 'next/link';
 import { ROUTES } from '@/constants/routes';
 import { useState } from 'react';
@@ -28,59 +29,45 @@ export default function BestPostCard({
   const defaultImage = '/image/default_card.svg';
 
   return (
-    <Link href={ROUTES.ARTICLE(id)}>
-      <article className="laptop:min-w-[360px] tablet:w-full tablet:px-6 tablet:overflow-hidden h-full cursor-pointer rounded-xl border border-slate-700 bg-slate-800 px-6 py-4">
-        <div className="mb-3.5 flex items-center gap-1">
-          <Image
-            src="/icons/best_badge_icon.svg"
-            alt="베스트 게시글 뱃지"
-            width={16}
-            height={16}
-          />
-          <p className="text-lg-semibold text-white">Best</p>
-        </div>
-        <div className="mb-10">
-          {image ? (
-            <div className="flex h-[52px] gap-3">
-              <p className="text-2lg-medium mb-3 line-clamp-2 w-full overflow-ellipsis text-slate-100">
+    <article className="tablet:px-6 tablet:h-55 tablet:pt-4 flex h-[178px] flex-col gap-3 rounded-xl border border-slate-700 bg-slate-800 px-4 pt-2.5">
+      <div className="flex items-center gap-1">
+        <IconRenderer name="BestBadgeIcon" />
+        <p className="text-lg-semibold text-white">Best</p>
+      </div>
+      <div className="tablet:gap-6 flex flex-col gap-4">
+        <div className="tablet:h-[96px] tablet:gap-4 flex h-[74px] gap-6">
+          <div className="flex flex-col justify-between">
+            <Link href={ROUTES.ARTICLE(id)}>
+              <p className="tablet:h-14 tablet:leading-7 tablet:text-2lg-medium text-md-medium line-clamp-2 h-12 leading-6 overflow-ellipsis text-slate-300">
                 {title}
               </p>
-              <div className="laptop:h-[72px] laptop:w-[72px] relative ml-4 h-[64px] w-[64px] flex-shrink-0 overflow-hidden rounded-lg">
-                <Image
-                  src={isValidImage ? image : defaultImage}
-                  alt={isValidImage ? '썸네일' : '기본 썸네일'}
-                  fill
-                  className="image-cover rounded-lg"
-                  style={{ objectFit: 'cover' }}
-                  onError={(e) => {
-                    console.error('실제 요청 URL:', e.currentTarget.src);
-                    setIsValidImage(false);
-                  }}
-                />
-              </div>
+            </Link>
+            <div className="text-md-medium text-slate-400">{date}</div>
+          </div>
+          {image && (
+            <div className="tablet:size-[72px] relative size-16 flex-shrink-0 rounded-lg">
+              <Image
+                src={isValidImage ? image : defaultImage}
+                alt={isValidImage ? '썸네일' : '기본 썸네일'}
+                fill
+                className="image-cover rounded-lg"
+                style={{ objectFit: 'cover' }}
+                onError={(e) => {
+                  console.error('실제 요청 URL:', e.currentTarget.src);
+                  setIsValidImage(false);
+                }}
+              />
             </div>
-          ) : (
-            <p className="text-2lg-medium mb-3 line-clamp-2 h-[42px] w-full overflow-ellipsis text-slate-100">
-              {title}
-            </p>
           )}
-          <span className="text-md-medium text-slate-400">{date}</span>
         </div>
-        <div className="item-center mb-4 flex justify-between">
-          <div className="flex items-center gap-3">
-            <WriterInfo nickname={nickname} image={writerImage ?? null} />
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <Image
-              src="/icons/heart_icon.svg"
-              width={16}
-              height={16}
-              alt="좋아요 아이콘"
-            />
-            <p className="text-slate-400">{likes}</p>
+        <div className="item-center flex justify-between">
+          <WriterInfo nickname={nickname} image={writerImage ?? null} />
+          <div className="flex items-center justify-center gap-1">
+            <IconRenderer name="HeartEmptyIcon" />
+            <p className="text-xs-regular text-slate-400">{likes}</p>
           </div>
         </div>
-      </article>
-    </Link>
+      </div>
+    </article>
   );
 }

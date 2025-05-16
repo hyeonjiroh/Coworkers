@@ -64,7 +64,7 @@ export async function getArticleById({
 }
 
 // 게시글 수정 (PATCH /articles/:articleId)
-export async function patchArticle({
+export async function patchArticleById({
   articleId,
   body,
 }: {
@@ -85,7 +85,7 @@ export async function patchArticle({
 }
 
 // 게시글 삭제 (DELETE /articles/:articleId)
-export async function deleteArticle({
+export async function deleteArticleById({
   articleId,
 }: {
   articleId: number;
@@ -99,23 +99,29 @@ export async function deleteArticle({
 // 게시글 좋아요 등록 (POST /articles/:articleId/like)
 export async function postArticleLike({
   articleId,
+  tag,
 }: {
   articleId: number;
+  tag?: string[];
 }): Promise<ArticleResponse | null> {
-  return clientFetcher<undefined, ArticleResponse>({
+  return serverFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}/like`,
     method: 'POST',
+    tag,
   });
 }
 
 // 게시글 좋아요 취소 (DELETE /articles/:articleId/like)
 export async function deleteArticleLike({
   articleId,
+  tag,
 }: {
   articleId: number;
+  tag?: string[];
 }): Promise<ArticleResponse | null> {
-  return clientFetcher<undefined, ArticleResponse>({
+  return serverFetcher<undefined, ArticleResponse>({
     url: `/articles/${articleId}/like`,
     method: 'DELETE',
+    tag,
   });
 }

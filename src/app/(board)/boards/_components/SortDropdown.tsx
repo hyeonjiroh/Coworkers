@@ -24,17 +24,17 @@ export default function SortDropdownArea() {
   };
 
   return (
-    <div className="mb-8 flex items-center justify-between">
-      <h3 className="text-xl-bold text-slate-50">게시글</h3>
+    <div className="tablet:h-11 tablet:mb-8 mb-6 flex h-10 items-center justify-between">
+      <h3 className="tablet:text-xl-bold text-lg-bold text-slate-50">게시글</h3>
       <DropDown key={dropdownKey}>
         <DropDown.Trigger
           showIcon
-          className="h-11 w-[120px] bg-slate-700 px-4 py-2"
+          className="tablet:w-[120px] tablet:h-11 h-10 w-[94px] bg-slate-700 px-4 py-2"
           placeholder="최신순"
         >
           {sort === 'recent' ? '최신순' : '좋아요순'}
         </DropDown.Trigger>
-        <DropDown.Menu className="w-[120px]">
+        <DropDown.Menu className="tablet:w-[120px] w-[94px]">
           <DropDown.Item onClick={() => handleSelect('최신순')}>
             최신순
           </DropDown.Item>

@@ -2,7 +2,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getArticles, deleteArticle } from '@/lib/apis/article';
+import { getArticles, deleteArticleById } from '@/lib/apis/article';
 import { Post, mapArticleToPost } from '@/utils/postMapper';
 
 interface UsePostsReturn {
@@ -70,7 +70,7 @@ export function usePosts(
 
   //게시글 삭제
   const deleteMutation = useMutation({
-    mutationFn: (articleId: number) => deleteArticle({ articleId }),
+    mutationFn: (articleId: number) => deleteArticleById({ articleId }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
       queryClient.invalidateQueries({ queryKey: ['bestPosts'] });

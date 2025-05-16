@@ -41,7 +41,7 @@ export default function BoardContent() {
       ) : (
         <BestPostList posts={bestPosts} />
       )}
-      <div className="mb-10 border border-slate-50/10"></div>
+      <div className="tablet:my-10 my-8 border border-slate-50/10"></div>
       <SortDropdownArea />
       {isPostsLoading ? (
         <div className="py-10 text-center text-slate-400">로딩 중...</div>

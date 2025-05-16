@@ -79,7 +79,7 @@ export default function PostList({ posts, deletePost }: PostListProps) {
   };
 
   return (
-    <section className="tablet:gap-5 tablet:grid tablet:grid-cols-1 laptop:gap-5 laptop:grid-cols-2 grid h-full w-full grid-cols-1 flex-col gap-5">
+    <section className="tablet:gap-6 laptop:gap-5 laptop:grid-cols-2 grid grid-cols-1 gap-4">
       {posts.map((post) => (
         <PostCard
           key={post.id}

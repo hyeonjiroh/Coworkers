@@ -3,22 +3,30 @@ import TaskListBar from '@/app/(team)/team/_components/TaskListBarList/TaskListB
 import Pagination from '@/app/(team)/team/_components/TaskListBarList/Pagination';
 import { useState } from 'react';
 import { TaskListResponse } from '@/lib/apis/taskList/type';
+import { GroupMemberResponse } from '@/lib/apis/group/type';
+import { calculateTaskListProgress } from '@/utils/calculateTaskListProgress';
 import { listContainerStyle } from '@/app/(team)/team/_components/TaskListBarList/styles';
 
-const perPage = 4;
+const PER_PAGE = 4;
+
+interface TaskListBarListProps {
+  items: TaskListResponse[];
+  groupId: number;
+  userId: number;
+  membersData: GroupMemberResponse[];
+}
 
 const TaskListBarList = ({
   items,
   groupId,
-}: {
-  items: TaskListResponse[];
-  groupId: number;
-}) => {
+  userId,
+  membersData,
+}: TaskListBarListProps) => {
   const [page, setPage] = useState(1);
 
-  const totalPage = Math.ceil(items.length / perPage);
-  const startIndex = (page - 1) * perPage;
-  const endIndex = startIndex + perPage;
+  const totalPage = Math.ceil(items.length / PER_PAGE);
+  const startIndex = (page - 1) * PER_PAGE;
+  const endIndex = startIndex + PER_PAGE;
   const currentItems = items.slice(startIndex, endIndex);
 
   const handlePrev = () => {
@@ -31,17 +39,25 @@ const TaskListBarList = ({
 
   return (
     <div className={`${listContainerStyle}`}>
-      <div className={`${listContainerStyle} gap-4`}>
-        {currentItems.map((item, index) => (
-          <TaskListBar
-            key={item.id}
-            {...item}
-            id={item.id}
-            name={item.name}
-            index={index + startIndex}
-            groupId={groupId}
-          />
-        ))}
+      <div className="flex w-full flex-col gap-4">
+        {currentItems.map((item, index) => {
+          const { total, done } = calculateTaskListProgress(item.tasks ?? []);
+
+          return (
+            <TaskListBar
+              key={item.id}
+              {...item}
+              id={item.id}
+              name={item.name}
+              index={index + startIndex}
+              groupId={groupId}
+              userId={userId}
+              membersData={membersData}
+              total={total}
+              done={done}
+            />
+          );
+        })}
       </div>
 
       {totalPage > 1 && (

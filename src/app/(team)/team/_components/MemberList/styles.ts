@@ -19,21 +19,20 @@ export const memberListWrapperStyle = clsx(
 // 📌MemberCard.tsx style
 export const memberCardContainerStyle = clsx(
   'flex items-center justify-center',
-  'laptop:max-w-[384px]',
-  'tablet:max-w-[216px] tablet:h-[73px]',
-  'max-w-[163.5px] h-[68px]',
-  'w-full',
+  'laptop:max-w-[384px] tablet:h-[73px] h-[68px] min-w-0',
   'bg-slate-800',
-  'rounded-[16px]'
+  'p-3 rounded-[16px]',
+  'cursor-pointer'
 );
 
 export const memberCardItemWrapperStyle = clsx(
   'flex items-center justify-between',
-  'laptop:w-[336px] h-full',
-  'tablet:w-[168px]',
-  'w-[125px]'
+  'laptop:max-w-[336px] h-full',
+  'w-full'
 );
 
 export const memberCardTextWrapperStyle = clsx(
-  'laptop:w-[200px] w-[102px] flex flex-col justify-center gap-0.5'
+  'flex flex-col justify-center gap-0.5',
+  'laptop:max-w-[200px] tablet:max-w-[120px] max-w-[85px]',
+  'w-full'
 );

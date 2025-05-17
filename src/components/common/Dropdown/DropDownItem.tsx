@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 interface DropDownItemProps {
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
 }
 
@@ -19,7 +19,13 @@ const DropDownItem = ({ children, onClick, className }: DropDownItemProps) => {
   );
 
   return (
-    <button className={itemStyles} onClick={onClick}>
+    <button
+      className={itemStyles}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick?.(e);
+      }}
+    >
       {children}
     </button>
   );

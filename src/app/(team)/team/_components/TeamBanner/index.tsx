@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import TeamDropdownMenu from '@/app/(team)/team/_components/TeamBanner/TeamDropdownMenu';
+import TeamDropdownMenu from '@/app/(team)/team/_components/TeamBanner/TeamMenu';
 import GradientScrollable from '@/components/common/Scroll/GradientScrollable';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
 import { GroupResponse } from '@/lib/apis/group/type';

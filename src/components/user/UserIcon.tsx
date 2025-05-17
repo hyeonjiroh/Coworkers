@@ -4,33 +4,35 @@ import clsx from 'clsx';
 
 interface UserIconProps {
   image: string | null;
-  responsive?: boolean; // true 설정 시 tablet 이하 size-6으로 변경
+  sizeClass?: string; // 외부 원형 아이콘 크기
+  imageSize?: string; // 이미지 예상 크기
+  iconClass?: string; // 내부 아이콘 크기
 }
 
-export default function UserIcon({ image, responsive = false }: UserIconProps) {
-  const imageSizes = responsive ? '(max-width: 744px) 24px, 32px' : '32px';
-
+export default function UserIcon({
+  image,
+  sizeClass = 'size-8',
+  imageSize = '32px',
+  iconClass = 'size-6',
+}: UserIconProps) {
   return (
     <div
       className={clsx(
         'relative flex shrink-0 items-center justify-center overflow-hidden',
         'rounded-full border border-slate-50/10 bg-slate-700',
-        responsive ? 'tablet:size-8 size-6' : 'size-8'
+        sizeClass
       )}
     >
       {image ? (
         <Image
           src={image}
-          className="object-cover"
-          sizes={imageSizes}
-          fill
           alt="유저 프로필 이미지"
+          sizes={imageSize}
+          fill
+          className="object-cover"
         />
       ) : (
-        <IconRenderer
-          name="MemberIcon"
-          className={responsive ? 'tablet:size-6 size-4.5' : 'size-6'}
-        />
+        <IconRenderer name="MemberIcon" className={iconClass} />
       )}
     </div>
   );

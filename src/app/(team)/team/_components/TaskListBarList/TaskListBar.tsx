@@ -1,11 +1,12 @@
 'use client';
 import GradientScrollable from '@/components/common/Scroll/GradientScrollable';
-import ProcessBadge from '@/app/(team)/team/_components/TaskListBarList/ProcessBadge';
-import TaskListDropdownMenu from '@/app/(team)/team/_components/TaskListBarList/TaskListDropdownMenu';
+import ProgressBadge from '@/app/(team)/team/_components/TaskListBarList/ProgressBadge';
+import TaskListMenu from '@/components/tasklist/TaskListMenu';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/constants/routes';
+import { GroupMemberResponse } from '@/lib/apis/group/type';
 import {
-  taskListBarWrapperStyle,
+  taskListBarContainerStyle,
   taskListBarTitleStyle,
   colorChipStyle,
   colorList,
@@ -16,20 +17,29 @@ interface TaskListBarProps {
   name: string;
   index: number;
   groupId: number;
+  userId: number;
+  membersData: GroupMemberResponse[];
+  total: number;
+  done: number;
 }
 
-const TaskListBar = ({ id, name, index, groupId }: TaskListBarProps) => {
+const TaskListBar = ({
+  id,
+  name,
+  index,
+  groupId,
+  userId,
+  membersData,
+  total,
+  done,
+}: TaskListBarProps) => {
   const router = useRouter();
   const color = colorList[index % colorList.length];
 
   const handleClick = () => {
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    const formattedDate = `${yyyy}-${mm}-${dd}`;
+    const today = new Date().toISOString().split('T')[0];
 
-    router.push(`${ROUTES.TASK(groupId)}?id=${id}&date=${formattedDate}`);
+    router.push(`${ROUTES.TASK(groupId)}?id=${id}&date=${today}`);
   };
 
   return (
@@ -40,25 +50,30 @@ const TaskListBar = ({ id, name, index, groupId }: TaskListBarProps) => {
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') handleClick();
       }}
-      className="flex w-full cursor-pointer flex-col items-center justify-between"
+      className={`${taskListBarContainerStyle}`}
     >
-      <div className={`${taskListBarWrapperStyle}`}>
+      {/* left item */}
+      <div className="flex w-full min-w-0 items-center gap-3">
         <div
-          className={`${taskListBarTitleStyle} flex items-center justify-start gap-3`}
-        >
-          <div
-            className={`${colorChipStyle} shrink-0`}
-            style={{ backgroundColor: color }}
-          />
-          <div className={`${taskListBarTitleStyle} pr-2`}>
-            <GradientScrollable color="#1e293b">{name}</GradientScrollable>
-          </div>
+          className={`${colorChipStyle} shrink-0`}
+          style={{ backgroundColor: color }}
+        />
+        <div className={`${taskListBarTitleStyle} pr-2`}>
+          <GradientScrollable color="#1e293b">{name}</GradientScrollable>
         </div>
+      </div>
 
-        <div className="flex items-center gap-1 pr-2">
-          <ProcessBadge />
-          <TaskListDropdownMenu />
-        </div>
+      {/* right item */}
+      <div className="flex items-center gap-1 pr-2">
+        <ProgressBadge total={total} done={done} />
+        <TaskListMenu
+          groupId={groupId}
+          userId={userId}
+          membersData={membersData}
+          taskListId={id}
+          taskListName={name}
+          size="sm"
+        />
       </div>
     </div>
   );

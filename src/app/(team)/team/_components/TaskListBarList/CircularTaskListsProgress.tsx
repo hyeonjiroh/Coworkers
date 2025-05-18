@@ -1,14 +1,14 @@
-interface CircularProgressProps {
+interface CircularTaskListsProgressProps {
   size?: number;
   strokeWidth?: number;
   percentage: number;
 }
 
-const CircularProgress = ({
+const CircularTaskListsProgress = ({
   size = 12,
   strokeWidth = 2,
   percentage,
-}: CircularProgressProps) => {
+}: CircularTaskListsProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (percentage / 100) * circumference;
@@ -35,10 +35,9 @@ const CircularProgress = ({
         strokeDasharray={circumference}
         strokeDashoffset={offset}
         strokeLinecap="round"
-        transform={`rotate(${size / 2} ${size / 2})`}
       />
     </svg>
   );
 };
 
-export default CircularProgress;
+export default CircularTaskListsProgress;

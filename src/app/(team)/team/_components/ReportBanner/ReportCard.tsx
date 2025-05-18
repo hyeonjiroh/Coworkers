@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import AnimatedFaceIcon from '@/app/(team)/team/_components/ReportBanner/AnimatedFaceIcon';
 import {
   reportCardContainerStyle,
   cardItemWrapperStyle,
@@ -14,7 +15,7 @@ const ReportCard = ({ variant, value }: ReportCardProps) => {
     <div className={`${reportCardContainerStyle}`}>
       <div className={`${cardItemWrapperStyle}`}>
         {/* 텍스트 */}
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-1">
           <h3 className="text-xs-medium text-slate-300">
             {variant === 'todo' ? '오늘의 할 일' : '한 일'}
           </h3>
@@ -23,12 +24,7 @@ const ReportCard = ({ variant, value }: ReportCardProps) => {
 
         {/* 아이콘 */}
         {variant === 'todo' ? (
-          <Image
-            src="/image/default_card.svg"
-            alt="인부 얼굴 일러스트 아이콘"
-            width={40}
-            height={40}
-          />
+          <AnimatedFaceIcon />
         ) : (
           <Image
             src="/image/team_done.svg"

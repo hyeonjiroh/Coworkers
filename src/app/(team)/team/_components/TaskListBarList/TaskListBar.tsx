@@ -21,6 +21,7 @@ interface TaskListBarProps {
   membersData: GroupMemberResponse[];
   total: number;
   done: number;
+  progress: number;
 }
 
 const TaskListBar = ({
@@ -32,6 +33,7 @@ const TaskListBar = ({
   membersData,
   total,
   done,
+  progress,
 }: TaskListBarProps) => {
   const router = useRouter();
   const color = colorList[index % colorList.length];
@@ -65,7 +67,7 @@ const TaskListBar = ({
 
       {/* right item */}
       <div className="flex items-center gap-1 pr-2">
-        <ProgressBadge total={total} done={done} />
+        <ProgressBadge total={total} done={done} progress={progress} />
         <TaskListMenu
           groupId={groupId}
           userId={userId}

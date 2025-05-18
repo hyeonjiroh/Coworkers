@@ -4,7 +4,7 @@ import Pagination from '@/app/(team)/team/_components/TaskListBarList/Pagination
 import { useState, useEffect } from 'react';
 import { TaskListResponse } from '@/lib/apis/taskList/type';
 import { GroupMemberResponse } from '@/lib/apis/group/type';
-import { calculateTaskListProgress } from '@/utils/calculateTaskListProgress';
+import { calculateProgress } from '@/utils/calculateProgress';
 import { listContainerStyle } from '@/app/(team)/team/_components/TaskListBarList/styles';
 
 const PER_PAGE = 4;
@@ -49,7 +49,7 @@ const TaskListBarList = ({
     <div className={`${listContainerStyle}`}>
       <div className="flex w-full flex-col gap-4">
         {currentItems.map((item, index) => {
-          const { total, done } = calculateTaskListProgress(item.tasks ?? []);
+          const { total, done, progress } = calculateProgress(item.tasks ?? []);
 
           return (
             <TaskListBar
@@ -63,6 +63,7 @@ const TaskListBarList = ({
               membersData={membersData}
               total={total}
               done={done}
+              progress={progress}
             />
           );
         })}

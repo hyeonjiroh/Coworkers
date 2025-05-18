@@ -10,7 +10,7 @@ import {
 export const reportBannerContainerStyle = clsx(
   'flex items-center justify-center',
   teamItemWrapperStyle,
-  'laptop:h-[217px] h-[224px]',
+  'h-[217px]',
   'bg-slate-800',
   RADIUS
 );
@@ -21,7 +21,10 @@ export const reportBannerItemWrapperStyle = clsx(
   'tablet:gap-15 gap-6'
 );
 
-export const progressPercentStyle =
+export const circularProgressWrapperStyle =
+  'tablet:w-[165px] tablet:h-[165px] flex h-[130px] w-[130px] items-center justify-center';
+
+export const progressTextStyle =
   'tablet:text-[40px] bg-gradient-to-r from-green-700 to-green-500 bg-clip-text text-[20px] leading-none font-bold text-transparent';
 
 export const reportCardsWrapperStyle = clsx(

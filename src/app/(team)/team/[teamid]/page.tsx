@@ -18,7 +18,7 @@ export default async function TeamPage({
   const userId = cookies().get('userId')?.value;
   const groupId = Number(params.teamid);
 
-  const groupData = await getGroupById({ groupId });
+  const groupData = await getGroupById({ groupId, tag: ['group'] });
   const membersData = groupData?.members ?? [];
   const taskListsData = groupData?.taskLists ?? [];
 
@@ -68,8 +68,8 @@ export default async function TeamPage({
         <AddButton variant="member" groupId={groupId} />
       </div>
       <MemberList
-        items={membersData}
         group={groupData}
+        items={membersData}
         userId={Number(userId)}
       />
     </div>

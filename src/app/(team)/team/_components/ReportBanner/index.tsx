@@ -16,19 +16,19 @@ interface ReportBannerProps {
 const ReportBanner = ({ progress, total, done }: ReportBannerProps) => {
   return (
     <div className={`${reportBannerContainerStyle}`}>
-      {/* 아이템 래퍼 */}
       <div className={`${reportBannerItemWrapperStyle}`}>
-        {/* 진행률 래퍼 */}
         <div className="flex items-center justify-center gap-10">
           {/* 임시 원형 아이콘 */}
           <div className="tablet:h-[140px] tablet:w-[140px] tablet:border-[30px] relative h-[120px] w-[120px] rounded-full border-[24px] border-green-700" />
-          {/* 진행률 텍스트 */}
+          {/* progress text wrapper */}
           <div className="tablet:relative absolute flex flex-col gap-1">
+            {/* TABLET 이상 */}
             <p className="tablet:block text-md-medium hidden">
               오늘의
               <br />
               진행 상황
             </p>
+            {/* MOBILE */}
             <p className="tablet:hidden text-md-medium block text-center">
               오늘
             </p>
@@ -36,7 +36,7 @@ const ReportBanner = ({ progress, total, done }: ReportBannerProps) => {
           </div>
         </div>
 
-        {/* Todo & Done Card */}
+        {/* todo & done Card */}
         <div className={`${reportCardsWrapperStyle}`}>
           <ReportCard variant="todo" value={total - done} />
           <ReportCard variant="done" value={done} />

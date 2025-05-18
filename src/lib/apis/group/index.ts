@@ -91,13 +91,16 @@ export async function getGroupMemberById({
 export async function deleteGroupMemberById({
   groupId,
   memberId,
+  tag,
 }: {
   groupId: number;
   memberId: number;
+  tag?: string[];
 }): Promise<null> {
-  return clientFetcher<undefined, null>({
+  return serverFetcher<undefined, null>({
     url: `/groups/${groupId}/member/${memberId}`,
     method: 'DELETE',
+    tag,
   });
 }
 

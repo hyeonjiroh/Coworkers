@@ -17,7 +17,7 @@ const ProgressBadge = ({ total, done }: ProgressBadgeProps) => {
   return (
     <div className={`${progressBadgeContainerStyle}`}>
       {isDone ? (
-        <IconRenderer name="DoneIcon" size={14} className="text-green-700" />
+        <IconRenderer name="ProgressDoneIcon" size={16} />
       ) : (
         <CircularProgress percentage={percentage} />
       )}

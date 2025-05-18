@@ -53,7 +53,7 @@ const AddButton = ({ variant, groupId }: AddButtonProps) => {
       onClick={
         variant === 'tasklist' ? openCreateTaskListModal : openInviteMemberModal
       }
-      className="text-md-regular text-green-700"
+      className="text-md-regular text-green-700 hover:text-green-600"
     >
       {ADD_BUTTON_TEXT[variant]}
     </button>

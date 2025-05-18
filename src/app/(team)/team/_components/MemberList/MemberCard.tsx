@@ -3,8 +3,8 @@ import BreakEmail from '@/app/(team)/team/_components/MemberList/BreakEmail';
 import MemberMenu from '@/app/(team)/team/_components/MemberList/MemberMenu';
 import MemberProfileModal from '@/components/common/Modal/content/MemberProfileModal';
 import { useModalStore } from '@/store/useModalStore';
-import { GroupResponse } from '@/lib/apis/group/type';
 import { useIsAdmin } from '@/hooks/useIsAdmin';
+import { GroupResponse } from '@/lib/apis/group/type';
 import {
   memberCardContainerStyle,
   memberCardItemWrapperStyle,
@@ -17,16 +17,20 @@ interface MemberCardProps {
   group: GroupResponse;
   name: string;
   email: string;
+  memberId: number;
   userId: number;
-  userImage: string | null;
+  profileImage: string | null;
+  onDelete: (memberId: number) => void;
 }
 
 const MemberCard = ({
   group,
   name,
   email,
+  memberId,
   userId,
-  userImage,
+  profileImage,
+  onDelete,
 }: MemberCardProps) => {
   const isAdmin = useIsAdmin({ membersData: group.members, userId });
 
@@ -50,7 +54,7 @@ const MemberCard = ({
           },
         },
       },
-      <MemberProfileModal image={userImage} name={name} email={email} />
+      <MemberProfileModal image={profileImage} name={name} email={email} />
     );
   };
 
@@ -69,7 +73,7 @@ const MemberCard = ({
         <div className="tablet:h-[33px] tablet:w-[146px] flex items-center gap-3">
           {/* 프로필 아이콘 */}
           <UserIcon
-            image={userImage}
+            image={profileImage}
             sizeClass="tablet:size-8 size-6"
             imageSize="32px"
           />
@@ -82,7 +86,9 @@ const MemberCard = ({
         </div>
 
         {/* 메뉴 버튼 */}
-        {isAdmin && <MemberMenu />}
+        {isAdmin && userId !== memberId && (
+          <MemberMenu memberId={memberId} name={name} onDelete={onDelete} />
+        )}
       </div>
     </div>
   );

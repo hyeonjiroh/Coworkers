@@ -13,7 +13,6 @@ export default function MemberProfileModal({
 }: MemberProfileModalProps) {
   return (
     <div className="flex flex-col items-center justify-center gap-6 text-center">
-      {' '}
       <UserIcon
         image={image}
         sizeClass="tablet:size-[52px] size-[46px]"

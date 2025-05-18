@@ -42,7 +42,7 @@ export const colorChipStyle = clsx(
 
 // 📌ProgressBadge.tsx style
 export const progressBadgeContainerStyle = clsx(
-  'flex items-center justify-center shrink-0 gap-1.5',
+  'flex items-center justify-center shrink-0 gap-1',
   'h-[25px] min-w-[58px]',
   'bg-slate-900',
   RADIUS

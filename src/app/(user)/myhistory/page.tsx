@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import { getUserHistory } from '@/lib/apis/user';
 import { groupByDate } from '@/utils/groupByDate';
@@ -11,9 +10,14 @@ import Pagination from '@/app/(board)/boards/_components/BoardPagination';
 
 type RangeType = 'all' | '1m' | '3m' | 'custom';
 
-// export default function MyHistoryPageWrapper() {
-//   return <MyHistoryPageClient />;
-// }
+const ITEMS_PER_PAGE = 4;
+
+const TABS: { key: RangeType; label: string }[] = [
+  { key: 'all', label: '전체' },
+  { key: '1m', label: '최근 1개월' },
+  { key: '3m', label: '최근 3개월' },
+  { key: 'custom', label: '사용자 지정' },
+];
 
 export default function MyHistoryPageClient() {
   const [currentRange, setCurrentRange] = useState<RangeType>('all');
@@ -24,22 +28,22 @@ export default function MyHistoryPageClient() {
   >({});
   const [sortedDates, setSortedDates] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
 
   useEffect(() => {
     async function fetchHistory() {
-      const res = await getUserHistory({ tag: ['user-history'] });
-      if (!res || !res.tasksDone) return;
-
-      const groupedData = groupByDate(res.tasksDone);
-      const sorted = Object.keys(groupedData).sort(
-        (a, b) => new Date(b).getTime() - new Date(a).getTime()
-      );
-
-      setGrouped(groupedData);
-      setSortedDates(sorted);
+      try {
+        const res = await getUserHistory({ tag: ['task'] });
+        if (!res || !res.tasksDone) return;
+        const groupedData = groupByDate(res.tasksDone);
+        const sorted = Object.keys(groupedData).sort(
+          (a, b) => new Date(b).getTime() - new Date(a).getTime()
+        );
+        setGrouped(groupedData);
+        setSortedDates(sorted);
+      } catch (error) {
+        console.error('히스토리 불러오기 실패:', error);
+      }
     }
-
     fetchHistory();
   }, []);
 
@@ -60,63 +64,75 @@ export default function MyHistoryPageClient() {
   });
 
   const paginatedDates = filteredDates.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
   );
-
-  const tabs: { key: RangeType; label: string }[] = [
-    { key: 'all', label: '전체' },
-    { key: '1m', label: '최근 1개월' },
-    { key: '3m', label: '최근 3개월' },
-    { key: 'custom', label: '사용자 지정' },
-  ];
 
   return (
     <main className="laptop:py-10 tablet:p-6 relative min-h-[calc(100vh-60px)] px-4 py-6">
       <div className="mx-auto max-w-[1200px]">
         <h1 className="text-xl-bold mb-6 text-white">마이 히스토리</h1>
-
         {/* 탭 메뉴 */}
-        <div className="mb-6 flex flex-wrap gap-3">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => {
-                setCurrentRange(tab.key);
-                setCurrentPage(1);
-              }}
-              className={`text-md-medium rounded px-3 py-1.5 text-white hover:bg-slate-700 ${
-                currentRange === tab.key
-                  ? 'bg-slate-700 font-bold'
-                  : 'bg-slate-800'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-
+        <div className="mb-6 flex min-h-[40px] flex-wrap items-center gap-3">
+          {TABS.map((tab) => {
+            const isHiddenOnMobile =
+              tab.key === 'custom' ? 'hidden tablet:!block' : '';
+            return (
+              <button
+                key={tab.key}
+                onClick={() => {
+                  setCurrentRange(tab.key);
+                  setCurrentPage(1);
+                  setStartDate(null);
+                  setEndDate(null);
+                }}
+                className={`text-md-medium rounded px-3 py-1.5 text-white hover:bg-slate-700 ${
+                  currentRange === tab.key
+                    ? 'bg-slate-700 font-bold'
+                    : 'bg-slate-800'
+                } ${isHiddenOnMobile}`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
           {/* 사용자 지정 날짜 */}
           {currentRange === 'custom' && (
             <div className="flex items-center gap-2">
               <DatePicker
                 selected={startDate}
-                onChange={setStartDate}
+                onChange={(date: Date | null) => {
+                  if (!date) return; // null 체크
+                  setStartDate(date);
+                  if (endDate && date > endDate) {
+                    alert('시작일은 종료일보다 이전이어야 합니다.');
+                    setEndDate(null);
+                  }
+                }}
                 selectsStart
                 startDate={startDate ?? undefined}
                 endDate={endDate ?? undefined}
                 placeholderText="시작일"
-                className="rounded bg-slate-800 px-2 py-1 text-white"
+                className="text-md-medium rounded bg-slate-800 px-3 py-1.5 text-white"
               />
               <span className="text-white">~</span>
               <DatePicker
                 selected={endDate}
-                onChange={setEndDate}
+                onChange={(date: Date | null) => {
+                  if (!date) return;
+                  if (startDate && date < startDate) {
+                    alert('종료일은 시작일보다 이후여야 합니다.');
+                    setEndDate(null);
+                  } else {
+                    setEndDate(date);
+                  }
+                }}
                 selectsEnd
                 startDate={startDate ?? undefined}
                 endDate={endDate ?? undefined}
                 minDate={startDate ?? undefined}
                 placeholderText="종료일"
-                className="rounded bg-slate-800 px-2 py-1 text-white"
+                className="text-md-medium rounded bg-slate-800 px-3 py-1.5 text-white"
               />
             </div>
           )}
@@ -142,11 +158,11 @@ export default function MyHistoryPageClient() {
           )}
 
           {/* Pagination 컴포넌트 */}
-          {filteredDates.length > itemsPerPage && (
+          {filteredDates.length > ITEMS_PER_PAGE && (
             <Pagination
               currentPage={currentPage}
               totalPosts={filteredDates.length}
-              postsPerPage={itemsPerPage}
+              postsPerPage={ITEMS_PER_PAGE}
               paginate={(page) => setCurrentPage(page)}
             />
           )}

@@ -5,8 +5,11 @@ export function groupByDate(tasks: TaskResponse[]) {
     {};
 
   for (const task of tasks) {
-    const isoDate = task.date.split('T')[0];
-    const display = new Date(task.date).toLocaleDateString('ko-KR', {
+    // doneAt 기준으로 날짜 결정
+    if (!task.doneAt) continue; // 완료되지 않은 작업은 히스토리에서 제외
+
+    const isoDate = task.doneAt.split('T')[0];
+    const display = new Date(task.doneAt).toLocaleDateString('ko-KR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',

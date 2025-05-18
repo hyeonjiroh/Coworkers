@@ -35,7 +35,7 @@ export default function Modal() {
       <div
         ref={modalRef}
         className={clsx(
-          'tablet:w-[384px] tablet:rounded-b-xl relative flex w-full flex-col rounded-t-3xl border-none bg-slate-800 pb-8',
+          'tablet:w-[384px] tablet:rounded-xl relative flex w-full flex-col rounded-t-3xl border-none bg-slate-800 pb-8',
           variant === 'default' && 'gap-6 px-[52px] pt-12',
           variant === 'danger' && 'gap-6 px-[52px] pt-8',
           variant === 'taskForm' && 'gap-8 px-6 pt-8'

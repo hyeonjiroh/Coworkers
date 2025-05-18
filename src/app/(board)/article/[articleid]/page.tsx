@@ -19,7 +19,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         {articleData && (
           <ArticleDetailSection {...articleData} userId={Number(userId)} />
         )}
-        <ArticleCommentSection />
+        <ArticleCommentSection articleId={articleId} />
       </div>
     </div>
   );

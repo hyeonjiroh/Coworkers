@@ -1,4 +1,5 @@
 import clientFetcher from '@/lib/client/fetcher.client';
+import serverFetcher from '@/lib/server/fetcher.server';
 import {
   ArticleCommentBody,
   ArticleCommentListResponse,
@@ -9,14 +10,17 @@ import {
 export async function postCommentByArticleId({
   articleId,
   body,
+  tag,
 }: {
   articleId: number;
   body: ArticleCommentBody;
+  tag?: string[];
 }): Promise<ArticleCommentResponse | null> {
-  return clientFetcher<ArticleCommentBody, ArticleCommentResponse>({
-    url: `articles/${articleId}/comments`,
+  return serverFetcher<ArticleCommentBody, ArticleCommentResponse>({
+    url: `/articles/${articleId}/comments`,
     method: 'POST',
     body,
+    tag,
   });
 }
 
@@ -25,19 +29,22 @@ export async function getCommentsByArticleId({
   articleId,
   limit,
   cursor,
+  tag,
 }: {
   articleId: number;
   limit: number;
-  cursor?: number;
+  cursor?: number | null;
+  tag?: string[];
 }): Promise<ArticleCommentListResponse | null> {
   let query = `limit=${limit}`;
   if (cursor) {
     query += `&cursor=${cursor}`;
   }
 
-  return clientFetcher<undefined, ArticleCommentListResponse>({
+  return serverFetcher<undefined, ArticleCommentListResponse>({
     url: `/articles/${articleId}/comments?${query}`,
     method: 'GET',
+    tag,
   });
 }
 
@@ -59,11 +66,14 @@ export async function patchCommentByArticleId({
 // 게시글 댓글 삭제 (DELETE /comments/:commentId)
 export async function deleteCommentByArticleId({
   commentId,
+  tag,
 }: {
   commentId: number;
+  tag?: string[];
 }): Promise<ArticleCommentResponse | null> {
-  return clientFetcher<undefined, ArticleCommentResponse>({
+  return serverFetcher<undefined, ArticleCommentResponse>({
     url: `/comments/${commentId}`,
     method: 'DELETE',
+    tag,
   });
 }

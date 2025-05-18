@@ -9,8 +9,8 @@ export default function LoginButton() {
     try {
       const data = await signIn({
         body: {
-          email: 'test1111@email.com',
-          password: 'test1111*',
+          email: 'sonamu6509@gmail.com',
+          password: 'roh6509*',
         },
       });
 

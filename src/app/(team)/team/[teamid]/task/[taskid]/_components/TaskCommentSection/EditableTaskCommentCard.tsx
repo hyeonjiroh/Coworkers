@@ -60,7 +60,7 @@ export default function EditableTaskCommentCard({
         <Button
           variant="secondary"
           styleType="outlined"
-          className="w-[74px]"
+          className="min-w-[74px]"
           radius="sm"
           size="sm"
           onClick={handleEditComment}

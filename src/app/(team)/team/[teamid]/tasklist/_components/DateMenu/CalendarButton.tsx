@@ -42,8 +42,8 @@ export default function CalendarButton() {
       {isDatePickerOpen && (
         <div ref={datepickerRef} className="absolute top-7">
           <CustomDatePicker
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+            startDate={selectedDate}
+            setStartDate={setSelectedDate}
           />
         </div>
       )}

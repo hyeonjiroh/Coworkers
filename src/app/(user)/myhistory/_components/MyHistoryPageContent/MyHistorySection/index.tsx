@@ -1,4 +1,4 @@
-import HistoryCard from '@/app/(user)/myhistory/_components/MyHistorySection/HistoryCard';
+import HistoryCard from '@/app/(user)/myhistory/_components/MyHistoryPageContent/MyHistorySection/HistoryCard';
 import { TaskResponse } from '@/lib/apis/task/type';
 
 export default function MyHistorySection({ items }: { items: TaskResponse[] }) {

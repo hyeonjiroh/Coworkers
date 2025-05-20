@@ -64,8 +64,8 @@ export default function StartDateTimeSection({
         </div>
         {isDatePickerOpen && (
           <CustomDatePicker
-            selectedDate={date}
-            setSelectedDate={setDate}
+            startDate={date}
+            setStartDate={setDate}
             disablePastDate={true}
           />
         )}

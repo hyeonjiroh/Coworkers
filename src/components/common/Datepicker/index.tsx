@@ -4,28 +4,55 @@ import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface CustomDatePickerProps {
-  selectedDate: Date;
-  setSelectedDate: (date: Date) => void;
+  type?: 'start' | 'end';
+  startDate: Date | null;
+  endDate?: Date | null;
+  setStartDate: (date: Date) => void;
+  setEndDate?: (date: Date) => void;
   disablePastDate?: boolean;
 }
 
 export default function CustomDatePicker({
-  selectedDate,
-  setSelectedDate,
+  type = 'start',
+  startDate,
+  endDate,
+  setStartDate,
+  setEndDate,
   disablePastDate = false,
 }: CustomDatePickerProps) {
   return (
     <DatePicker
-      selected={selectedDate}
-      onChange={(date) => date && setSelectedDate(date)}
-      locale={ko}
-      inline
-      {...(disablePastDate ? { minDate: new Date() } : {})}
-      dayClassName={(date) =>
-        date.toDateString() === selectedDate.toDateString()
+      selected={type === 'start' ? startDate : endDate}
+      onChange={(date) => {
+        if (!date) return;
+        if (type === 'start') {
+          setStartDate(date);
+        } else {
+          const endOfDay = new Date(date);
+          endOfDay.setHours(23, 59, 59, 999);
+          setEndDate?.(endOfDay);
+        }
+      }}
+      startDate={startDate ?? undefined}
+      endDate={endDate ?? undefined}
+      {...(type === 'start' && {
+        selectsStart: true,
+        maxDate: endDate ?? undefined,
+      })}
+      {...(type === 'end' && {
+        selectsEnd: true,
+        minDate: startDate ?? undefined,
+      })}
+      {...(disablePastDate && { minDate: new Date() })}
+      dayClassName={(date) => {
+        const targetDate = type === 'start' ? startDate : endDate;
+        const isSelected =
+          targetDate && date.toDateString() === targetDate.toDateString();
+
+        return isSelected
           ? 'text-md-semibold! bg-green-700! text-slate-800! hover:text-slate-50! focus:bg-green-700!'
-          : 'bg-slate-800!'
-      }
+          : 'bg-slate-800!';
+      }}
       renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => {
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
@@ -42,6 +69,8 @@ export default function CustomDatePicker({
           </div>
         );
       }}
+      locale={ko}
+      inline
     />
   );
 }

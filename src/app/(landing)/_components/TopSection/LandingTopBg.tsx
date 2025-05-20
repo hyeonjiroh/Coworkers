@@ -15,21 +15,22 @@ const LandingTopBg = ({ className }: { className?: string }) => {
       )}
     >
       <Image
-        src={`${LANDING_IMAGE_URL}landing_top_pattern_l.png`}
+        src={`${LANDING_IMAGE_URL}bg_pattern_top_l.png`}
         alt="PC 격자 패턴 일러스트"
         width={1920}
         height={1080}
         className="laptop:block top-0 hidden object-contain"
+        priority
       />
       <Image
-        src={`${LANDING_IMAGE_URL}landing_top_pattern_m.png`}
+        src={`${LANDING_IMAGE_URL}bg_pattern_top_m.png`}
         alt="TABLET 격자 패턴 일러스트"
         width={744}
         height={940}
         className="tablet:block laptop:hidden top-0 hidden object-contain"
       />
       <Image
-        src={`${LANDING_IMAGE_URL}landing_top_pattern_s.png`}
+        src={`${LANDING_IMAGE_URL}bg_pattern_top_s.png`}
         alt="MOBILE 격자 패턴 일러스트"
         width={375}
         height={640}

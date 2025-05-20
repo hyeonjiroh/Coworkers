@@ -21,7 +21,7 @@ const Train = ({ className }: { className?: string }) => {
           className="laptop:mb-10 tablet:mb-5 z-3 mb-5.5"
         >
           <img
-            src={`${LANDING_IMAGE_URL}train_1.svg`}
+            src={`${LANDING_IMAGE_URL}il_train_1.svg`}
             alt="기차 일러스트"
             className={train1Style}
           />
@@ -33,7 +33,7 @@ const Train = ({ className }: { className?: string }) => {
           className="laptop:mb-6 tablet:mb-1.5 z-2 mb-2"
         >
           <img
-            src={`${LANDING_IMAGE_URL}train_2.svg`}
+            src={`${LANDING_IMAGE_URL}il_train_2.svg`}
             alt="기차 일러스트"
             className={train2Style}
           />
@@ -42,7 +42,7 @@ const Train = ({ className }: { className?: string }) => {
         {/* 기차3 */}
         <motion.div {...trainReverseMotion} className="z-1">
           <img
-            src={`${LANDING_IMAGE_URL}train_3.svg`}
+            src={`${LANDING_IMAGE_URL}il_train_3.svg`}
             alt="기차 일러스트"
             className={train3Style}
           />

@@ -8,7 +8,7 @@ const Smoke = ({ className }: { className?: string }) => {
   return (
     <motion.div {...smokeMotion} className={`${className} ${smokeStyle}`}>
       <Image
-        src={`${LANDING_IMAGE_URL}smoke.svg`}
+        src={`${LANDING_IMAGE_URL}il_smoke.svg`}
         alt="흙먼지"
         fill
         className="object-contain"

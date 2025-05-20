@@ -8,7 +8,7 @@ const Runner = ({ className }: { className?: string }) => {
   return (
     <motion.div {...runnerMotion} className={`${className} ${runnerStyle}`}>
       <Image
-        src={`${LANDING_IMAGE_URL}runner.svg`}
+        src={`${LANDING_IMAGE_URL}il_runner.svg`}
         alt="인부 일러스트"
         fill
         className="object-contain"

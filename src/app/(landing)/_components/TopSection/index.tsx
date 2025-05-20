@@ -35,7 +35,7 @@ const LandingTopSection = ({ className }: { className?: string }) => {
             className={clsx(
               'absolute',
               'laptop:bottom-[21%] tablet:bottom-[16%] bottom-[18%]',
-              'tablet:pl-0 pl-22'
+              'tablet:pl-0 pl-20'
             )}
           />
           {/* 달리는 인부 모션 */}

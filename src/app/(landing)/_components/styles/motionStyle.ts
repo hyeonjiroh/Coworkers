@@ -69,22 +69,3 @@ export const runnerMotion: Pick<
     delay: DELAY_TIME,
   },
 };
-
-// 📌 Bottom Section //
-
-// Workers.tsx 인부들 걷기
-export const workersMotion = {
-  initial: { left: 0 },
-  whileInView: { x: 150, y: [0, 5, 0] },
-  transition: {
-    x: {
-      duration: 2,
-      ease: 'easeOut',
-    },
-    y: {
-      duration: 0.7,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  },
-};

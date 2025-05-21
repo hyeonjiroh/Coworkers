@@ -5,7 +5,7 @@ import { ROUTES } from '@/constants/routes';
 
 export default function NoTeamPage() {
   return (
-    <div className="tablet:p-[120px] tablet:gap-20 flex h-[calc(100vh-60px)] w-full flex-col items-center justify-center gap-12 p-8">
+    <div className="tablet:px-[115px] laptop:px-0 flex h-[calc(100vh-60px)] w-full flex-col items-center justify-center px-7">
       <Image
         src="/image/no_team.png"
         alt="인부 3명이 아이템을 들고 가는 배경 일러스트"
@@ -16,20 +16,21 @@ export default function NoTeamPage() {
       />
 
       <div>
-        <p className="laptop:text-lg-medium text-md-medium text-center text-slate-500">
+        <p className="laptop:text-lg-medium text-md-medium tablet:mt-12 mt-8 text-center text-slate-500">
           아직 소속된 팀이 없습니다.
           <br />
           팀을 생성하거나 팀에 참여해 보세요.
         </p>
       </div>
 
-      <div className="flex flex-col items-center gap-4">
+      <div className="laptop:gap-4 tablet:mt-20 mt-12 flex flex-col items-center gap-2">
         <Link href={ROUTES.TEAM_ADD}>
           <Button
             variant="primary"
             styleType="filled"
             radius="sm"
-            className="text-lg-semibold h-[48px] w-[186px] text-white"
+            size="lg"
+            className="text-lg-semibold w-[186px] text-white"
           >
             팀 생성하기
           </Button>
@@ -39,7 +40,8 @@ export default function NoTeamPage() {
             variant="secondary"
             styleType="outlined"
             radius="sm"
-            className="text-lg-semibold h-[48px] w-[186px] text-green-700"
+            size="lg"
+            className="text-lg-semibold w-[186px] text-green-700"
           >
             팀 참여하기
           </Button>

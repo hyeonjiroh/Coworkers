@@ -21,7 +21,9 @@ export default function TaskCommentCard({
           writerId={user.id}
         />
       </div>
-      <div className="text-md-regular pr-4">{content}</div>
+      <div className="text-md-regular pr-4 leading-5 whitespace-pre-wrap">
+        {content}
+      </div>
       <div className="flex items-center justify-between">
         <WriterInfo image={user.image} nickname={user.nickname} />
         <DateInfo date={createdAt} />

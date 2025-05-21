@@ -10,6 +10,7 @@ import {
   handleEditTask,
   handleDeleteTask,
 } from '@/components/task/TaskMenu/actions/taskActions';
+import { dropdownMenuStyle, dropdownItemStyle } from '@/app/styles/dropdown';
 
 interface TaskMenuProps {
   taskId: number;
@@ -68,12 +69,22 @@ export default function TaskMenu({
 
   return (
     <DropDown>
-      <DropDown.Trigger>
+      <DropDown.Trigger className="mb-0">
         <TaskMenuButton size={size} />
       </DropDown.Trigger>
-      <DropDown.Menu align="right">
-        <DropDown.Item onClick={openEditTaskModal}>수정하기</DropDown.Item>
-        <DropDown.Item onClick={openDeleteTaskModal}>삭제하기</DropDown.Item>
+      <DropDown.Menu align="right" className={`${dropdownMenuStyle}`}>
+        <DropDown.Item
+          onClick={openEditTaskModal}
+          className={`${dropdownItemStyle}`}
+        >
+          수정하기
+        </DropDown.Item>
+        <DropDown.Item
+          onClick={openDeleteTaskModal}
+          className={`${dropdownItemStyle}`}
+        >
+          삭제하기
+        </DropDown.Item>
       </DropDown.Menu>
     </DropDown>
   );

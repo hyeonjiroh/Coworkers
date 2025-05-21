@@ -3,6 +3,7 @@ import { CommentResponse } from '@/lib/apis/comment/type';
 import { patchTaskComment } from '@/lib/apis/comment';
 import Button from '@/components/common/Button';
 import InputTextarea from '@/components/common/Input/InputTextarea';
+import { toast } from 'react-toastify';
 
 export default function EditableTaskCommentCard({
   id,
@@ -22,8 +23,10 @@ export default function EditableTaskCommentCard({
         tag: ['task-comment'],
       });
       exitCommentEditMode();
+      toast.success('댓글이 수정되었습니다.');
     } catch (error) {
       console.error('Failed to update the comment on the task :', error);
+      toast.error('댓글을 등록하지 못했습니다.');
     }
   };
 

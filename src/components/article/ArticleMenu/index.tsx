@@ -8,6 +8,7 @@ import ArticleMenuButton from '@/components/article/ArticleMenu/ArticleMenuButto
 import { handleDeleteArticle } from '@/components/article/ArticleMenu/actions/articleActions';
 import { UserResponse } from '@/lib/apis/user/type';
 import { useIsWriter } from '@/hooks/useIsWriter';
+import { dropdownMenuStyle, dropdownItemStyle } from '@/app/styles/dropdown';
 
 interface ArticleMenuProps {
   articleId: number;
@@ -47,16 +48,20 @@ export default function ArticleMenu({
     <>
       {isWriter && (
         <DropDown>
-          <DropDown.Trigger>
+          <DropDown.Trigger className="mb-0">
             <ArticleMenuButton />
           </DropDown.Trigger>
-          <DropDown.Menu align="right">
+          <DropDown.Menu align="right" className={`${dropdownMenuStyle}`}>
             <DropDown.Item
               onClick={() => router.push(ROUTES.ARTICLE_EDIT(articleId))}
+              className={`${dropdownItemStyle}`}
             >
               수정하기
             </DropDown.Item>
-            <DropDown.Item onClick={openDeleteArticleModal}>
+            <DropDown.Item
+              onClick={openDeleteArticleModal}
+              className={`${dropdownItemStyle}`}
+            >
               삭제하기
             </DropDown.Item>
           </DropDown.Menu>

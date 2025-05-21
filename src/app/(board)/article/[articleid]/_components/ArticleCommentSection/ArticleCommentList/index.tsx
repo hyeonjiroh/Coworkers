@@ -6,8 +6,8 @@ import { useIntersection } from '@/hooks/useIntersection';
 import { ArticleCommentListResponse } from '@/lib/apis/articleComment/type';
 import { getCommentsByArticleId } from '@/lib/apis/articleComment';
 import { toast } from 'react-toastify';
-import ArticleCommentCard from './ArticleCommentCard';
-import EditableArticleCommentCard from '@/app/(board)/article/[articleid]/ArticleCommentSection/ArticleCommentList/EditableArticleCommentCard';
+import ArticleCommentCard from '@/app/(board)/article/[articleid]/_components/ArticleCommentSection/ArticleCommentList/ArticleCommentCard';
+import EditableArticleCommentCard from '@/app/(board)/article/[articleid]/_components/ArticleCommentSection/ArticleCommentList/EditableArticleCommentCard';
 import Skeleton from '@/components/common/Loading/Skeleton';
 import Spinner from '@/components/common/Loading/Spinner';
 
@@ -34,6 +34,8 @@ export default function ArticleCommentList({
       getNextPageParam: (lastPage) => lastPage?.nextCursor,
       initialPageParam: null,
     });
+
+  const isCommentListEmpty = Boolean(data?.pages[0]?.list.length === 0);
 
   useIntersection({
     target: observerRef,
@@ -92,6 +94,11 @@ export default function ArticleCommentList({
       {isFetchingNextPage && (
         <div className="flex justify-center">
           <Spinner />
+        </div>
+      )}
+      {isCommentListEmpty && (
+        <div className="text-md-medium tablet:py-[120px] py-[180px] text-center text-slate-500">
+          <p>아직 작성된 댓글이 없습니다.</p>
         </div>
       )}
     </div>

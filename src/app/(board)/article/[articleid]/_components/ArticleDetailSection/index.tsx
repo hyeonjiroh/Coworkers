@@ -1,9 +1,9 @@
 import { ArticleResponse } from '@/lib/apis/article/type';
 import ArticleMenu from '@/components/article/ArticleMenu';
 import WriterInfo from '@/components/user/WriterInfo';
-import DateInfo from '@/app/(board)/article/[articleid]/ArticleDetailSection/DateInfo';
-import CommentInfo from '@/app/(board)/article/[articleid]/ArticleDetailSection/CommentInfo';
-import ToggleLikeButton from '@/app/(board)/article/[articleid]/ArticleDetailSection/ToggleLikeButton';
+import DateInfo from '@/app/(board)/article/[articleid]/_components/ArticleDetailSection/DateInfo';
+import CommentInfo from '@/app/(board)/article/[articleid]/_components/ArticleDetailSection/CommentInfo';
+import ToggleLikeButton from '@/app/(board)/article/[articleid]/_components/ArticleDetailSection/ToggleLikeButton';
 
 interface ArticleDetailSectionProps extends ArticleResponse {
   userId: number;
@@ -58,7 +58,9 @@ export default function ArticleDetailSection({
             />
           </div>
         )}
-        <div className="text-md-regular tablet:text-lg-medium">{content}</div>
+        <div className="text-md-regular tablet:text-lg-medium tablet:leading-6 leading-5 whitespace-pre-wrap">
+          {content}
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function NextDayButton() {
 
   const nextDate = new Date(currentDate!);
   nextDate.setDate(nextDate.getDate() + 1);
-  const newDateString = nextDate.toISOString().slice(0, 10);
+  const newDateString = nextDate.toISOString().split('T')[0];
 
   const handleClick = () => {
     const params = new URLSearchParams(searchParams);

@@ -5,6 +5,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { postCommentByArticleId } from '@/lib/apis/articleComment';
 import InputTextarea from '@/components/common/Input/InputTextarea';
 import Button from '@/components/common/Button';
+import { toast } from 'react-toastify';
 
 export default function ArticleCommentInput({
   articleId,
@@ -24,8 +25,10 @@ export default function ArticleCommentInput({
       });
       queryClient.invalidateQueries({ queryKey: ['article-comment'] });
       setComment('');
+      toast.success('댓글이 등록되었습니다.');
     } catch (error) {
       console.error('Failed to update the comment on the article :', error);
+      toast.error('댓글을 등록하지 못했습니다.');
     }
   };
 

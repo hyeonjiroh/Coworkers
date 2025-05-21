@@ -46,6 +46,7 @@ export default function PostCard({
                 src={isValidImage ? image : defaultImage}
                 alt={isValidImage ? '썸네일' : '기본 썸네일'}
                 fill
+                sizes="size-16 tablet:size-[72px]"
                 className="image-cover rounded-lg"
                 style={{ objectFit: 'cover' }}
                 onError={(e) => {

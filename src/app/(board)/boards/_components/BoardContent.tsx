@@ -5,7 +5,7 @@ import { useBestPosts } from '@/app/(board)/boards/_hooks/useBestPosts';
 import { usePosts } from '@/app/(board)/boards/_hooks/usePosts';
 import SearchInput from '@/app/(board)/boards/_components/SearchInput';
 import BestPostList from '@/app/(board)/boards/_components/BestPostList';
-import SortDropdownArea from '@/app/(board)/boards/_components/SortDropdown';
+import SortDropdown from '@/app/(board)/boards/_components/SortDropdown';
 import PostList from '@/app/(board)/boards/_components/PostList';
 import WriteButton from '@/app/(board)/boards/_components/WriteButton';
 import Pagination from '@/app/(board)/boards/_components/BoardPagination';
@@ -34,15 +34,29 @@ export default function BoardContent() {
 
   return (
     <>
+      {/* Search Section */}
       <SearchInput onSearch={handleSearch} />
       {error && <div className="py-10 text-center text-red-500">{error}</div>}
+
+      {/* Best Article Section */}
+      <h3 className="tablet:text-xl-bold text-lg-bold laptop:mb-10 tablet:mb-8 mb-6 text-slate-50">
+        베스트 게시글
+      </h3>
       {isBestLoading ? (
         <div className="py-10 text-center text-slate-400">로딩 중...</div>
       ) : (
         <BestPostList posts={bestPosts} />
       )}
+
       <div className="tablet:my-10 my-8 border border-slate-50/10"></div>
-      <SortDropdownArea />
+
+      {/* All Article Section */}
+      <div className="tablet:h-11 tablet:mb-8 mb-6 flex h-10 items-center justify-between">
+        <h3 className="tablet:text-xl-bold text-lg-bold text-slate-50">
+          게시글
+        </h3>
+        <SortDropdown />
+      </div>
       {isPostsLoading ? (
         <div className="py-10 text-center text-slate-400">로딩 중...</div>
       ) : filteredPosts.length === 0 && searchQuery ? (

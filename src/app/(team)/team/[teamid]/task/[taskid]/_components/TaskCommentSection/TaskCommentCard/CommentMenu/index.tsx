@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { deleteTaskComment } from '@/lib/apis/comment';
 import DropDown from '@/components/common/Dropdown';
 import CommentMenuButton from '@/app/(team)/team/[teamid]/task/[taskid]/_components/TaskCommentSection/TaskCommentCard/CommentMenu/CommentMenuButton';
+import { toast } from 'react-toastify';
 
 export default function CommentMenu({
   commentId,
@@ -25,8 +26,10 @@ export default function CommentMenu({
   const handleDeleteComment = async () => {
     try {
       await deleteTaskComment({ commentId, tag: ['task-comment'] });
+      toast.success('댓글이 삭제되었습니다.');
     } catch (error) {
       console.error('Failed to delete the comment on the task :', error);
+      toast.error('댓글을 삭제하지 못했습니다.');
     }
   };
 

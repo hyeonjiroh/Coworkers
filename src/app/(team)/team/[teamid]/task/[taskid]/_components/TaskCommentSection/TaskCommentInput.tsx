@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { postTaskComment } from '@/lib/apis/comment';
 import InputTextarea from '@/components/common/Input/InputTextarea';
+import { toast } from 'react-toastify';
 
 export default function TaskCommentInput() {
   const [comment, setComment] = useState('');
@@ -18,8 +19,10 @@ export default function TaskCommentInput() {
         tag: ['task-comment'],
       });
       setComment('');
+      toast.success('댓글이 등록되었습니다.');
     } catch (error) {
       console.error('Failed to update the comment on the task :', error);
+      toast.error('댓글을 등록하지 못했습니다.');
     }
   };
 

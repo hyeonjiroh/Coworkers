@@ -40,7 +40,7 @@ export default function SearchInput({ onSearch }: SearchInputProps) {
   return (
     <div className="laptop:mb-10 tablet:mb-8 relative mb-6">
       <InputBase
-        containerClassName="w-full sm:h-[56px] h-[48px] bg-slate-800 gap-3"
+        containerClassName="w-full tablet:h-[56px] h-[48px] bg-slate-800 gap-3"
         placeholder="검색어를 입력해 주세요"
         leftIcon={<IconRenderer name="SearchIcon" />}
         value={query}

@@ -12,6 +12,7 @@ export default function TaskCommentSection({
   items: CommentResponse[];
 }) {
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+  const isCommentListEmpty = Boolean(items.length === 0);
 
   return (
     <div className="flex flex-col gap-6">
@@ -33,6 +34,11 @@ export default function TaskCommentSection({
           )
         )}
       </div>
+      {isCommentListEmpty && (
+        <div className="text-md-medium py-[120px] text-center text-slate-500">
+          <p>아직 작성된 댓글이 없습니다.</p>
+        </div>
+      )}
     </div>
   );
 }

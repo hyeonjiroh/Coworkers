@@ -43,7 +43,9 @@ export default function TaskDetailSection({
               <FrequencyInfo frequency={frequency} />
             </div>
           </div>
-          <div className="text-md-regular">{description}</div>
+          <div className="text-md-regular leading-5 whitespace-pre-wrap">
+            {description}
+          </div>
         </div>
       </div>
     </div>

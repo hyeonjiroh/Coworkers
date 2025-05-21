@@ -4,6 +4,7 @@ import { ArticleCommentResponse } from '@/lib/apis/articleComment/type';
 import { patchCommentByArticleId } from '@/lib/apis/articleComment';
 import Button from '@/components/common/Button';
 import InputTextarea from '@/components/common/Input/InputTextarea';
+import { toast } from 'react-toastify';
 
 export default function EditableArticleCommentCard({
   id,
@@ -25,9 +26,11 @@ export default function EditableArticleCommentCard({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['article-comment'] });
       exitCommentEditMode();
+      toast.success('댓글이 수정되었습니다.');
     },
     onError: (error) => {
       console.error('Failed to update the comment on the article :', error);
+      toast.error('댓글을 수정하지 못했습니다.');
     },
   });
 

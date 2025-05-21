@@ -10,7 +10,7 @@ export default function PrevDayButton() {
 
   const prevDate = new Date(currentDate!);
   prevDate.setDate(prevDate.getDate() - 1);
-  const newDateString = prevDate.toISOString().slice(0, 10);
+  const newDateString = prevDate.toISOString().split('T')[0];
 
   const handleClick = () => {
     const params = new URLSearchParams(searchParams);

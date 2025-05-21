@@ -1,5 +1,5 @@
-import ArticleCommentInput from '@/app/(board)/article/[articleid]/ArticleCommentSection/ArticleCommentInput';
-import ArticleCommentList from '@/app/(board)/article/[articleid]/ArticleCommentSection/ArticleCommentList';
+import ArticleCommentInput from '@/app/(board)/article/[articleid]/_components/ArticleCommentSection/ArticleCommentInput';
+import ArticleCommentList from '@/app/(board)/article/[articleid]/_components/ArticleCommentSection/ArticleCommentList';
 
 export default function ArticleCommentSection({
   articleId,

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import FrequencyTypeSelector from '@/components/task-modal/RecurringSection/FrequencyTypeSelector';
-import WeekDaysSelector from '@/components/task-modal/RecurringSection/WeekDaysSelector';
-import MonthDaySelector from '@/components/task-modal/RecurringSection/MonthDaySelector';
+import FrequencyTypeSelector from '@/components/common/Modal/content/CreateTaskModal/RecurringSection/FrequencyTypeSelector';
+import WeekDaysSelector from '@/components/common/Modal/content/CreateTaskModal/RecurringSection/WeekDaysSelector';
+import MonthDaySelector from '@/components/common/Modal/content/CreateTaskModal/RecurringSection/MonthDaySelector';
 
 interface RecurringSectionProps {
   frequencyType: 'ONCE' | 'DAILY' | 'WEEKLY' | 'MONTHLY';

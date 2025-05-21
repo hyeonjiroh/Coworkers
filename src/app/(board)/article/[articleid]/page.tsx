@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { getArticleById } from '@/lib/apis/article';
-import ArticleDetailSection from '@/app/(board)/article/[articleid]/ArticleDetailSection';
-import ArticleCommentSection from '@/app/(board)/article/[articleid]/ArticleCommentSection';
+import ArticleDetailSection from '@/app/(board)/article/[articleid]/_components/ArticleDetailSection';
+import ArticleCommentSection from '@/app/(board)/article/[articleid]/_components/ArticleCommentSection';
 
 interface PageProps {
   params: { articleid: string };

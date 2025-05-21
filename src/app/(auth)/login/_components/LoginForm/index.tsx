@@ -1,6 +1,5 @@
 'use client';
 
-import ForgotPasswordButton from '@/app/(auth)/login/_components/LoginForm/ForgotPasswordButton';
 import InputWithLabel from '@/components/auth/InputWithLabel';
 import Button from '@/components/common/Button';
 import { signIn } from '@/lib/apis/auth';
@@ -17,6 +16,7 @@ import Cookies from 'js-cookie';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
 import { InputType } from '@/components/auth/type';
+import OpenPasswordResetModal from '@/app/(auth)/login/_components/LoginForm/OpenPasswordResetModal';
 
 // schema
 const inputEmptySchema = z.object({
@@ -205,7 +205,7 @@ export default function LoginForm() {
         />
       </div>
 
-      <ForgotPasswordButton />
+      <OpenPasswordResetModal />
 
       <Button
         size="lg"

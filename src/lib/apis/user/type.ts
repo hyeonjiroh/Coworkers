@@ -1,7 +1,7 @@
 import { TaskResponse } from '@/lib/apis/task/type';
 
 export interface UserBody {
-  nickname: string;
+  nickname?: string;
   image?: string | null;
 }
 

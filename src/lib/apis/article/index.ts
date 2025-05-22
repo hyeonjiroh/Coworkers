@@ -63,6 +63,18 @@ export async function getArticleById({
   });
 }
 
+// 게시글 상세 조회 (GET /articles/:articleId) - 클라이언트 전용 함수
+export async function getArticleByIdForClient({
+  articleId,
+}: {
+  articleId: number;
+}): Promise<ArticleResponse | null> {
+  return clientFetcher<undefined, ArticleResponse>({
+    url: `/articles/${articleId}`,
+    method: 'GET',
+  });
+}
+
 // 게시글 수정 (PATCH /articles/:articleId)
 export async function patchArticleById({
   articleId,
@@ -74,7 +86,7 @@ export async function patchArticleById({
   const payload = {
     content: body.content,
     title: body.title,
-    ...(body.image ? { image: body.image } : {}),
+    image: body.image === null ? null : body.image || undefined,
   };
 
   return clientFetcher<typeof payload, ArticleResponse>({

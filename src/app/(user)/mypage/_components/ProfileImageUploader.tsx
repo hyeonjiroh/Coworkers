@@ -33,10 +33,10 @@ const ProfileImageUploader = ({
     mutationFn: (file: File) => postImage(file),
     onSuccess: (url) => {
       setImage(url);
-      toast.success('프로필 이미지가 성공적으로 업로드되었습니다.');
+      toast.success('프로필 이미지가 업로드되었습니다.');
     },
     onError: () => {
-      toast.error('이미지 파일의 최대용량은 10MB를 넘길 수 없습니다.');
+      toast.error('이미지는 4.2MB 이하여야 합니다.');
     },
   });
 

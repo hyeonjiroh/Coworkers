@@ -2,11 +2,15 @@
 
 import InputWithLabel from '@/components/auth/InputWithLabel';
 import Button from '@/components/common/Button';
+import { ROUTES } from '@/constants/routes';
+import { patchResetPassword } from '@/lib/apis/user';
 import {
   validatePassword,
   validatePasswordConfirm,
 } from '@/utils/inputValidation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
 // reset password schema
@@ -20,7 +24,6 @@ const resetPasswordSchema = z
     const { password, passwordConfirm } = val;
 
     if (!password) {
-      // 비밀번호가 비어있음
       ctx.addIssue({
         path: ['password'],
         code: z.ZodIssueCode.custom,
@@ -28,7 +31,6 @@ const resetPasswordSchema = z
         fatal: true, // 조건 실패 시, 유효성 검사 중단
       });
     } else if (!validatePassword(password)) {
-      // 비밀번호가 입력은 되었지만, 유효하지 않음
       ctx.addIssue({
         path: ['password'],
         code: z.ZodIssueCode.custom,
@@ -38,7 +40,6 @@ const resetPasswordSchema = z
     }
 
     if (!passwordConfirm) {
-      // 비밀번호 확인이 비어있는 경우
       ctx.addIssue({
         path: ['passwordConfirm'],
         code: z.ZodIssueCode.custom,
@@ -46,7 +47,6 @@ const resetPasswordSchema = z
         fatal: true,
       });
     } else if (!validatePasswordConfirm({ password, passwordConfirm })) {
-      // 비밀번호 확인이 입력은 되었지만, 비밀번호와 일치하지 않음
       ctx.addIssue({
         path: ['passwordConfirm'],
         code: z.ZodIssueCode.custom,
@@ -70,6 +70,9 @@ export default function ResetPasswordForm() {
     password: [],
     passwordConfirm: [],
   });
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const isFormValid = useMemo(() => {
     return (
@@ -96,18 +99,52 @@ export default function ResetPasswordForm() {
       } else {
         setFormErrors((prev) => ({
           ...prev,
-          [key]: '',
+          [key]: [],
         }));
       }
       setFormValues(newFormValues);
     };
 
-  const handleFormSubmit = () => {
-    console.log('form submit');
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isFormValid) return;
+
+    // formErrors 초기화
     setFormErrors({
       password: [],
       passwordConfirm: [],
     });
+
+    try {
+      const token = searchParams.get('token');
+      // early return
+      if (!token) {
+        toast.error('유효하지 않은 링크입니다. 다시 시도해주세요.');
+        return;
+      }
+
+      const res = await patchResetPassword({
+        body: {
+          passwordConfirmation: formValues.passwordConfirm,
+          password: formValues.password,
+          token,
+        },
+      });
+      console.log('res', res);
+      toast.success('비밀번호 재설정이 완료되었습니다.');
+      router.push(ROUTES.LOGIN);
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorMessage = error.message;
+        if (errorMessage.includes('유효하지 않은 토큰입니다.')) {
+          toast.error(
+            '비밀번호 재설정 링크카 만료되었습니다. 다시 요청해주세요.'
+          );
+        }
+        console.error(errorMessage);
+      }
+    }
   };
   return (
     <form onSubmit={handleFormSubmit}>

@@ -37,7 +37,6 @@ export default function Modal() {
         button?.onRequest?.(requestBody);
         closeModal();
         isSubmittedRef.current = false;
-        console.log('handleRequest 실행');
         return;
       }
     }

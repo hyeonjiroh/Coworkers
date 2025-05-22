@@ -102,7 +102,7 @@ export async function postResetPasswordToEmail({
   });
 }
 
-// 이메일로 전달받은 링크에서 비밀번호 초기화 (PATCH /user/reset-password)
+// 비밀번호 재설정 페이지 : 이메일로 전달받은 링크에서 비밀번호 초기화 (PATCH /user/reset-password)
 export async function patchResetPassword({
   body,
 }: {
@@ -115,7 +115,7 @@ export async function patchResetPassword({
   });
 }
 
-// 비밀번호 변경 (PATCH /user/password)
+// 계정 설정 페이지 :  비밀번호 변경 (PATCH /user/password)
 export async function patchPassword({
   body,
 }: {

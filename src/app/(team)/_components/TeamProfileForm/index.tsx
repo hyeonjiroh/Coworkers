@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useState } from 'react';
 import InputBase from '@/components/common/Input/InputBase';
 import Button from '@/components/common/Button';
@@ -11,8 +9,14 @@ export interface TeamProfileFormProps {
   existingNames: string[];
   initialPreview?: string;
   submitLabel: string;
-  onSubmit: (data: { name: string; file?: File }) => Promise<void> | void;
+  onSubmit: (data: {
+    name: string;
+    file?: File;
+    removeImage?: boolean;
+  }) => Promise<void> | void;
 }
+
+const MAX_FILE_SIZE = 4.2 * 1024 * 1024;
 
 export default function TeamProfileForm({
   initialName = '',
@@ -25,17 +29,36 @@ export default function TeamProfileForm({
   const [preview, setPreview] = useState(initialPreview);
   const [file, setFile] = useState<File>();
   const [nameError, setNameError] = useState(false);
+  const [imageError, setImageError] = useState('');
 
   useEffect(() => {
     setName(initialName);
     setPreview(initialPreview);
+    setFile(undefined);
+    setNameError(false);
+    setImageError('');
   }, [initialName, initialPreview]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files?.[0];
     if (!selected) return;
-    setFile(selected);
+
     setPreview(URL.createObjectURL(selected));
+
+    if (selected.size > MAX_FILE_SIZE) {
+      setImageError('4.2MB 이하의 이미지만 업로드할 수 있습니다.');
+      setFile(undefined);
+      return;
+    }
+
+    setImageError('');
+    setFile(selected);
+  };
+
+  const handleClearImage = () => {
+    setImageError('');
+    setFile(undefined);
+    setPreview('');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -45,19 +68,27 @@ export default function TeamProfileForm({
     }
   };
 
+  const removeImage = preview === '' && !file;
+
   const handleSubmit = async () => {
     let hasErr = false;
-
     if (existingNames.includes(name.trim())) {
       setNameError(true);
       hasErr = true;
     }
+
+    if (imageError) {
+      hasErr = true;
+    }
     if (hasErr) return;
-    await onSubmit({ name: name.trim(), file });
+
+    await onSubmit({ name: name.trim(), file, removeImage });
   };
 
+  const isDisabled = !name.trim() || Boolean(imageError);
+
   return (
-    <div className="text-md-regular tablet:w-[456px] tablet:h-[460px] tablet:text-lg-regular flex h-[374px] w-[343px] flex-col items-center">
+    <div className="text-md-regular tablet:w-[460px] tablet:text-lg-regular flex w-[343px] flex-col items-center">
       <h1 className="text-2xl-medium laptop:text-4xl-medium tablet:mb-20 mb-6">
         {submitLabel}
       </h1>
@@ -79,10 +110,20 @@ export default function TeamProfileForm({
         </label>
         <label
           htmlFor="team-profile-input"
-          className="absolute bottom-0 left-11 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 border-slate-900 bg-slate-600"
+          className="absolute top-19 left-11 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full border-2 border-slate-900 bg-slate-600"
         >
           <IconRenderer name="EditIcon" size={9} />
         </label>
+
+        {preview && (
+          <button
+            type="button"
+            onClick={handleClearImage}
+            className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-gray-500 hover:bg-gray-100"
+          >
+            <IconRenderer name="XIcon" size={12} />
+          </button>
+        )}
 
         <input
           id="team-profile-input"
@@ -91,8 +132,13 @@ export default function TeamProfileForm({
           className="hidden"
           onChange={handleFileChange}
         />
+
+        {imageError && (
+          <p className="mt-1 text-xs text-red-500">{imageError}</p>
+        )}
       </div>
-      <div className="mb-6 w-full self-start">
+
+      <div className="mb-10 w-full self-start">
         <InputBase
           id="teamName"
           title="팀 이름"
@@ -105,8 +151,8 @@ export default function TeamProfileForm({
             setNameError(false);
           }}
           onKeyDown={handleKeyDown}
-          titleClassName="mb-6"
-          containerClassName={`w-full bg-slate-800${nameError ? ' border border-red-500' : ''}`}
+          titleClassName="mb-3"
+          containerClassName=" h-11 tablet:h-12 bg-slate-800"
           inputClassName="w-full h-11 tablet:h-12"
         />
         {nameError && (
@@ -115,7 +161,8 @@ export default function TeamProfileForm({
           </p>
         )}
       </div>
-      <div className="mb-4 w-full">
+
+      <div className="mb-6 w-full">
         <Button
           variant="primary"
           styleType="filled"
@@ -123,11 +170,12 @@ export default function TeamProfileForm({
           radius="sm"
           className="text-lg-semibold w-full"
           onClick={handleSubmit}
-          disabled={!name.trim()}
+          disabled={isDisabled}
         >
           {submitLabel}
         </Button>
       </div>
+
       <p className="text-md-regular tablet:text-lg-regular">
         팀 이름은 회사명이나 모임 이름 등으로 설정하면 좋아요.
       </p>

@@ -40,15 +40,19 @@ export function useUpdateGroup(teamId: number) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: async (
-      data: GroupBody & { file?: File }
+      data: GroupBody & { file?: File; removeImage?: boolean }
     ): Promise<GroupResponse | null> => {
-      let imageUrl: string | undefined;
+      const body: { name: string; image?: string | null } = { name: data.name };
+
       if (data.file) {
-        imageUrl = await uploadImage(data.file);
+        const url = await uploadImage(data.file);
+        body.image = url;
+      } else if (data.removeImage) {
+        body.image = null;
       }
       return patchGroupById({
         groupId: teamId,
-        body: { name: data.name, ...(imageUrl ? { image: imageUrl } : {}) },
+        body,
       });
     },
     onSuccess: () => {

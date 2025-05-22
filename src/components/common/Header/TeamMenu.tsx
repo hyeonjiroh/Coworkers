@@ -84,14 +84,18 @@ export default function TeamMenu({
                     }}
                   >
                     <div className="relative h-8 w-8">
-                      <Image
-                        src={group.image ?? '/image/default_team_img.png'}
-                        alt={group.name}
-                        fill
-                        // 임시조치 - 나중에 도메인 추가 예정
-                        unoptimized
-                        className="rounded-sm object-cover"
-                      />
+                      {group.image ? (
+                        <Image
+                          src={`${group.image}`}
+                          alt={group.name}
+                          fill
+                          // 임시조치 - 나중에 도메인 추가 예정
+                          unoptimized
+                          className="rounded-sm object-cover"
+                        />
+                      ) : (
+                        <IconRenderer name="ImgIcon" size={32} />
+                      )}
                     </div>
                     <span className="text-sm whitespace-nowrap">
                       {group.name}

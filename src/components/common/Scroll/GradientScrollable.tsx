@@ -1,6 +1,5 @@
-'use client';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface GradientScrollableProps {
   children: React.ReactNode;
@@ -20,7 +19,22 @@ const GradientScrollable = ({
   className,
   color = '#272e3f',
 }: GradientScrollableProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
   const [isScrollMove, setIsScrollMove] = useState(false);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const observer = new ResizeObserver(() => {
+      setIsOverflowing(el.scrollWidth > el.clientWidth);
+    });
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
+  }, [children]);
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const { scrollLeft } = e.currentTarget;
@@ -30,6 +44,7 @@ const GradientScrollable = ({
   return (
     <div className="relative">
       <div
+        ref={scrollRef}
         onScroll={handleScroll}
         className={clsx(
           'scrollbar-hide overflow-x-auto whitespace-nowrap',
@@ -38,12 +53,17 @@ const GradientScrollable = ({
       >
         {children}
       </div>
-      <div
-        className={clsx(overflowTextGradientStyle, isScrollMove && 'opacity-0')}
-        style={{
-          background: `linear-gradient(to left, ${color}, transparent)`,
-        }}
-      />
+      {isOverflowing && (
+        <div
+          className={clsx(
+            overflowTextGradientStyle,
+            isScrollMove && 'opacity-0'
+          )}
+          style={{
+            background: `linear-gradient(to left, ${color}, transparent)`,
+          }}
+        />
+      )}
     </div>
   );
 };

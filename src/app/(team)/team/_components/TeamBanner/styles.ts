@@ -20,7 +20,6 @@ export const teamBannerImgStyle =
 
 export const teamBannerTitleStyle = clsx(
   'text-xl-bold',
-  'relative flex-1',
-  'laptop:max-w-[800px] tablet:max-w-[460px] max-w-[245px]',
+  'relative flex-1 pr-3',
   'min-w-0'
 );

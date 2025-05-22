@@ -4,8 +4,8 @@ import SocialLogin from '@/app/(auth)/login/_components/SocialLogin';
 
 export default function LoginPage() {
   return (
-    <div className="flex h-[calc(100vh-60px)] items-center justify-center">
-      <div className="flex flex-col">
+    <div className="laptop:py-[140px] tablet:py-[100px] h-[calc(100vh-60px)] px-4 py-20">
+      <div className="m-auto flex max-w-[460px] flex-col">
         <LoginForm />
         <NavigateToSignUp />
         <SocialLogin />

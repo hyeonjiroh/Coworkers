@@ -13,7 +13,7 @@ export default function SocialLogin() {
       </div>
 
       {/*social login*/}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pb-20">
         <span className="text-lg-medium">간편 로그인하기</span>
         <button>
           <Icons.KakaoLoginIcon

@@ -63,7 +63,7 @@ export default function OpenPasswordResetModal({ ...props }) {
   return (
     <div className="mt-3 mb-10 flex justify-end">
       <button
-        className="leading-normal font-medium text-emerald-500 underline"
+        className="text-md-medium tablet:text-lg-medium leading-6 text-emerald-500 underline"
         type="button"
         onClick={() => {
           openModal(

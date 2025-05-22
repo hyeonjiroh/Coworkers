@@ -3,6 +3,7 @@
 import InputWithLabel from '@/components/auth/InputWithLabel';
 import Button from '@/components/common/Button';
 import { signIn } from '@/lib/apis/auth';
+import { getUserGroups } from '@/lib/apis/user';
 import {
   validateEmail,
   validateName,
@@ -12,9 +13,9 @@ import {
 import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/constants/routes';
 import { InputType } from '@/components/auth/type';
 import OpenPasswordResetModal from '@/app/(auth)/login/_components/LoginForm/OpenPasswordResetModal';
 
@@ -165,7 +166,14 @@ export default function LoginForm() {
       });
 
       toast.success('로그인 되었습니다.');
-      router.push('/no-team');
+      const userGroupsData = await getUserGroups({});
+      const firstGroupId = userGroupsData?.[0]?.id;
+
+      if (firstGroupId) {
+        router.push(ROUTES.TEAM(firstGroupId));
+      } else {
+        router.push(ROUTES.TEAM_NO);
+      }
     } catch (error) {
       if (error instanceof Error) {
         const errorMessage = error.message;
@@ -188,7 +196,7 @@ export default function LoginForm() {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <h1 className="text-4xl-medium mb-20 text-center">로그인</h1>
+      <h1 className="text-4xl-medium tablet:mb-20 mb-10 text-center">로그인</h1>
 
       <div className="flex flex-col gap-6">
         <InputWithLabel
@@ -212,7 +220,7 @@ export default function LoginForm() {
         variant="primary"
         styleType="filled"
         radius="sm"
-        className="w-[460px]"
+        className="w-full"
         disabled={!isFormValid}
       >
         로그인

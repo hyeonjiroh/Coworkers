@@ -240,13 +240,13 @@ export default function SignupForm() {
         />
       </div>
 
-      <div className="flex max-w-[460px] gap-3">
+      <div className="mb-20 flex gap-3">
         <Button
           size="lg"
           variant="primary"
           styleType="filled"
           radius="sm"
-          className="mb-4 w-[460px] basis-1/3"
+          className="basis-1/3"
           onClick={() => {
             router.back();
           }}
@@ -260,7 +260,7 @@ export default function SignupForm() {
           variant="primary"
           styleType="filled"
           radius="sm"
-          className="w-[460px] basis-2/3"
+          className="basis-2/3"
           disabled={!isFormValid}
         >
           회원가입

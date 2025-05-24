@@ -1,5 +1,4 @@
 import UserIcon from '@/components/user/UserIcon';
-import BreakEmail from '@/app/(team)/team/_components/MemberList/BreakEmail';
 import MemberMenu from '@/app/(team)/team/_components/MemberList/MemberMenu';
 import MemberProfileModal from '@/components/common/Modal/content/MemberProfileModal';
 import { useModalStore } from '@/store/useModalStore';
@@ -8,7 +7,9 @@ import { GroupResponse } from '@/lib/apis/group/type';
 import {
   memberCardContainerStyle,
   memberCardItemWrapperStyle,
-  memberCardTextWrapperStyle,
+  memberCardProfileWrapperStyle,
+  memberCardNameStyle,
+  memberCardEmailStyle,
 } from '@/app/(team)/team/_components/MemberList/styles';
 import { toast } from 'react-toastify';
 import { TOAST_MESSAGES } from '@/constants/messages';
@@ -68,28 +69,25 @@ const MemberCard = ({
       }}
       className={`${memberCardContainerStyle}`}
     >
-      {/* 아이템 래퍼 */}
+      {/* left item */}
       <div className={`${memberCardItemWrapperStyle}`}>
-        <div className="tablet:h-[33px] tablet:w-[146px] flex items-center gap-3">
-          {/* 프로필 아이콘 */}
+        {/* 프로필 아이콘 */}
+        <div className={`${memberCardProfileWrapperStyle}`}>
           <UserIcon
             image={profileImage}
             sizeClass="tablet:size-8 size-6"
             imageSize="32px"
           />
-
-          {/* 이름 + 이메일 */}
-          <div className={`${memberCardTextWrapperStyle}`}>
-            <p className="text-md-regular">{name}</p>
-            <BreakEmail email={email} />
-          </div>
         </div>
-
-        {/* 메뉴 버튼 */}
-        {isAdmin && userId !== memberId && (
-          <MemberMenu memberId={memberId} name={name} onDelete={onDelete} />
-        )}
+        {/* 이름 */}
+        <p className={`${memberCardNameStyle}`}>{name}</p>
+        {/* 이메일 */}
+        <p className={`${memberCardEmailStyle}`}>{email}</p>
       </div>
+      {/* 메뉴 버튼 */}
+      {isAdmin && userId !== memberId && (
+        <MemberMenu memberId={memberId} name={name} onDelete={onDelete} />
+      )}
     </div>
   );
 };

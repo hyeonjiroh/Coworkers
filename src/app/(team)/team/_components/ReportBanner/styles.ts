@@ -37,7 +37,7 @@ export const reportCardsWrapperStyle = clsx(
 export const reportCardContainerStyle = clsx(
   'flex items-center justify-center',
   'max-w-[400px]',
-  'laptop:h-[76.5px] h-[80px] w-full min-w-0 p-4',
+  'h-[77px] w-full min-w-0 p-4',
   'bg-slate-700',
   RADIUS
 );

@@ -25,7 +25,7 @@ const MemberMenu = ({ memberId, name, onDelete }: MemberMenuProps) => {
 
   return (
     <DropDown>
-      <DropDown.Trigger className="mb-0">
+      <DropDown.Trigger className="mb-0 shrink-0">
         <TaskMenuButton size="sm" />
       </DropDown.Trigger>
       <DropDown.Menu align="right" className="mt-2 h-[40px] w-[120px]">

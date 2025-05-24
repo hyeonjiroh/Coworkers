@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import IconRenderer from '@/components/common/Icons/IconRenderer';
 import Logo from './Logo';
 import TeamMenu from './TeamMenu';
@@ -15,12 +15,21 @@ import { useMemberships } from '@/hooks/useMemberships';
 import { getUser } from '@/lib/apis/user';
 import { UserResponse } from '@/lib/apis/user/type';
 import { ROUTES } from '@/constants/routes';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const isLogin = useAuth();
   const { memberships, selectedGroup, setSelectedGroup } =
     useMemberships(isLogin);
   const [isSideMenuOpen, setSideMenuOpen] = useState(false);
+
+  const pathname = usePathname();
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['memberships'] });
+    queryClient.invalidateQueries({ queryKey: ['currentUser'] });
+  }, [pathname, queryClient]);
 
   const logoHref = selectedGroup
     ? ROUTES.TEAM(selectedGroup.id)
@@ -37,9 +46,19 @@ export default function Header() {
   });
 
   const handleLogout = () => {
-    Cookies.remove('accessToken', { path: '/' });
-    Cookies.remove('refreshToken', { path: '/' });
-    Cookies.remove('userId', { path: '/' });
+    Cookies.remove('accessToken', {
+      path: '/',
+      secure: true,
+      sameSite: 'Strict',
+    });
+
+    Cookies.remove('refreshToken', {
+      path: '/',
+      secure: true,
+      sameSite: 'Strict',
+    });
+    Cookies.remove('userId', { path: '/', secure: true, sameSite: 'Strict' });
+    location.href = '/';
     toast.success('로그아웃 되었습니다');
   };
 

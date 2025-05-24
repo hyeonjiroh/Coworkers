@@ -17,6 +17,7 @@ export interface TeamProfileFormProps {
 }
 
 const MAX_FILE_SIZE = 4.2 * 1024 * 1024;
+const MAX_NAME_LENGTH = 30;
 
 export default function TeamProfileForm({
   initialName = '',
@@ -29,6 +30,7 @@ export default function TeamProfileForm({
   const [preview, setPreview] = useState(initialPreview);
   const [file, setFile] = useState<File>();
   const [nameError, setNameError] = useState(false);
+  const [lengthError, setLengthError] = useState(false);
   const [imageError, setImageError] = useState('');
 
   useEffect(() => {
@@ -36,6 +38,7 @@ export default function TeamProfileForm({
     setPreview(initialPreview);
     setFile(undefined);
     setNameError(false);
+    setLengthError(false);
     setImageError('');
   }, [initialName, initialPreview]);
 
@@ -70,13 +73,24 @@ export default function TeamProfileForm({
 
   const removeImage = preview === '' && !file;
 
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setName(value);
+    setNameError(false);
+    setLengthError(value.length > MAX_NAME_LENGTH);
+  };
+
   const handleSubmit = async () => {
     let hasErr = false;
+    const trimmed = name.trim();
     if (existingNames.includes(name.trim())) {
       setNameError(true);
       hasErr = true;
     }
-
+    if (trimmed.length > MAX_NAME_LENGTH) {
+      setLengthError(true);
+      hasErr = true;
+    }
     if (imageError) {
       hasErr = true;
     }
@@ -85,7 +99,8 @@ export default function TeamProfileForm({
     await onSubmit({ name: name.trim(), file, removeImage });
   };
 
-  const isDisabled = !name.trim() || Boolean(imageError);
+  const isDisabled =
+    !name.trim() || Boolean(imageError) || Boolean(lengthError);
 
   return (
     <div className="text-md-regular tablet:w-[460px] tablet:text-lg-regular flex w-[343px] flex-col items-center">
@@ -146,10 +161,7 @@ export default function TeamProfileForm({
           value={name}
           autoComplete="off"
           isInvalid={nameError}
-          onChange={(e) => {
-            setName(e.target.value);
-            setNameError(false);
-          }}
+          onChange={handleNameChange}
           onKeyDown={handleKeyDown}
           titleClassName="mb-3"
           containerClassName=" h-11 tablet:h-12 bg-slate-800"
@@ -158,6 +170,11 @@ export default function TeamProfileForm({
         {nameError && (
           <p className="text-md-medium mt-2 text-red-500">
             이미 존재하는 이름입니다.
+          </p>
+        )}
+        {lengthError && (
+          <p className="text-md-medium mt-2 text-red-500">
+            팀 이름은 최대 {MAX_NAME_LENGTH}자까지 가능합니다.
           </p>
         )}
       </div>

@@ -14,6 +14,10 @@ export default function SideMenu({
   onClose: () => void;
   memberships: UserMembershipResponse[];
 }) {
+  const sortedMemberships = [...memberships].sort(
+    (a, b) => a.group.id - b.group.id
+  );
+
   return (
     <>
       {isSideMenuOpen && (
@@ -38,7 +42,28 @@ export default function SideMenu({
             </div>
 
             <ul className="header-scroll flex h-[700px] flex-col gap-6 overflow-y-auto overscroll-contain text-sm font-normal">
-              {memberships.map(({ group, role }) => (
+              <li>
+                <Link
+                  href={ROUTES.BOARDS}
+                  className="hover:text-green-700"
+                  onClick={onClose}
+                >
+                  자유게시판
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={ROUTES.TEAM_ADD}
+                  className="hover:text-green-700"
+                  onClick={onClose}
+                >
+                  팀 생성하기
+                </Link>
+              </li>
+              {!!sortedMemberships.length && (
+                <li className="mx-auto text-slate-300">- 팀 목록 -</li>
+              )}
+              {sortedMemberships.map(({ group, role }) => (
                 <li
                   key={group.id}
                   className="flex items-center justify-between"
@@ -66,16 +91,6 @@ export default function SideMenu({
                   )}
                 </li>
               ))}
-
-              <li>
-                <Link
-                  href={ROUTES.BOARDS}
-                  className="hover:text-green-700"
-                  onClick={onClose}
-                >
-                  자유게시판
-                </Link>
-              </li>
             </ul>
           </div>
         </>

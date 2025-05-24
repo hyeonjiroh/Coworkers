@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import fetcher from '@/lib/client/fetcher.client';
 import { UserMembershipResponse } from '@/lib/apis/user/type';
+import { getUserMemberships } from '@/lib/apis/user';
 
 export function useMemberships(isLogin: boolean) {
   const { data: memberships = [] } = useQuery<
@@ -13,10 +13,7 @@ export function useMemberships(isLogin: boolean) {
   >({
     queryKey: ['memberships'],
     queryFn: async () => {
-      const res = await fetcher<undefined, UserMembershipResponse[]>({
-        url: '/user/memberships',
-        method: 'GET',
-      });
+      const res = await getUserMemberships({ tag: ['memberships'] });
       return res ?? [];
     },
     enabled: isLogin,
@@ -28,11 +25,12 @@ export function useMemberships(isLogin: boolean) {
 
   useEffect(() => {
     if (memberships.length > 0) {
-      setSelectedGroup((prev) =>
-        prev && memberships.some((m) => m.group.id === prev.id)
-          ? prev
-          : memberships[0].group
-      );
+      setSelectedGroup((prev) => {
+        const newGroup = memberships.find(
+          (m) => m.group.id === prev?.id
+        )?.group;
+        return newGroup ?? memberships[0].group;
+      });
     } else {
       setSelectedGroup(null);
     }

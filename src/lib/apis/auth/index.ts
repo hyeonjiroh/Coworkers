@@ -6,6 +6,7 @@ import {
   AuthBody,
   AuthResponse,
 } from '@/lib/apis/auth/type';
+import serverFetcher from '@/lib/server/fetcher.server';
 
 // 회원가입
 export async function signUp({
@@ -39,7 +40,7 @@ export async function postOAuth({
 }: {
   body: OAuthBody;
 }): Promise<AuthResponse | null> {
-  return clientFetcher<OAuthBody, AuthResponse>({
+  return serverFetcher<OAuthBody, AuthResponse>({
     url: '/auth/signIn/KAKAO',
     method: 'POST',
     body,

@@ -19,7 +19,14 @@ export default function SocialLogin() {
           <Icons.KakaoLoginIcon
             size={42}
             onClick={() => {
-              'kakao Login';
+              // client_id, redirect_uri, state
+              const REST_API_KEY = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY;
+              const REDIRECT_URI = process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI;
+              const STATE = crypto.randomUUID(); // CSRF 방지를 위한 난수 문자열 생성
+
+              const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&state=${STATE}`;
+              // redirection to kakaoAuthUrl
+              window.location.href = kakaoAuthUrl;
             }}
           />
         </button>

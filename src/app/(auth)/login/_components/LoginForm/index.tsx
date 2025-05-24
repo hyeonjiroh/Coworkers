@@ -161,8 +161,8 @@ export default function LoginForm() {
 
       Cookies.set('userId', user.id.toString(), {
         path: '/',
-        secure: true,
-        sameSite: 'Strict',
+        secure: true, // HTTPS 쿠키 전송
+        sameSite: 'Strict', // 사용자가 직접 사이트를 방문한 경우 쿠키 포함
       });
 
       toast.success('로그인 되었습니다.');
